@@ -1,0 +1,21 @@
+.banner-footer {
+  position: fixed;
+  bottom: 0px;
+  width: 100vw;
+  height: 90px;
+  background: #fce6d2;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.course-info {
+  text-align: center;
+  margin-top: 15px;
+  color: #233142;
+  font-weight: 100;
+}
+a {
+  text-decoration: none;
+  color: #975a5e;
+}

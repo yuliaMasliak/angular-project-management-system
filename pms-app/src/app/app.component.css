@@ -1,3 +1,7 @@
 body {
   margin: 0px auto;
 }
+* {
+  font-family: 'Haas Grot Text R Web', 'Helvetica Neue', Helvetica, Arial,
+    sans-serif;
+}
