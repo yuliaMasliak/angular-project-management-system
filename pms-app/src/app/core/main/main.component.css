@@ -4,7 +4,14 @@ main {
 }
 
 img {
-  width: 40vw;
+  width: 50vw;
   margin: 0px auto;
   margin-top: 130px;
+  margin-bottom: 20px;
+}
+.slogan {
+  color: #453953b2;
+  font-size: 20px;
+  text-transform: uppercase;
+  line-height: 28px;
 }
