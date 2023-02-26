@@ -2,18 +2,19 @@
   position: fixed;
   bottom: 0px;
   width: 100vw;
-  height: 90px;
+  height: 80px;
   background: #fce6d2;
   text-align: center;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .course-info {
   text-align: center;
-  margin-top: 15px;
+  margin-top: 10px;
   color: #233142;
   font-weight: 100;
+  font-size: 14px;
 }
 a {
   text-decoration: none;
