@@ -9,7 +9,7 @@
   margin-right: 40px;
 }
 button {
-  width: 70px;
+  width: 90px;
   border-radius: 8px;
   border: 1px solid #fce6d2;
   color: #233142;
@@ -29,11 +29,6 @@ button {
 }
 button:hover {
   box-shadow: 0px 5px 10px 0px rgba(17, 0, 24, 0.822);
-  transition: ease-in-out;
-
-  transition-timing-function: ease-in-out;
-  transition-duration: 200ms;
-  transform: scale(1.1);
 }
 .fake {
   display: inline-block;

@@ -5,7 +5,9 @@ import { FooterComponent } from './footer/footer.component'
 
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component'
 import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component'
-import { AppRoutingModule } from '../app-routing.module'
+import { AppRoutingModule } from '../app-routing.module';
+import { LoginComponent } from './pages/login/login.component';
+import { SignupComponent } from './pages/signup/signup.component'
 
 @NgModule({
   declarations: [
@@ -13,7 +15,9 @@ import { AppRoutingModule } from '../app-routing.module'
     FooterComponent,
 
     NotFoundPageComponent,
-    WelcomePageComponent
+    WelcomePageComponent,
+    LoginComponent,
+    SignupComponent
   ],
   exports: [HeaderComponent, FooterComponent],
   imports: [CommonModule, AppRoutingModule]
