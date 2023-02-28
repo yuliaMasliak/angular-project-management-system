@@ -9,7 +9,7 @@
   justify-content: space-between;
   margin-right: 40px;
 }
-button {
+.logout {
   width: 90px;
   border-radius: 8px;
   border: 1px solid #fce6d2;
@@ -34,4 +34,15 @@ button:hover {
 .fake {
   display: inline-block;
   width: 40px;
+}
+.lang-switcher {
+}
+span {
+  margin-right: 50px;
+}
+.btn-light {
+  margin-right: 2px;
+  margin-left: 2px;
+  background-color: #d5e4fa;
+  border: none;
 }

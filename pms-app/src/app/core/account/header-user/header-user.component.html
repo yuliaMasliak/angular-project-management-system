@@ -1,7 +1,22 @@
 <div class="banner">
-  <a routerLink="/main"><img src="../../../assets/logo" width="140" /></a>
   <div class="header-buttons">
-    <a routerLink=""><button>Log Out</button></a>
+    <a routerLink="/main"><img src="../../../assets/logo" width="140" /></a>
+    <span class="lang-switcher">
+      <a href='javascript:Localize.setLanguage("en")'
+        ><button class="btn btn-light" routerLinkActive="/dashboard">
+          Eng
+        </button></a
+      >
+      <a href='javascript:Localize.setLanguage("ua")'
+        ><button class="btn btn-light">UA</button></a
+      >
+    </span>
+
+    <a routerLink=""><button>edit profile</button></a>
+    <a routerLink=""><button>create new board</button></a>
+  </div>
+  <div class="header-buttons">
+    <a routerLink=""><button class="logout">Log Out</button></a>
 
     <div class="fake"></div>
   </div>
