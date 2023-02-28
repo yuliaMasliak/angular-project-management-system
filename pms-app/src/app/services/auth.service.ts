@@ -10,13 +10,13 @@ import { IUser } from '../models/user'
 export class AuthService {
   constructor(private router: Router, private http: HttpClient) {}
 
-  public getUsers(): Observable<IUser[]> {
+  public getUsers(): void {
     console.log(
       this.http
-        .get(`http://localhost:4200/users/`)
+        .get('http://localhost:3000/users')
         .subscribe((res) => console.log(res))
     )
-    return this.http.get<IUser[]>(`http://localhost:4200/users`)
+    // return this.http.get<IUser[]>('http://localhost:4200/users')
   }
   allowLogin(user: IUser): Observable<string | boolean> {
     console.log(this.getUsers())
