@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   async submitUserLogin() {
     this.authService
       .allowLogin(this.loginForm.value)
-      .subscribe({ next: () => this.router.navigate(['loggedin-page']) })
+      .subscribe({ next: () => this.router.navigate(['dashboard']) })
   }
   ngOnInit(): void {
     this.loginForm = new FormGroup({
