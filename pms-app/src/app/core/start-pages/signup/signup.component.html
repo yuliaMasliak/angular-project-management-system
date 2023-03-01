@@ -6,35 +6,18 @@
         type="text"
         formControlName="name"
         class="form-control"
-        placeholder="First name*"
+        placeholder="Name*"
       />
     </div>
 
     <div class="mb-3">
       <input
         type="text"
-        formControlName="surname"
-        class="form-control"
-        placeholder="Last name*"
-      />
-    </div>
-    <div class="mb-3">
-      <input
-        type="email"
-        formControlName="email"
+        formControlName="login"
         class="form-control"
         id="inputEmail"
-        placeholder="Email address*"
+        placeholder="Login name*"
       />
-      <div
-        class="warning"
-        *ngIf="
-          this.signupForm.get('email')?.invalid &&
-          this.signupForm.get('email')?.touched
-        "
-      >
-        wrong email
-      </div>
     </div>
     <div class="mb-3">
       <input
