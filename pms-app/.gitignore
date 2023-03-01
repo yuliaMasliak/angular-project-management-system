@@ -8,7 +8,6 @@
 
 # Node
 /node_modules
-final-task-backend
 npm-debug.log
 yarn-error.log
 .vscode
