@@ -3,8 +3,7 @@ export interface IUser {
   login: string
   password: string
 }
-export interface userResponse {
+export interface IUserToLogin {
   login: string
-  name: string
-  _id: string
+  password: string
 }

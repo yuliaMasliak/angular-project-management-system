@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Router } from '@angular/router'
 import { Observable, of, throwError } from 'rxjs'
-import { IUser, userResponse } from '../models/user'
+import { IUser } from '../models/user'
 import { baseUrl } from 'src/environment/environment'
 import { map } from 'rxjs/operators'
 
@@ -15,29 +15,43 @@ export class AuthService {
   userId: any = ''
   constructor(private router: Router, private http: HttpClient) {}
 
-  public getUsers(): void {
-    console.log(this.http.get(baseUrl).subscribe((res) => console.log(res)))
-  }
-  public createUser(user: IUser): void {
+  public createUser(user: IUser): Observable<string | boolean> {
+    let result = false
     const headers = {
       'Content-Type': 'application/json'
     }
 
     this.http
       .post(`${baseUrl}auth/signup`, user, { headers })
-      .subscribe((data: any) => this.userLogin(data.login, data.password))
+      .subscribe((data: any) => {
+        if (data.token) {
+          result = true
+        }
+        result = false
+      })
+    return of(result)
   }
 
-  userLogin(userLogin: string, userPassword: string): void {
+  userLogin(
+    userLogin: string,
+    userPassword: string
+  ): Observable<string | boolean> {
     const headers = {
       'Content-Type': 'application/json'
     }
+    let result = false
     const usertoLogin = {
       login: userLogin,
       password: userPassword
     }
     this.http
       .post(`${baseUrl}auth/signin`, usertoLogin, { headers })
-      .subscribe((data) => console.log(data))
+      .subscribe((data: any) => {
+        if (data.token) {
+          result = true
+        }
+        result = false
+      })
+    return of(result)
   }
 }

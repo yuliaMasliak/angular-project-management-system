@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 import { AuthService } from 'src/app/services/auth.service'
+import { IUserToLogin } from 'src/app/models/user'
 
 @Component({
   selector: 'app-login',
@@ -10,12 +11,13 @@ import { AuthService } from 'src/app/services/auth.service'
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup
+
   constructor(private router: Router, private authService: AuthService) {}
 
-  async submitUserLogin() {
-    // this.authService
-    //   .userLogin(this.loginForm.value)
-    //   .subscribe({ next: () => this.router.navigate(['dashboard']) })
+  loginAuthUser() {
+    this.authService
+      .userLogin(this.loginForm.value.login, this.loginForm.value.password)
+      .subscribe({ next: () => this.router.navigate(['dashboard']) })
   }
   ngOnInit(): void {
     this.loginForm = new FormGroup({

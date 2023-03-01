@@ -20,8 +20,11 @@ export class SignupComponent implements OnInit {
       login: this.signupForm.value.login,
       password: this.signupForm.value.password
     }
-    this.authService.createUser(this.newUserToPost)
+    this.authService
+      .createUser(this.newUserToPost)
+      .subscribe({ next: () => this.router.navigate(['login']) })
   }
+
   ngOnInit(): void {
     this.signupForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
