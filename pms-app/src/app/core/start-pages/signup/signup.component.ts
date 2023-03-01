@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { Router } from '@angular/router'
+import { IUser } from 'src/app/models/user'
+import { AuthService } from 'src/app/services/auth.service'
 
 @Component({
   selector: 'app-signup',
@@ -8,9 +11,16 @@ import { FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class SignupComponent implements OnInit {
   signupForm!: FormGroup
+  newUserToPost: IUser | null = null
 
+  constructor(private router: Router, private authService: AuthService) {}
   submitSignUp() {
-    console.log(this.signupForm.value)
+    this.newUserToPost = {
+      name: this.signupForm.value.name,
+      login: this.signupForm.value.login,
+      password: this.signupForm.value.password
+    }
+    this.authService.createUser(this.newUserToPost)
   }
   ngOnInit(): void {
     this.signupForm = new FormGroup({
