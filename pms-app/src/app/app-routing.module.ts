@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
+import { ProfileComponent } from './core/dashboard/profile/profile.component'
 import { LoginComponent } from './core/start-pages/login/login.component'
 import { NotFoundPageComponent } from './core/start-pages/not-found-page/not-found-page.component'
 import { SignupComponent } from './core/start-pages/signup/signup.component'
@@ -20,8 +21,11 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    loadChildren: () =>
-      import('./core/account/account.module').then((m) => m.AccountModule)
+    component: ProfileComponent
+  },
+  {
+    path: 'core',
+    loadChildren: () => import('./core/core.module').then((m) => m.CoreModule)
   },
   {
     path: '',

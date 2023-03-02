@@ -29,11 +29,8 @@ export class ProfileComponent implements OnInit {
       data.forEach((el: any) => {
         if (el.login == this.authService.user.login) {
           this.name = el.name
-          console.log(el.name)
         }
       })
-      console.log(data)
-      console.log(this.authService.user)
     })
   }
 }

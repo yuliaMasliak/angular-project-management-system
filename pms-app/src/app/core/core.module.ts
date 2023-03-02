@@ -12,6 +12,8 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core'
 import { TranslateHttpLoader } from '@ngx-translate/http-loader'
 import { HttpClient } from '@angular/common/http'
+import { ProfileComponent } from './dashboard/profile/profile.component'
+import { HeaderUserComponent } from './dashboard/header-user/header-user.component'
 
 function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http)
@@ -25,7 +27,9 @@ function HttpLoaderFactory(http: HttpClient) {
     WelcomePageComponent,
     LoginComponent,
     SignupComponent,
-    MainComponent
+    MainComponent,
+    ProfileComponent,
+    HeaderUserComponent
   ],
   exports: [HeaderComponent, FooterComponent, MainComponent],
   imports: [
