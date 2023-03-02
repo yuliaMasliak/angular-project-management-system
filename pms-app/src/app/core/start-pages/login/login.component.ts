@@ -11,10 +11,6 @@ import { Output } from '@angular/core'
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup
-  @Output() LoggedUser = {
-    login: this.loginForm.value.login,
-    password: this.loginForm.value.password
-  }
 
   constructor(private router: Router, private authService: AuthService) {}
 

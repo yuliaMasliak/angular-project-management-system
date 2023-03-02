@@ -8,8 +8,10 @@ import { baseUrl } from 'src/environment/environment'
   providedIn: 'root'
 })
 export class AuthService {
-  userResponse: string = ''
-  userId: any = ''
+  user = {
+    login: '',
+    password: ''
+  }
   constructor(private router: Router, private http: HttpClient) {}
 
   public createUser(user: IUser): void {
@@ -39,6 +41,7 @@ export class AuthService {
       (data: any) => {
         if (data.token) {
           this.router.navigate(['dashboard'])
+          this.user = usertoLogin
           alert('You were successfully logged in')
         }
       },

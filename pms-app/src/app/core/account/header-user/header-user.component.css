@@ -46,3 +46,9 @@ span {
   background-color: #d5e4fa;
   border: none;
 }
+.welcome {
+  color: white;
+  font-size: larger;
+  font-family: 'Haas Grot Text R Web', 'Helvetica Neue', Helvetica, Arial,
+    sans-serif;
+}
