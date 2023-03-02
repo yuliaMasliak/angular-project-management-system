@@ -1,7 +1,14 @@
 <div class="banner">
   <div class="header-buttons">
     <a routerLink="/main"><img src="../../../assets/logo" width="140" /></a>
-
+    <span class="lang-switcher">
+      <button class="btn btn-light" (click)="translate.use('en')">
+        {{ 'lang.en' | translate }}
+      </button>
+      <button class="btn btn-light" (click)="translate.use('ua')">
+        {{ 'lang.ua' | translate }}
+      </button>
+    </span>
     <a
       ><button class="btns">{{ 'edit' | translate }}</button></a
     >
