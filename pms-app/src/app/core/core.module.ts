@@ -9,6 +9,13 @@ import { LoginComponent } from './start-pages/login/login.component'
 import { SignupComponent } from './start-pages/signup/signup.component'
 import { MainComponent } from './start-pages/main-welcome-page/main.component'
 import { ReactiveFormsModule } from '@angular/forms'
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core'
+import { TranslateHttpLoader } from '@ngx-translate/http-loader'
+import { HttpClient } from '@angular/common/http'
+
+function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http)
+}
 
 @NgModule({
   declarations: [
@@ -21,6 +28,18 @@ import { ReactiveFormsModule } from '@angular/forms'
     MainComponent
   ],
   exports: [HeaderComponent, FooterComponent, MainComponent],
-  imports: [CommonModule, AppRoutingModule, ReactiveFormsModule]
+  imports: [
+    CommonModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      },
+      defaultLanguage: 'en'
+    })
+  ]
 })
 export class CoreModule {}

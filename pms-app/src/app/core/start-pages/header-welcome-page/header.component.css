@@ -35,3 +35,10 @@ button:hover {
   display: inline-block;
   width: 40px;
 }
+.btn-light {
+  margin-right: 2px;
+  margin-left: 2px;
+  background-color: #d5e4fa;
+  border: none;
+  width: 50px;
+}

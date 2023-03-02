@@ -14,4 +14,6 @@ img {
   font-size: 20px;
   text-transform: uppercase;
   line-height: 28px;
+  margin: 0px auto;
+  max-width: 50%;
 }

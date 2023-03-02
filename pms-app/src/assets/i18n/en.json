@@ -1,0 +1,13 @@
+{
+  "lang": {
+    "en": "EN",
+    "ua": "UA"
+  },
+  "slogan": "Enhance your business with effective and powerful project performance monitoring platform",
+  "buttons": {
+    "log": {
+      "login": "LOG IN",
+      "signup": "SIGN UP"
+    }
+  }
+}

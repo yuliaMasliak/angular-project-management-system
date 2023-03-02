@@ -1,8 +1,18 @@
 <div class="banner">
   <a routerLink="/main"><img src="../../../assets/logo" width="140" /></a>
+  <span class="lang-switcher">
+    <button class="btn btn-light" (click)="translate.use('en')">
+      {{ 'lang.en' | translate }}
+    </button>
+    <button class="btn btn-light" (click)="translate.use('ua')">
+      {{ 'lang.ua' | translate }}
+    </button>
+  </span>
   <div class="header-buttons">
-    <a routerLink="/login"><button>Log In</button></a>
-    <button routerLink="/signup">Sigh Up</button>
+    <a routerLink="/login"
+      ><button>{{ 'buttons.log.login' | translate }}</button></a
+    >
+    <button routerLink="/signup">{{ 'buttons.log.signup' | translate }}</button>
     <div class="fake"></div>
   </div>
 </div>
