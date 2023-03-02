@@ -5,10 +5,9 @@ import { AccountRoutingModule } from './account-routing.module'
 import { ProfileComponent } from './profile/profile.component'
 
 import { HeaderUserComponent } from './header-user/header-user.component'
-import { DashboardComponent } from './dashboard/dashboard.component'
 
 @NgModule({
-  declarations: [ProfileComponent, HeaderUserComponent, DashboardComponent],
+  declarations: [ProfileComponent, HeaderUserComponent],
   imports: [CommonModule, AccountRoutingModule, RouterModule]
 })
 export class AccountModule {}

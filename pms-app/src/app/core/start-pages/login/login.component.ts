@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 import { AuthService } from 'src/app/services/auth.service'
-import { IUserToLogin } from 'src/app/models/user'
+import { Output } from '@angular/core'
 
 @Component({
   selector: 'app-login',
@@ -11,6 +11,10 @@ import { IUserToLogin } from 'src/app/models/user'
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup
+  @Output() LoggedUser = {
+    login: this.loginForm.value.login,
+    password: this.loginForm.value.password
+  }
 
   constructor(private router: Router, private authService: AuthService) {}
 
