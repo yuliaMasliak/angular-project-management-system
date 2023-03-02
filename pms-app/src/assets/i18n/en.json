@@ -9,5 +9,12 @@
       "login": "LOG IN",
       "signup": "SIGN UP"
     }
+  },
+  "footer": {
+    "1": "This project was coded by",
+    "2": "Yulia Masliak",
+    "3": "and is open-sourced on",
+    "4": "Git Hub",
+    "5": "March 2023"
   }
 }
