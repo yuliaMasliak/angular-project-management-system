@@ -16,5 +16,30 @@
     "3": "and is open-sourced on",
     "4": "Git Hub",
     "5": "March 2023"
-  }
+  },
+  "login": {
+    "title": "LOG IN",
+    "login": "Login",
+    "password": "Password",
+    "agree": "I agree to share my data",
+    "submit": "SUBMIT",
+    "ask": "Don't have an account yet?",
+    "link": "Sigh Up",
+    "warn": "min 8 characters, at least 1 letter and 1 number"
+  },
+  "signup": {
+    "title": "SIGN UP",
+    "name": "Name",
+    "login": "Login",
+    "password": "Password",
+    "agree": "I agree to share my data",
+    "submit": "SUBMIT",
+    "ask": "Have an account?",
+    "link": "Log In",
+    "warn": "min 8 characters, at least 1 letter and 1 number"
+  },
+  "edit": "Edit profile",
+  "board": "Create board",
+  "logout": "LOG OUT",
+  "welcome": "Welcome"
 }

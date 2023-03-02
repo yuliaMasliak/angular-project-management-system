@@ -1,12 +1,12 @@
 <div class="login">
-  <h2>SIGN UP</h2>
+  <h2>{{ 'signup.title' | translate }}</h2>
   <form [formGroup]="signupForm" (ngSubmit)="submitSignUp()">
     <div class="mb-3">
       <input
         type="text"
         formControlName="name"
         class="form-control"
-        placeholder="Name*"
+        placeholder="{{ 'signup.name' | translate }}*"
       />
     </div>
 
@@ -16,7 +16,7 @@
         formControlName="login"
         class="form-control"
         id="inputEmail"
-        placeholder="Login name*"
+        placeholder="{{ 'signup.login' | translate }}*"
       />
     </div>
     <div class="mb-3">
@@ -25,7 +25,7 @@
         formControlName="password"
         class="form-control"
         id="exampleInputPassword1"
-        placeholder="Password*"
+        placeholder="{{ 'signup.password' | translate }}*"
       />
       <div
         class="warning"
@@ -34,7 +34,7 @@
           this.signupForm.get('password')?.touched
         "
       >
-        min 8 characters, at least 1 letter and 1 number)
+        {{ 'signup.warn' | translate }}
       </div>
     </div>
     <div class="mb-3 form-check">
@@ -44,14 +44,17 @@
         class="form-check-input"
         id="exampleCheck1"
       />
-      <label class="form-check-label" for="exampleCheck1"
-        >I agree to share my personal data</label
+      <label class="form-check-label" for="exampleCheck1">
+        {{ 'signup.agree' | translate }}</label
       >
     </div>
-    <button class="btn" [disabled]="signupForm.invalid">Submit</button>
+    <button class="btn" [disabled]="signupForm.invalid">
+      {{ 'signup.submit' | translate }}
+    </button>
   </form>
   <br />
   <div class="form-text">
-    Have an account? <a routerLink="/login">Log In</a>
+    {{ 'signup.ask' | translate }}
+    <a routerLink="/login"> {{ 'signup.link' | translate }}</a>
   </div>
 </div>

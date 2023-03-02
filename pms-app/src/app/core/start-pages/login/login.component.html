@@ -1,8 +1,10 @@
 <div class="login">
-  <h2>LOG IN</h2>
+  <h2>{{ 'login.title' | translate }}</h2>
   <form [formGroup]="loginForm" (ngSubmit)="loginAuthUser()">
     <div class="mb-3">
-      <label for="input-email1" class="form-label">Login<span>*</span></label>
+      <label for="input-email1" class="form-label"
+        >{{ 'login.login' | translate }}<span>*</span></label
+      >
       <input
         type="text"
         formControlName="login"
@@ -12,7 +14,9 @@
       />
     </div>
     <div class="mb-3">
-      <label for="password1" class="form-label">Password<span>*</span></label>
+      <label for="password1" class="form-label"
+        >{{ 'login.password' | translate }}<span>*</span></label
+      >
       <input
         type="password"
         formControlName="password"
@@ -26,7 +30,7 @@
           this.loginForm.get('password')?.touched
         "
       >
-        min 8 characters, at least 1 letter and 1 number)
+        {{ 'login.warn' | translate }}
       </div>
     </div>
     <div class="mb-3 form-check">
@@ -36,14 +40,17 @@
         class="form-check-input"
         id="exampleCheck1"
       />
-      <label class="form-check-label" for="exampleCheck1"
-        >I agree to share my data</label
-      >
+      <label class="form-check-label" for="exampleCheck1">{{
+        'login.agree' | translate
+      }}</label>
     </div>
-    <button class="btn" [disabled]="loginForm.invalid">Submit</button>
+    <button class="btn" [disabled]="loginForm.invalid">
+      {{ 'login.submit' | translate }}
+    </button>
   </form>
   <br />
   <div class="form-text">
-    Don't have an account yet? <a routerLink="/signup">Sigh Up</a>
+    {{ 'login.ask' | translate }}
+    <a routerLink="/signup">{{ 'login.link' | translate }}</a>
   </div>
 </div>

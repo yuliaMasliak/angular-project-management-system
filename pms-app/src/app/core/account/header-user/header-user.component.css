@@ -28,6 +28,25 @@
   white-space: nowrap;
   background-color: #fce6d2;
 }
+.btns {
+  width: 140px;
+  border-radius: 8px;
+  border: 1px solid #fce6d2;
+  color: #233142;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'Haas Grot Text R Web', 'Helvetica Neue', Helvetica, Arial,
+    sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  margin-right: 10px;
+  padding: 10px 12px;
+  text-align: center;
+  vertical-align: baseline;
+  white-space: nowrap;
+  background-color: #fce6d2;
+}
 button:hover {
   box-shadow: 0px 5px 10px 0px rgba(17, 0, 24, 0.822);
 }
