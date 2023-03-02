@@ -9,7 +9,7 @@
     </button>
   </span>
   <div class="header-buttons">
-    <a routerLink="/login"
+    <a (click)="checkTokenLogin()"
       ><button>{{ 'buttons.log.login' | translate }}</button></a
     >
     <button routerLink="/signup">{{ 'buttons.log.signup' | translate }}</button>

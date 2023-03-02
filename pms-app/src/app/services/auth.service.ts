@@ -40,6 +40,7 @@ export class AuthService {
     this.http.post(`${baseUrl}auth/signin`, usertoLogin, { headers }).subscribe(
       (data: any) => {
         if (data.token) {
+          window.localStorage.setItem(`${userLogin}token`, data.token)
           this.router.navigate(['dashboard'])
           this.user = usertoLogin
           alert('You were successfully logged in')

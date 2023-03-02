@@ -19,7 +19,9 @@
   <div class="welcome">{{ 'welcome' | translate }}, {{ name | titlecase }}</div>
   <div class="header-buttons">
     <a routerLink=""
-      ><button class="logout">{{ 'logout' | translate }}</button></a
+      ><button class="logout" (click)="deleteToken()">
+        {{ 'logout' | translate }}
+      </button></a
     >
 
     <div class="fake"></div>

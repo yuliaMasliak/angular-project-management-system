@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core'
 import { TranslateService } from '@ngx-translate/core'
+import { AuthService } from 'src/app/services/auth.service'
 
 @Component({
   selector: 'app-header-user',
@@ -8,5 +9,8 @@ import { TranslateService } from '@ngx-translate/core'
 })
 export class HeaderUserComponent {
   @Input() name: string = ''
-  constructor(public translate: TranslateService) {}
+  constructor(public translate: TranslateService, private auth: AuthService) {}
+  deleteToken() {
+    window.localStorage.clear()
+  }
 }

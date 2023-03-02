@@ -15,11 +15,13 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router, private authService: AuthService) {}
 
   loginAuthUser() {
+    this.router.navigate(['login'])
     this.authService.userLogin(
       this.loginForm.value.login,
       this.loginForm.value.password
     )
   }
+
   ngOnInit(): void {
     this.loginForm = new FormGroup({
       login: new FormControl('', [Validators.required]),
