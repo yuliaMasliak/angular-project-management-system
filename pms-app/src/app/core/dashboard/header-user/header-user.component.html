@@ -1,6 +1,6 @@
-<div class="banner">
+<div class="banner dashboard">
   <div class="header-buttons">
-    <a routerLink="/main"><img src="../../../assets/logo" width="140" /></a>
+    <a (click)="toMainPage()"><img src="../../../assets/logo" width="140" /></a>
     <span class="lang-switcher">
       <button class="btn btn-light" (click)="translate.use('en')">
         {{ 'lang.en' | translate }}
@@ -10,7 +10,9 @@
       </button>
     </span>
     <a
-      ><button class="btns">{{ 'edit' | translate }}</button></a
+      ><button class="btns" (click)="editProfile()">
+        {{ 'edit' | translate }}
+      </button></a
     >
     <a
       ><button class="btns">{{ 'board' | translate }}</button></a

@@ -12,6 +12,7 @@ import { Output } from '@angular/core'
 })
 export class ProfileComponent implements OnInit {
   @Output() name: string = ''
+  @Output() id: number = 0
   constructor(
     private router: Router,
     private http: HttpClient,
@@ -29,6 +30,8 @@ export class ProfileComponent implements OnInit {
       data.forEach((el: any) => {
         if (el.login == this.authService.user.login) {
           this.name = el.name
+          this.id = el._id
+          console.log(el._id)
         }
       })
     })

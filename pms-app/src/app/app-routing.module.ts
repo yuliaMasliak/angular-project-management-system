@@ -1,41 +1,60 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
+import { LoginComponent } from './components/login/login.component'
+import { MainComponent } from './components/main-welcome-page/main.component'
+import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component'
+import { SignupComponent } from './components/signup/signup.component'
+import { WelcomePageComponent } from './components/welcome-page/welcome-page.component'
+import { CoreModule } from './core/core.module'
+import { AccountComponent } from './core/dashboard/profile/components/account/account.component'
 import { ProfileComponent } from './core/dashboard/profile/profile.component'
-import { LoginComponent } from './core/start-pages/login/login.component'
-import { NotFoundPageComponent } from './core/start-pages/not-found-page/not-found-page.component'
-import { SignupComponent } from './core/start-pages/signup/signup.component'
-import { WelcomePageComponent } from './core/start-pages/welcome-page/welcome-page.component'
 
 const routes: Routes = [
   {
     path: 'main',
-    component: WelcomePageComponent
+    component: MainComponent,
+    children: [
+      {
+        path: 'welcome',
+        component: WelcomePageComponent
+      },
+      {
+        path: 'login',
+        component: LoginComponent
+      },
+      {
+        path: 'signup',
+        component: SignupComponent
+      },
+      { path: 'not-found', component: NotFoundPageComponent }
+    ]
   },
-  {
-    path: 'login',
-    component: LoginComponent
-  },
-  {
-    path: 'signup',
-    component: SignupComponent
-  },
+
   {
     path: 'dashboard',
-    component: ProfileComponent
+    component: ProfileComponent,
+    children: [
+      {
+        path: 'account',
+        component: AccountComponent
+      }
+    ]
   },
-  {
-    path: 'core',
-    loadChildren: () => import('./core/core.module').then((m) => m.CoreModule)
-  },
+
   {
     path: '',
-    component: WelcomePageComponent
+    redirectTo: '/main/welcome',
+    pathMatch: 'full'
   },
-  { path: '**', component: NotFoundPageComponent }
+  {
+    path: '**',
+    redirectTo: '/main/not-found',
+    pathMatch: 'full'
+  }
 ]
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [CoreModule, RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}

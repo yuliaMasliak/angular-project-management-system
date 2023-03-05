@@ -1,5 +1,7 @@
 <div class="banner">
-  <a routerLink="/main"><img src="../../../assets/logo" width="140" /></a>
+  <a routerLink="/main/welcome"
+    ><img src="../../../assets/logo" width="140"
+  /></a>
   <span class="lang-switcher">
     <button class="btn btn-light" (click)="translate.use('en')">
       {{ 'lang.en' | translate }}
@@ -12,7 +14,9 @@
     <a (click)="checkTokenLogin()"
       ><button>{{ 'buttons.log.login' | translate }}</button></a
     >
-    <button routerLink="/signup">{{ 'buttons.log.signup' | translate }}</button>
+    <button routerLink="/main/signup">
+      {{ 'buttons.log.signup' | translate }}
+    </button>
     <div class="fake"></div>
   </div>
 </div>

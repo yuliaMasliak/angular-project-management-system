@@ -47,8 +47,8 @@ export class AuthService {
         }
       },
       (err) => {
-        this.router.navigate(['main'])
         alert('Failed Login')
+        this.router.navigate(['main/welcome'])
       }
     )
   }

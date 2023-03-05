@@ -1,5 +1,4 @@
 .banner {
-  position: fixed;
   top: 0px;
   width: 100%;
   height: 90px;
@@ -70,4 +69,7 @@ span {
   font-size: larger;
   font-family: 'Haas Grot Text R Web', 'Helvetica Neue', Helvetica, Arial,
     sans-serif;
+}
+a {
+  cursor: pointer;
 }

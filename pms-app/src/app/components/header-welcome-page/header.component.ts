@@ -14,11 +14,12 @@ export class HeaderComponent {
     private router: Router,
     private authService: AuthService
   ) {}
+
   checkTokenLogin() {
     if (window.localStorage.getItem(`${this.authService.user.login}token`)) {
       this.router.navigate(['dashboard'])
     } else {
-      this.router.navigate(['login'])
+      this.router.navigate(['main', 'login'])
     }
   }
 }
