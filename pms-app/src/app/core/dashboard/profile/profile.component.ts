@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http'
 import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { AuthService } from 'src/app/services/auth.service'
-import { adminToken, baseUrl } from 'src/environment/environment'
+import { baseUrl } from 'src/environment/environment'
 import { Output } from '@angular/core'
 
 @Component({
@@ -19,7 +19,7 @@ export class ProfileComponent implements OnInit {
     private authService: AuthService
   ) {}
   ngOnInit() {
-    const userToken = `Bearer ${adminToken}`
+    const userToken = `Bearer ${this.authService.token}`
 
     const config = {
       headers: {

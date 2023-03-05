@@ -8,6 +8,7 @@ import { baseUrl } from 'src/environment/environment'
   providedIn: 'root'
 })
 export class AuthService {
+  token: string = ''
   user = {
     name: '',
     login: '',
@@ -42,6 +43,7 @@ export class AuthService {
     this.http.post(`${baseUrl}auth/signin`, usertoLogin, { headers }).subscribe(
       (data: any) => {
         if (data.token) {
+          this.token = data.token
           window.localStorage.setItem(`${userLogin}token`, data.token)
           this.router.navigate(['dashboard/start'])
           this.user.login = usertoLogin.login

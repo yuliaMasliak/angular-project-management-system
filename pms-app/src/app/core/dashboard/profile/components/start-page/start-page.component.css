@@ -2,3 +2,38 @@ h1 {
   margin-top: 50px;
   margin-left: 100px;
 }
+h3 {
+  margin-top: 50px;
+}
+.input-block {
+  height: 40%;
+  width: 30%;
+  margin: 0px auto;
+  margin-top: 10%;
+  background-color: azure;
+  border-radius: 5px;
+  text-align: center;
+}
+.form-control {
+  max-width: 55%;
+  max-height: 25%;
+  margin: 0px auto;
+  margin-top: 10%;
+  margin-bottom: 15px;
+}
+.modal-create-board {
+  visibility: hidden;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  background-color: rgba(98, 98, 126, 0.603);
+}
+.active {
+  visibility: visible;
+}
+.hidden {
+  visibility: hidden;
+}
+.submit-create-board {
+  margin-right: 20px;
+}

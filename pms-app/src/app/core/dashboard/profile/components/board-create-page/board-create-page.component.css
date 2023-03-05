@@ -1,0 +1,7 @@
+.modal-create-board {
+  visibility: hidden;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  background-color: rgba(98, 98, 126, 0.603);
+}

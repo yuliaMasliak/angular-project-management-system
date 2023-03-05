@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http'
 import { Component, Input, OnInit, Output } from '@angular/core'
 import { Router } from '@angular/router'
-import user from 'final-task-backend/Project management application/src/models/user'
 import { AuthService } from 'src/app/services/auth.service'
-import { adminToken, baseUrl } from 'src/environment/environment'
+import { baseUrl } from 'src/environment/environment'
 
 @Component({
   selector: 'app-account',
@@ -21,19 +20,18 @@ export class AccountComponent implements OnInit {
   @Output() login: string = ''
   @Output() id: number = 0
   @Output() password: string = this.auth.user.password
+  userToken = `Bearer ${this.auth.token}`
+
+  config = {
+    headers: {
+      Authorization: this.userToken
+    }
+  }
 
   ngOnInit() {
-    const userToken = `Bearer ${adminToken}`
-
-    const config = {
-      headers: {
-        Authorization: userToken
-      }
-    }
-    this.http.get(`${baseUrl}users`, config).subscribe((data: any) => {
+    this.http.get(`${baseUrl}users`, this.config).subscribe((data: any) => {
       data.forEach((el: any) => {
         if (el.login == this.auth.user.login) {
-          console.log(el)
           this.login = el.login
           this.name = el.name
           this.id = el._id
@@ -105,15 +103,8 @@ export class AccountComponent implements OnInit {
     ) as HTMLElement
     const modalCancel = document.querySelector('.cancel-delete') as HTMLElement
     modalSubmit.addEventListener('click', () => {
-      const userToken = `Bearer ${adminToken}`
-      const config = {
-        headers: {
-          Authorization: userToken
-        }
-      }
-
       this.http
-        .delete(`${baseUrl}users/${this.id}`, config)
+        .delete(`${baseUrl}users/${this.id}`, this.config)
         .subscribe((data) => {
           console.log(data)
         })
@@ -126,19 +117,13 @@ export class AccountComponent implements OnInit {
     })
   }
   updateUser() {
-    const userToken = `Bearer ${adminToken}`
-    const config = {
-      headers: {
-        Authorization: userToken
-      }
-    }
     const body = {
       name: this.name,
       login: this.login,
       password: this.password
     }
     this.http
-      .put(`${baseUrl}users/${this.id}`, body, config)
+      .put(`${baseUrl}users/${this.id}`, body, this.config)
       .subscribe((data) => {
         console.log(data)
       })

@@ -25,4 +25,7 @@ export class HeaderUserComponent {
   editProfile() {
     this.router.navigate(['dashboard/account'])
   }
+  createNewBoard() {
+    document.querySelector('.modal-create-board')?.classList.add('active')
+  }
 }

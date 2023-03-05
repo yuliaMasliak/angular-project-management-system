@@ -1,5 +1,3 @@
-<h1>{{ 'welcome' | translate }}, {{ name | titlecase }}</h1>
-
 <div class="input-group mb-3 modal-create-board">
   <div class="input-block">
     <h3>Ctrate new board</h3>
@@ -11,18 +9,10 @@
         placeholder="Enter board title"
       />
     </div>
-    <button
-      class="btn btn-primary submit-create-board"
-      type="button"
-      (click)="submitCreateNewBoard()"
-    >
+    <button class="btn btn-primary submit-password" type="button">
       Submit
     </button>
-    <button
-      class="btn btn-primary cancel-create-board"
-      type="button"
-      (click)="cancelCreateNewBoard()"
-    >
+    <button class="btn btn-primary cancel-password" type="button">
       Cancel
     </button>
   </div>

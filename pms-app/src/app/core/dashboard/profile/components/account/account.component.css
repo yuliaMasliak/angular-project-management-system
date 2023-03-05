@@ -53,3 +53,7 @@ label {
 .btn-primary {
   margin-right: 20px;
 }
+.btn-outline-danger {
+  margin-top: 10px;
+  max-width: 70%;
+}
