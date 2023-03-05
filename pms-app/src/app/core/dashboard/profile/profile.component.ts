@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit {
   ) {}
   ngOnInit() {
     const userToken = `Bearer ${adminToken}`
-    console.log
+
     const config = {
       headers: {
         Authorization: userToken
@@ -31,7 +31,6 @@ export class ProfileComponent implements OnInit {
         if (el.login == this.authService.user.login) {
           this.name = el.name
           this.id = el._id
-          console.log(el._id)
         }
       })
     })

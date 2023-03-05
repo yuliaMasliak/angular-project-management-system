@@ -1,3 +1,45 @@
-p {
+h1 {
   margin-top: 50px;
+  margin-left: 100px;
+}
+ul {
+  margin-top: 50px;
+  margin-left: 100px;
+  max-width: fit-content;
+}
+
+label {
+  margin-left: 20px;
+}
+.input-group {
+  visibility: hidden;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  background-color: rgba(98, 98, 126, 0.603);
+}
+.active {
+  visibility: visible;
+}
+.input-block {
+  height: 30%;
+  width: 30%;
+  margin: 0px auto;
+  margin-top: 10%;
+  background-color: azure;
+  border-radius: 5px;
+  text-align: center;
+}
+.form-control {
+  max-width: 55%;
+  max-height: 25%;
+  margin: 0px auto;
+  margin-top: 10%;
+  margin-bottom: 15px;
+}
+.buttons {
+  margin: 0px auto;
+  width: 170px;
+  display: flex;
+  justify-content: space-between;
 }

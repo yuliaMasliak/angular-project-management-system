@@ -9,6 +9,7 @@ import { baseUrl } from 'src/environment/environment'
 })
 export class AuthService {
   user = {
+    name: '',
     login: '',
     password: ''
   }
@@ -24,6 +25,7 @@ export class AuthService {
       .subscribe((data: any) => {
         if (data._id) {
           this.userLogin(user.login, user.password)
+          this.user.name = data.name
         }
       })
   }
@@ -41,8 +43,9 @@ export class AuthService {
       (data: any) => {
         if (data.token) {
           window.localStorage.setItem(`${userLogin}token`, data.token)
-          this.router.navigate(['dashboard'])
-          this.user = usertoLogin
+          this.router.navigate(['dashboard/start'])
+          this.user.login = usertoLogin.login
+          this.user.password = usertoLogin.password
           alert('You were successfully logged in')
         }
       },

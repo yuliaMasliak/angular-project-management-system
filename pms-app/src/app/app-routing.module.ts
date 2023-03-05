@@ -7,6 +7,7 @@ import { SignupComponent } from './components/signup/signup.component'
 import { WelcomePageComponent } from './components/welcome-page/welcome-page.component'
 import { CoreModule } from './core/core.module'
 import { AccountComponent } from './core/dashboard/profile/components/account/account.component'
+import { StartPageComponent } from './core/dashboard/profile/components/start-page/start-page.component'
 import { ProfileComponent } from './core/dashboard/profile/profile.component'
 
 const routes: Routes = [
@@ -34,6 +35,10 @@ const routes: Routes = [
     path: 'dashboard',
     component: ProfileComponent,
     children: [
+      {
+        path: 'start',
+        component: StartPageComponent
+      },
       {
         path: 'account',
         component: AccountComponent

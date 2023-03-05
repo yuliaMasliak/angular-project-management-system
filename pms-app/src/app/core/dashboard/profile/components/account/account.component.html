@@ -1,2 +1,86 @@
-<p>account works!</p>
-<p>account works!</p>
+<ul class="list-group">
+  <h3>Personal information</h3>
+  <label for="">Login</label>
+  <li class="list-group-item">
+    <button type="button" class="btn btn-outline-info" (click)="editLogin()">
+      edit
+    </button>
+    {{ login }}
+  </li>
+  <label for="">Name</label>
+  <li class="list-group-item">
+    <button type="button" class="btn btn-outline-info" (click)="editName()">
+      edit
+    </button>
+    {{ name }}
+  </li>
+
+  <label for="">Password</label>
+  <li class="list-group-item">
+    <button type="button" class="btn btn-outline-info" (click)="editPassword()">
+      edit password
+    </button>
+  </li>
+
+  <li class="list-group-item">
+    <button type="button" class="btn btn-outline-danger" (click)="deleteUser()">
+      Delete account
+    </button>
+  </li>
+</ul>
+<div class="input-group mb-3 modal-name">
+  <div class="input-block">
+    <input
+      type="text"
+      id="input-name-modal"
+      class="form-control"
+      placeholder="Enter name"
+      aria-label="Recipient's username"
+      aria-describedby="basic-addon2"
+    />
+    <button class="btn btn-primary submit-name" type="button">Submit</button>
+  </div>
+</div>
+
+<div class="input-group mb-3 modal-login">
+  <div class="input-block">
+    <input
+      type="text"
+      id="input-login-modal"
+      class="form-control"
+      placeholder="Enter login"
+      aria-label="Recipient's username"
+      aria-describedby="basic-addon2"
+    />
+    <button class="btn btn-primary submit-login" type="button">Submit</button>
+  </div>
+</div>
+
+<div class="input-group mb-3 modal-password">
+  <div class="input-block">
+    <input
+      type="text"
+      id="input-password-modal"
+      class="form-control"
+      placeholder="Enter password"
+      aria-label="Recipient's username"
+      aria-describedby="basic-addon2"
+    />
+    <button class="btn btn-primary submit-password" type="button">
+      Submit
+    </button>
+  </div>
+</div>
+<div class="input-group mb-3 modal-delete">
+  <div class="input-block">
+    <h4>Delete account?</h4>
+    <div class="buttons">
+      <button class="btn btn-primary delete-password" type="button">
+        Confirm
+      </button>
+      <button class="btn btn-primary cancel-password" type="button">
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>

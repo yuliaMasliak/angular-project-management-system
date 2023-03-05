@@ -8,18 +8,19 @@ import { HttpClient } from '@angular/common/http'
 import { ProfileComponent } from './dashboard/profile/profile.component'
 import { HeaderUserComponent } from './dashboard/header-user/header-user.component'
 import { AccountComponent } from './dashboard/profile/components/account/account.component'
-
+import { MatButtonModule } from '@angular/material/button';
+import { StartPageComponent } from './dashboard/profile/components/start-page/start-page.component'
 function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http)
 }
 
 @NgModule({
-  declarations: [ProfileComponent, HeaderUserComponent, AccountComponent],
-  exports: [],
+  declarations: [ProfileComponent, HeaderUserComponent, AccountComponent, StartPageComponent],
+  exports: [MatButtonModule],
   imports: [
     RouterModule,
     CommonModule,
-
+    MatButtonModule,
     ReactiveFormsModule,
 
     TranslateModule.forRoot({
