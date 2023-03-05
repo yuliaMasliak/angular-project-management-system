@@ -45,6 +45,10 @@ export class AccountComponent implements OnInit {
     const modal = document.querySelector('.modal-name') as HTMLElement
     modal.classList.add('active')
     const modalSubmit = document.querySelector('.submit-name') as HTMLElement
+    const modalCancel = document.querySelector('.cancel-name') as HTMLElement
+    modalCancel.addEventListener('click', () => {
+      modal.classList.remove('active')
+    })
     modalSubmit.addEventListener('click', () => {
       const inputName = document.getElementById(
         'input-name-modal'
@@ -59,6 +63,10 @@ export class AccountComponent implements OnInit {
     const modal = document.querySelector('.modal-login') as HTMLElement
     modal.classList.add('active')
     const modalSubmit = document.querySelector('.submit-login') as HTMLElement
+    const modalCancel = document.querySelector('.cancel-login') as HTMLElement
+    modalCancel.addEventListener('click', () => {
+      modal.classList.remove('active')
+    })
     modalSubmit.addEventListener('click', () => {
       const inputName = document.getElementById(
         'input-login-modal'
@@ -74,6 +82,12 @@ export class AccountComponent implements OnInit {
     const modalSubmit = document.querySelector(
       '.submit-password'
     ) as HTMLElement
+    const modalCancel = document.querySelector(
+      '.cancel-password'
+    ) as HTMLElement
+    modalCancel.addEventListener('click', () => {
+      modal.classList.remove('active')
+    })
     modalSubmit.addEventListener('click', () => {
       const inputName = document.getElementById(
         'input-password-modal'
@@ -89,9 +103,7 @@ export class AccountComponent implements OnInit {
     const modalSubmit = document.querySelector(
       '.delete-password'
     ) as HTMLElement
-    const modalCancel = document.querySelector(
-      '.cancel-password'
-    ) as HTMLElement
+    const modalCancel = document.querySelector('.cancel-delete') as HTMLElement
     modalSubmit.addEventListener('click', () => {
       const userToken = `Bearer ${adminToken}`
       const config = {

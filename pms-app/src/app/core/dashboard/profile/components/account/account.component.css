@@ -43,3 +43,13 @@ label {
   display: flex;
   justify-content: space-between;
 }
+.delete-confirmation {
+  max-width: 55%;
+  max-height: 25%;
+  margin: 0px auto;
+  margin-top: 10%;
+  margin-bottom: 15px;
+}
+.btn-primary {
+  margin-right: 20px;
+}
