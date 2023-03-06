@@ -1,5 +1,8 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+# Backend
+/final-task-backend
+
 # Compiled output
 /dist
 /tmp
@@ -7,14 +10,11 @@
 /bazel-out
 
 
-
-
 # Node
 /node_modules
 npm-debug.log
 yarn-error.log
 .vscode
-
 
 # IDEs and editors
 .idea/
