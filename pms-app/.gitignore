@@ -6,13 +6,16 @@
 /out-tsc
 /bazel-out
 
+#Backend
+/final-task-backend
+
 
 # Node
 /node_modules
 npm-debug.log
 yarn-error.log
 .vscode
-/final-task-backend
+
 
 # IDEs and editors
 .idea/
