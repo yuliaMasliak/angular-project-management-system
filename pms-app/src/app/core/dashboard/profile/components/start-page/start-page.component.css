@@ -36,3 +36,6 @@ h3 {
 .board {
   max-width: 15%;
 }
+.card {
+  z-index: 1;
+}

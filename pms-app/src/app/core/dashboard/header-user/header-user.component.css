@@ -74,6 +74,7 @@ a {
   cursor: pointer;
 }
 .modal-create-board {
+  z-index: 2;
   visibility: hidden;
   position: absolute;
   top: 0px;
