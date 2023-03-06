@@ -1,29 +1,44 @@
 <h1>{{ 'welcome' | translate }}, {{ name | titlecase }}</h1>
-
-<div class="input-group mb-3 modal-create-board">
-  <div class="input-block">
-    <h3>Ctrate new board</h3>
-    <div class="form-group">
-      <input
-        type="text"
-        class="form-control"
-        id="title"
-        placeholder="Enter board title"
+<div class="boards">
+  <div class="board" *ngFor="let board of boards">
+    <div class="card">
+      <img
+        class="card-img-top"
+        src="../../../../../../assets/task.png"
+        alt="Card image cap"
       />
+      <div class="card-body">
+        <h5 class="card-title">{{ board.title }}</h5>
+
+        <a href="#" class="btn btn-primary">Go to board</a>
+      </div>
     </div>
-    <button
-      class="btn btn-primary submit-create-board"
-      type="button"
-      (click)="submitCreateNewBoard()"
-    >
-      Submit
-    </button>
-    <button
-      class="btn btn-primary cancel-create-board"
-      type="button"
-      (click)="cancelCreateNewBoard()"
-    >
-      Cancel
-    </button>
+  </div>
+  <div class="input-group mb-3 modal-create-board">
+    <div class="input-block">
+      <h3>Ctrate new board</h3>
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          placeholder="Enter board title"
+        />
+      </div>
+      <button
+        class="btn btn-primary submit-create-board"
+        type="button"
+        (click)="submitCreateNewBoard()"
+      >
+        Submit
+      </button>
+      <button
+        class="btn btn-primary cancel-create-board"
+        type="button"
+        (click)="cancelCreateNewBoard()"
+      >
+        Cancel
+      </button>
+    </div>
   </div>
 </div>

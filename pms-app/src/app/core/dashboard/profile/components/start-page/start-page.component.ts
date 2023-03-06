@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http'
 import { Component } from '@angular/core'
+import { IBoard, IBoardUser } from 'src/app/models/user'
 import { AuthService } from 'src/app/services/auth.service'
 import { baseUrl } from 'src/environment/environment'
+import { Output } from '@angular/core'
 
 @Component({
   selector: 'app-start-page',
@@ -11,8 +13,9 @@ import { baseUrl } from 'src/environment/environment'
 export class StartPageComponent {
   constructor(private auth: AuthService, private http: HttpClient) {}
   name: string = ''
-  id: number = 0
+  id: string = ''
   userToken = `Bearer ${this.auth.token}`
+  @Output() boards: IBoard[] = []
 
   config = {
     headers: {
@@ -21,12 +24,21 @@ export class StartPageComponent {
     }
   }
   ngOnInit() {
-    console.log(this.auth.token)
+    // console.log(this.auth.token)
+
     this.http.get(`${baseUrl}users`, this.config).subscribe((data: any) => {
-      data.forEach((el: any) => {
-        if (el.login == this.auth.user.login) {
-          this.name = el.name
-          this.id = el._id
+      data.forEach((elem: IBoardUser) => {
+        if (elem.login == this.auth.user.login) {
+          this.name = elem.name
+          this.http
+            .get(`${baseUrl}boards`, this.config)
+            .subscribe((data: any) =>
+              data.forEach((el: IBoard) => {
+                if (el.owner === elem._id) {
+                  this.boards.push(el)
+                }
+              })
+            )
         }
       })
     })
@@ -51,5 +63,16 @@ export class StartPageComponent {
       .post(`${baseUrl}boards`, body, this.config)
       .subscribe((data: any) => console.log(data))
     document.querySelector('.modal-create-board')?.classList.remove('active')
+  }
+  getAllboards() {
+    this.http.get(`${baseUrl}boards`, this.config).subscribe((data: any) =>
+      data.forEach((el: IBoard) => {
+        console.log(el.owner)
+        console.log(this.id)
+        if (el.owner === this.id) {
+          this.boards.push(el)
+        }
+      })
+    )
   }
 }
