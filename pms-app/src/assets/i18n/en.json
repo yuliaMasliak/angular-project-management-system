@@ -40,6 +40,13 @@
   },
   "edit": "Edit profile",
   "board": "Create board",
+  "allBoards": "All Boards",
   "logout": "LOG OUT",
-  "welcome": "Welcome"
+  "welcome": "Welcome",
+  "account": {
+    "title": "Personal information",
+    "edit": "edit",
+    "editPassword": "Change password",
+    "delete": "Delete account"
+  }
 }

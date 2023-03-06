@@ -1,24 +1,24 @@
 <ul class="list-group">
-  <h3>Personal information</h3>
-  <label for="">Login</label>
+  <h3>{{ 'account.title' | translate }}</h3>
+  <label for="">{{ 'signup.login' | translate }}</label>
   <li class="list-group-item">
     <button type="button" class="btn btn-outline-info" (click)="editLogin()">
-      edit
+      {{ 'account.edit' | translate }}
     </button>
     {{ login }}
   </li>
-  <label for="">Name</label>
+  <label for="">{{ 'signup.name' | translate }}</label>
   <li class="list-group-item">
     <button type="button" class="btn btn-outline-info" (click)="editName()">
-      edit
+      {{ 'account.edit' | translate }}
     </button>
     {{ name }}
   </li>
 
-  <label for="">Password</label>
+  <label for=""> {{ 'signup.password' | translate }}</label>
   <li class="list-group-item">
     <button type="button" class="btn btn-outline-info" (click)="editPassword()">
-      edit password
+      {{ 'account.editPassword' | translate }}
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="16"
@@ -38,7 +38,7 @@
   </li>
 
   <button type="button" class="btn btn-outline-danger" (click)="deleteUser()">
-    Delete account
+    {{ 'account.delete' | translate }}
   </button>
 </ul>
 <div class="input-group mb-3 modal-name">

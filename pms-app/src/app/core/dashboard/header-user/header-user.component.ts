@@ -28,4 +28,7 @@ export class HeaderUserComponent {
   createNewBoard() {
     document.querySelector('.modal-create-board')?.classList.add('active')
   }
+  toBoards() {
+    this.router.navigate(['dashboard/start'])
+  }
 }
