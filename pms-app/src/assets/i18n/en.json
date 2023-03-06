@@ -48,5 +48,19 @@
     "edit": "edit",
     "editPassword": "Change password",
     "delete": "Delete account"
+  },
+  "modal": {
+    "deleteAccount": "Delete account?",
+    "login": "New login",
+    "name": "New name",
+    "password": "New password",
+    "confirm": "CONFIRM",
+    "submit": "SUBMIT",
+    "cancel": "CANCEL",
+    "createBoard": "Create new board",
+    "newBoardTitle": "Enter board title"
+  },
+  "boards": {
+    "toBoard": "Go to board"
   }
 }

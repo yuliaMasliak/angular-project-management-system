@@ -47,12 +47,18 @@
       type="text"
       id="input-name-modal"
       class="form-control"
-      placeholder="Enter name"
+      placeholder="{{ 'modal.name' | translate }}"
       aria-label="Recipient's username"
       aria-describedby="basic-addon2"
     />
-    <button class="btn btn-primary submit-name" type="button">Submit</button>
-    <button class="btn btn-primary cancel-name" type="button">Cancel</button>
+    <div class="buttons">
+      <button class="btn btn-primary submit-name" type="button">
+        {{ 'modal.submit' | translate }}
+      </button>
+      <button class="btn btn-primary cancel-name" type="button">
+        {{ 'modal.cancel' | translate }}
+      </button>
+    </div>
   </div>
 </div>
 
@@ -62,12 +68,18 @@
       type="text"
       id="input-login-modal"
       class="form-control"
-      placeholder="Enter login"
+      placeholder="{{ 'modal.login' | translate }}"
       aria-label="Recipient's username"
       aria-describedby="basic-addon2"
     />
-    <button class="btn btn-primary submit-login" type="button">Submit</button>
-    <button class="btn btn-primary cancel-login" type="button">Cancel</button>
+    <div class="buttons">
+      <button class="btn btn-primary submit-login" type="button">
+        {{ 'modal.submit' | translate }}
+      </button>
+      <button class="btn btn-primary cancel-login" type="button">
+        {{ 'modal.cancel' | translate }}
+      </button>
+    </div>
   </div>
 </div>
 
@@ -77,29 +89,31 @@
       type="text"
       id="input-password-modal"
       class="form-control"
-      placeholder="Enter password"
+      placeholder="{{ 'modal.password' | translate }}"
       aria-label="Recipient's username"
       aria-describedby="basic-addon2"
     />
-    <button class="btn btn-primary submit-password" type="button">
-      Submit
-    </button>
-    <button class="btn btn-primary cancel-password" type="button">
-      Cancel
-    </button>
+    <div class="buttons">
+      <button class="btn btn-primary submit-password" type="button">
+        {{ 'modal.submit' | translate }}
+      </button>
+      <button class="btn btn-primary cancel-password" type="button">
+        {{ 'modal.cancel' | translate }}
+      </button>
+    </div>
   </div>
 </div>
 <div class="input-group mb-3 modal-delete">
   <div class="input-block">
     <div class="delete-confirmation">
-      <h4>Delete account?</h4>
+      <h4>{{ 'modal.deleteAccount' | translate }}</h4>
     </div>
     <div class="buttons">
       <button class="btn btn-primary delete-password" type="button">
-        Confirm
+        {{ 'modal.confirm' | translate }}
       </button>
       <button class="btn btn-primary cancel-delete" type="button">
-        Cancel
+        {{ 'modal.cancel' | translate }}
       </button>
     </div>
   </div>

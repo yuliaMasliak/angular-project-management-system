@@ -10,19 +10,21 @@
       <div class="card-body">
         <h5 class="card-title">{{ board.title }}</h5>
 
-        <a href="#" class="btn btn-primary">Go to board</a>
+        <a href="#" class="btn btn-primary">{{
+          'boards.toBoard' | translate
+        }}</a>
       </div>
     </div>
   </div>
   <div class="input-group mb-3 modal-create-board">
     <div class="input-block">
-      <h3>Ctrate new board</h3>
+      <h3>{{ 'modal.createBoard' | translate }}</h3>
       <div class="form-group">
         <input
           type="text"
           class="form-control"
           id="title"
-          placeholder="Enter board title"
+          placeholder="{{ 'modal.newBoardTitle' | translate }}"
         />
       </div>
       <button
@@ -30,14 +32,14 @@
         type="button"
         (click)="submitCreateNewBoard()"
       >
-        Submit
+        {{ 'modal.submit' | translate }}
       </button>
       <button
         class="btn btn-primary cancel-create-board"
         type="button"
         (click)="cancelCreateNewBoard()"
       >
-        Cancel
+        {{ 'modal.cancel' | translate }}
       </button>
     </div>
   </div>

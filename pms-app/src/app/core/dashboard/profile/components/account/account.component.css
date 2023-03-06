@@ -23,7 +23,7 @@ label {
 }
 .input-block {
   height: 30%;
-  width: 30%;
+  width: 40%;
   margin: 0px auto;
   margin-top: 10%;
   background-color: azure;
@@ -39,9 +39,10 @@ label {
 }
 .buttons {
   margin: 0px auto;
-  width: 170px;
+  width: 70%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  column-gap: 15px;
 }
 .delete-confirmation {
   max-width: 55%;
@@ -50,9 +51,7 @@ label {
   margin-top: 10%;
   margin-bottom: 15px;
 }
-.btn-primary {
-  margin-right: 20px;
-}
+
 .btn-outline-danger {
   margin-top: 10px;
   max-width: 70%;
