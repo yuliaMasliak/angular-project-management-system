@@ -70,6 +70,6 @@ export class StartPageComponent {
       .post(`${baseUrl}boards`, body, this.config)
       .subscribe((data: any) => this.boards.push(data))
     document.querySelector('.modal-create-board')?.classList.remove('active')
-    this.router.navigate(['dashboard/start'])
+    this.router.navigate(['dashboard/board'])
   }
 }

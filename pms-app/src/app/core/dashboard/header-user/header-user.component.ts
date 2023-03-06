@@ -1,19 +1,19 @@
-import { Component, Input } from '@angular/core'
+import { Component, Input, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { TranslateService } from '@ngx-translate/core'
 import { AuthService } from 'src/app/services/auth.service'
-import { IBoard } from 'src/app/models/user'
+import { IBoard, IBoardUser } from 'src/app/models/user'
 import { Output } from '@angular/core'
 import { baseUrl } from 'src/environment/environment'
 import { HttpClient } from '@angular/common/http'
+import { config } from 'rxjs'
 
 @Component({
   selector: 'app-header-user',
   templateUrl: './header-user.component.html',
   styleUrls: ['./header-user.component.css']
 })
-export class HeaderUserComponent {
-  @Input() name: string = ''
+export class HeaderUserComponent implements OnInit {
   constructor(
     private router: Router,
     private http: HttpClient,
@@ -21,9 +21,9 @@ export class HeaderUserComponent {
     private auth: AuthService
   ) {}
 
-  id: string = ''
+  @Input() name: string = ''
+  id = ''
   userToken = `Bearer ${this.auth.token}`
-  @Output() boards: IBoard[] = []
 
   config = {
     headers: {
@@ -31,6 +31,26 @@ export class HeaderUserComponent {
       'Content-Type': 'application/json'
     }
   }
+
+  ngOnInit(): void {
+    this.http.get(`${baseUrl}users`, this.config).subscribe((data: any) => {
+      data.forEach((elem: IBoardUser) => {
+        if (elem.login == this.auth.user.login) {
+          this.name = elem.name
+          this.http
+            .get(`${baseUrl}boards`, this.config)
+            .subscribe((data: any) =>
+              data.forEach((el: IBoard) => {
+                if (el.owner === elem._id) {
+                  this.id = elem._id
+                }
+              })
+            )
+        }
+      })
+    })
+  }
+
   deleteToken() {
     window.localStorage.clear()
     this.router.navigate(['../main/welcome'])
@@ -66,8 +86,8 @@ export class HeaderUserComponent {
     }
     this.http
       .post(`${baseUrl}boards`, body, this.config)
-      .subscribe((data: any) => this.boards.push(data))
+      .subscribe((data: any) => console.log(data))
     document.querySelector('.modal-create-board')?.classList.remove('active')
-    this.router.navigate(['dashboard/start'])
+    this.router.navigate(['dashboard/board'])
   }
 }
