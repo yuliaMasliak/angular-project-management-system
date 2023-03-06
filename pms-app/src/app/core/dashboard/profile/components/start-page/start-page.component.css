@@ -21,41 +21,18 @@ h3 {
   margin-top: 10%;
   margin-bottom: 15px;
 }
-.modal-create-board {
-  visibility: hidden;
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  background-color: rgba(98, 98, 126, 0.603);
-}
-.active {
-  visibility: visible;
-}
-.hidden {
-  visibility: hidden;
-}
-.submit-create-board {
-  margin-right: 20px;
-}
+
 .boards {
+  max-width: 70%;
   margin: 0px auto;
   text-align: center;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  column-gap: 20px;
-  row-gap: 20px;
+  column-gap: 50px;
+  row-gap: 40px;
+  margin-bottom: 20px;
 }
 .board {
   max-width: 15%;
 }
-/* .card {
-  max-width: 50%;
-  background-color: #e1c3f5;
-}
-img {
-  max-width: 50%;
-}
-.card-body {
-  max-width: fit-content;
-} */

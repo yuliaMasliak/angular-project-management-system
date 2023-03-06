@@ -16,31 +16,4 @@
       </div>
     </div>
   </div>
-  <div class="input-group mb-3 modal-create-board">
-    <div class="input-block">
-      <h3>{{ 'modal.createBoard' | translate }}</h3>
-      <div class="form-group">
-        <input
-          type="text"
-          class="form-control"
-          id="title"
-          placeholder="{{ 'modal.newBoardTitle' | translate }}"
-        />
-      </div>
-      <button
-        class="btn btn-primary submit-create-board"
-        type="button"
-        (click)="submitCreateNewBoard()"
-      >
-        {{ 'modal.submit' | translate }}
-      </button>
-      <button
-        class="btn btn-primary cancel-create-board"
-        type="button"
-        (click)="cancelCreateNewBoard()"
-      >
-        {{ 'modal.cancel' | translate }}
-      </button>
-    </div>
-  </div>
 </div>

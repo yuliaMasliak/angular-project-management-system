@@ -4,6 +4,7 @@ import { IBoard, IBoardUser } from 'src/app/models/user'
 import { AuthService } from 'src/app/services/auth.service'
 import { baseUrl } from 'src/environment/environment'
 import { Output } from '@angular/core'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-start-page',
@@ -11,7 +12,11 @@ import { Output } from '@angular/core'
   styleUrls: ['./start-page.component.css']
 })
 export class StartPageComponent {
-  constructor(private auth: AuthService, private http: HttpClient) {}
+  constructor(
+    private auth: AuthService,
+    private http: HttpClient,
+    private router: Router
+  ) {}
   name: string = ''
   id: string = ''
   userToken = `Bearer ${this.auth.token}`
@@ -35,6 +40,7 @@ export class StartPageComponent {
             .subscribe((data: any) =>
               data.forEach((el: IBoard) => {
                 if (el.owner === elem._id) {
+                  this.id = elem._id
                   this.boards.push(el)
                 }
               })
@@ -54,6 +60,7 @@ export class StartPageComponent {
   }
   submitCreateNewBoard() {
     const input = document.getElementById('title') as HTMLInputElement
+
     const body = {
       title: input.value,
       owner: this.id,
@@ -61,18 +68,8 @@ export class StartPageComponent {
     }
     this.http
       .post(`${baseUrl}boards`, body, this.config)
-      .subscribe((data: any) => console.log(data))
+      .subscribe((data: any) => this.boards.push(data))
     document.querySelector('.modal-create-board')?.classList.remove('active')
-  }
-  getAllboards() {
-    this.http.get(`${baseUrl}boards`, this.config).subscribe((data: any) =>
-      data.forEach((el: IBoard) => {
-        console.log(el.owner)
-        console.log(this.id)
-        if (el.owner === this.id) {
-          this.boards.push(el)
-        }
-      })
-    )
+    this.router.navigate(['dashboard/start'])
   }
 }
