@@ -21,16 +21,27 @@ export class AuthService {
     const headers = {
       'Content-Type': 'application/json'
     }
-
-    this.http
-      .post(`${baseUrl}auth/signup`, user, { headers })
-      .subscribe((data: any) => {
+    let modalResult = document.querySelector('.success-login') as HTMLElement
+    let result = document.querySelector('.modal-result-login') as HTMLElement
+    this.http.post(`${baseUrl}auth/signup`, user, { headers }).subscribe(
+      (data: any) => {
         if (data._id) {
           this.userLogin(user.login, user.password)
           this.user.name = data.name
           this.id = data._id
         }
-      })
+      },
+      (err) => {
+        modalResult.classList.remove('hidden')
+        result.innerHTML =
+          err.error.message + '. <br/>Please, choose another one'
+        setTimeout(() => {
+          modalResult.classList.add('active'),
+            this.router.navigate(['main/signup'])
+          modalResult.classList.add('hidden')
+        }, 2000)
+      }
+    )
   }
 
   userLogin(userLogin: string, userPassword: string) {
