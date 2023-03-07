@@ -32,8 +32,6 @@ export class StartPageComponent {
     }
   }
   ngOnInit() {
-    // console.log(this.auth.token)
-
     this.http.get(`${baseUrl}users`, this.config).subscribe((data: any) => {
       data.forEach((elem: IBoardUser) => {
         if (elem.login == this.auth.user.login) {

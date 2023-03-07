@@ -17,3 +17,9 @@ img {
   margin: 0px auto;
   max-width: 50%;
 }
+.active {
+  visibility: visible;
+}
+.success-login {
+  visibility: hidden;
+}

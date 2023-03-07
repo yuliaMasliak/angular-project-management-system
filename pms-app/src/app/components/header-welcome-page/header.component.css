@@ -41,3 +41,30 @@ button:hover {
   border: none;
   width: 50px;
 }
+.active {
+  visibility: visible;
+}
+.hidden {
+  visibility: hidden;
+}
+.success-login {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  background-color: rgba(162, 162, 189, 0.329);
+  width: 100%;
+}
+.modal-result-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.719);
+  color: #233142;
+  margin: 0px auto;
+  width: 30%;
+  height: 30%;
+  border-radius: 5px;
+  margin-top: 140px;
+  text-align: center;
+  font-size: 30px;
+}

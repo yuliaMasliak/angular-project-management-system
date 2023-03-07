@@ -42,20 +42,32 @@ export class AuthService {
       login: userLogin,
       password: userPassword
     }
+    let modalResult = document.querySelector('.success-login') as HTMLElement
+    let result = document.querySelector('.modal-result-login') as HTMLElement
     this.http.post(`${baseUrl}auth/signin`, usertoLogin, { headers }).subscribe(
       (data: any) => {
         if (data.token) {
           this.token = data.token
           window.localStorage.setItem(`${userLogin}token`, data.token)
-          this.router.navigate(['dashboard/start'])
+
           this.user.login = usertoLogin.login
           this.user.password = usertoLogin.password
-          alert('You were successfully logged in')
+          modalResult.classList.remove('hidden')
+          result.innerHTML = 'You were successfully<br />logged in'
+          setTimeout(() => {
+            modalResult.classList.add('active'),
+              this.router.navigate(['dashboard/start'])
+          }, 2000)
         }
       },
       (err) => {
-        alert('Failed Login')
-        this.router.navigate(['main/welcome'])
+        modalResult.classList.remove('hidden')
+        result.innerHTML = 'Failed login'
+        setTimeout(() => {
+          modalResult.classList.add('active'),
+            this.router.navigate(['main/welcome'])
+          modalResult.classList.add('hidden')
+        }, 2000)
       }
     )
   }
