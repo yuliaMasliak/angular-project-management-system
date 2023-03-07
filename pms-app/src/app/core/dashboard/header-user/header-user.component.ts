@@ -24,7 +24,7 @@ export class HeaderUserComponent implements OnInit {
   ) {}
 
   @Input() name: string = ''
-  id = ''
+  id = this.auth.id
   userToken = `Bearer ${this.auth.token}`
 
   config = {
@@ -39,15 +39,7 @@ export class HeaderUserComponent implements OnInit {
       data.forEach((elem: IBoardUser) => {
         if (elem.login == this.auth.user.login) {
           this.name = elem.name
-          this.http
-            .get(`${baseUrl}boards`, this.config)
-            .subscribe((data: any) =>
-              data.forEach((el: IBoard) => {
-                if (el.owner === elem._id) {
-                  this.id = elem._id
-                }
-              })
-            )
+          this.id = elem._id
         }
       })
     })
@@ -86,6 +78,7 @@ export class HeaderUserComponent implements OnInit {
       owner: this.id,
       users: ['']
     }
+
     this.boardService.createBoard(body, this.config)
     document.querySelector('.modal-create-board')?.classList.remove('active')
   }

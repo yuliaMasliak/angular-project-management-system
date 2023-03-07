@@ -14,6 +14,7 @@ export class AuthService {
     login: '',
     password: ''
   }
+  id: string = ''
   constructor(private router: Router, private http: HttpClient) {}
 
   public createUser(user: IUser): void {
@@ -27,6 +28,7 @@ export class AuthService {
         if (data._id) {
           this.userLogin(user.login, user.password)
           this.user.name = data.name
+          this.id = data._id
         }
       })
   }
