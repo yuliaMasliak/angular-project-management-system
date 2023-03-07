@@ -62,5 +62,10 @@
   },
   "boards": {
     "toBoard": "Go to board"
+  },
+  "newBoard": {
+    "addColumn": "Add column",
+    "deleteBoard": "Delete board",
+    "deleteBoardAsk": "Delete board?"
   }
 }

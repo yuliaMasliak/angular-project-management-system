@@ -16,7 +16,7 @@ h3 {
   min-height: 150px;
 }
 
-.modal-delete-board {
+.modal-delete-current-board {
   visibility: hidden;
   position: absolute;
   top: 0px;

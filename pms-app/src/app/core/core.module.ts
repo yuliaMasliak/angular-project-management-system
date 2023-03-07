@@ -10,13 +10,14 @@ import { HeaderUserComponent } from './dashboard/header-user/header-user.compone
 import { AccountComponent } from './dashboard/profile/components/account/account.component'
 import { MatButtonModule } from '@angular/material/button';
 import { StartPageComponent } from './dashboard/profile/components/start-page/start-page.component';
-import { BoardCreatePageComponent } from './dashboard/profile/components/board-create-page/board-create-page.component'
+import { BoardCreatePageComponent } from './dashboard/profile/components/board-create-page/board-create-page.component';
+import { BoardPageComponent } from './dashboard/profile/components/board-page/board-page.component'
 function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http)
 }
 
 @NgModule({
-  declarations: [ProfileComponent, HeaderUserComponent, AccountComponent, StartPageComponent, BoardCreatePageComponent],
+  declarations: [ProfileComponent, HeaderUserComponent, AccountComponent, StartPageComponent, BoardCreatePageComponent, BoardPageComponent],
   exports: [MatButtonModule],
   imports: [
     RouterModule,

@@ -18,3 +18,14 @@ export interface IBoardUser {
   name: string
   login: string
 }
+export interface IBoardCreate {
+  title: string
+  owner: string
+  users: string[]
+}
+export type TConfig = {
+  headers: {
+    Authorization: string
+    'Content-Type': string
+  }
+}

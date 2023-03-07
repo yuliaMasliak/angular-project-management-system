@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/services/auth.service'
 import { baseUrl } from 'src/environment/environment'
 import { Output } from '@angular/core'
 import { Router } from '@angular/router'
+import { GetBoardService } from 'src/app/services/get-board.service'
 
 @Component({
   selector: 'app-start-page',
@@ -15,10 +16,12 @@ export class StartPageComponent {
   constructor(
     private auth: AuthService,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private boardService: GetBoardService
   ) {}
   name: string = ''
   id: string = ''
+  boardId: string = this.boardService.boardId
   userToken = `Bearer ${this.auth.token}`
   @Output() boards: IBoard[] = []
 
@@ -66,10 +69,10 @@ export class StartPageComponent {
       owner: this.id,
       users: ['']
     }
-    this.http
-      .post(`${baseUrl}boards`, body, this.config)
-      .subscribe((data: any) => this.boards.push(data))
+    this.boardService.createBoard(body, this.config)
     document.querySelector('.modal-create-board')?.classList.remove('active')
-    this.router.navigate(['dashboard/board'])
+  }
+  toBoard(id: string) {
+    this.boardService.goToBoard(id)
   }
 }

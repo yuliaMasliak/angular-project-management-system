@@ -62,5 +62,10 @@
   },
   "boards": {
     "toBoard": "До проекту"
+  },
+  "newBoard": {
+    "addColumn": "Створити розділ",
+    "deleteBoard": "Видалити проект",
+    "deleteBoardAsk": "Видалити проект?"
   }
 }

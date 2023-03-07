@@ -1,26 +1,24 @@
 import { HttpClient } from '@angular/common/http'
 import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
-import { config } from 'rxjs'
 import { AuthService } from 'src/app/services/auth.service'
 import { GetBoardService } from 'src/app/services/get-board.service'
 import { baseUrl } from 'src/environment/environment'
 
 @Component({
-  selector: 'app-board-create-page',
-  templateUrl: './board-create-page.component.html',
-  styleUrls: ['./board-create-page.component.css']
+  selector: 'app-board-page',
+  templateUrl: './board-page.component.html',
+  styleUrls: ['./board-page.component.css']
 })
-export class BoardCreatePageComponent implements OnInit {
+export class BoardPageComponent implements OnInit {
   constructor(
     private router: Router,
     private http: HttpClient,
     private boardService: GetBoardService,
     private auth: AuthService
   ) {}
-  ngOnInit(): void {}
-  boardTitle: string = this.boardService.boardTitle
-  boardId: string = this.boardService.boardId
+  boardId: string = ''
+  boardTitle: string = ''
 
   userToken = `Bearer ${this.auth.token}`
 
@@ -29,26 +27,35 @@ export class BoardCreatePageComponent implements OnInit {
       Authorization: this.userToken
     }
   }
-
-  modalDelete() {
-    const modal = document.querySelector('.modal-delete-board') as HTMLElement
+  ngOnInit(): void {
+    this.boardId = this.boardService.boardToGoId
+    this.http
+      .get(`${baseUrl}boards/${this.boardId}`, this.config)
+      .subscribe((data: any) => {
+        this.boardTitle = data.title
+      })
+  }
+  deleteCurrentBoardAsk() {
+    const modal = document.querySelector(
+      '.modal-delete-current-board'
+    ) as HTMLElement
     modal.classList.add('active')
     const modalSubmit = document.querySelector(
-      '.confirm-delete-board'
+      '.confirm-delete-current-board'
     ) as HTMLElement
     const modalCancel = document.querySelector(
-      '.cancel-delete-board'
+      '.cancel-delete-current-board'
     ) as HTMLElement
     modalCancel.addEventListener('click', () => {
       modal.classList.remove('active')
     })
     modalSubmit.addEventListener('click', () => {
-      this.deleteBoard()
+      this.deleteCurrentBoard()
       modal.classList.remove('active')
       this.router.navigate(['dashboard/start'])
     })
   }
-  deleteBoard() {
+  deleteCurrentBoard() {
     this.http
       .delete(`${baseUrl}boards/${this.boardId}`, this.config)
       .subscribe((data: any) => {

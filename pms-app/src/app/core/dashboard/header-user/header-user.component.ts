@@ -7,6 +7,7 @@ import { Output } from '@angular/core'
 import { baseUrl } from 'src/environment/environment'
 import { HttpClient } from '@angular/common/http'
 import { config } from 'rxjs'
+import { GetBoardService } from 'src/app/services/get-board.service'
 
 @Component({
   selector: 'app-header-user',
@@ -18,7 +19,8 @@ export class HeaderUserComponent implements OnInit {
     private router: Router,
     private http: HttpClient,
     public translate: TranslateService,
-    private auth: AuthService
+    private auth: AuthService,
+    private boardService: GetBoardService
   ) {}
 
   @Input() name: string = ''
@@ -84,10 +86,7 @@ export class HeaderUserComponent implements OnInit {
       owner: this.id,
       users: ['']
     }
-    this.http
-      .post(`${baseUrl}boards`, body, this.config)
-      .subscribe((data: any) => console.log(data))
+    this.boardService.createBoard(body, this.config)
     document.querySelector('.modal-create-board')?.classList.remove('active')
-    this.router.navigate(['dashboard/board'])
   }
 }

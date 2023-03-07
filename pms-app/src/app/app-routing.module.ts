@@ -8,6 +8,7 @@ import { WelcomePageComponent } from './components/welcome-page/welcome-page.com
 import { CoreModule } from './core/core.module'
 import { AccountComponent } from './core/dashboard/profile/components/account/account.component'
 import { BoardCreatePageComponent } from './core/dashboard/profile/components/board-create-page/board-create-page.component'
+import { BoardPageComponent } from './core/dashboard/profile/components/board-page/board-page.component'
 import { StartPageComponent } from './core/dashboard/profile/components/start-page/start-page.component'
 import { ProfileComponent } from './core/dashboard/profile/profile.component'
 
@@ -47,6 +48,10 @@ const routes: Routes = [
       {
         path: 'board',
         component: BoardCreatePageComponent
+      },
+      {
+        path: 'board-page',
+        component: BoardPageComponent
       }
     ]
   },
