@@ -18,7 +18,7 @@ export class AccountComponent implements OnInit {
 
   @Output() name: string = ''
   @Output() login: string = ''
-  @Output() id: number = 0
+  @Output() id: string = ''
   @Output() password: string = this.auth.user.password
   userToken = `Bearer ${this.auth.token}`
 
@@ -106,11 +106,10 @@ export class AccountComponent implements OnInit {
       this.http
         .delete(`${baseUrl}users/${this.id}`, this.config)
         .subscribe((data) => {
-          console.log(data)
+          this.router.navigate(['main/welcome'])
         })
       modal.classList.remove('active')
       window.localStorage.clear()
-      this.router.navigate(['main/welcome'])
     })
     modalCancel.addEventListener('click', () => {
       modal.classList.remove('active')
@@ -124,8 +123,8 @@ export class AccountComponent implements OnInit {
     }
     this.http
       .put(`${baseUrl}users/${this.id}`, body, this.config)
-      .subscribe((data) => {
-        console.log(data)
+      .subscribe((data: any) => {
+        this.id = data._id
       })
   }
 }
