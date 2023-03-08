@@ -4,6 +4,7 @@ import { Router } from '@angular/router'
 import { config } from 'rxjs'
 import { AuthService } from 'src/app/services/auth.service'
 import { GetBoardService } from 'src/app/services/get-board.service'
+import { ModalServiceService } from 'src/app/services/modal-service.service'
 import { baseUrl } from 'src/environment/environment'
 
 @Component({
@@ -16,7 +17,8 @@ export class BoardCreatePageComponent implements OnInit {
     private router: Router,
     private http: HttpClient,
     private boardService: GetBoardService,
-    private auth: AuthService
+    private auth: AuthService,
+    public modal: ModalServiceService
   ) {}
   ngOnInit(): void {}
   boardTitle: string = this.boardService.boardTitle
@@ -29,29 +31,22 @@ export class BoardCreatePageComponent implements OnInit {
       Authorization: this.userToken
     }
   }
-
   modalDelete() {
-    const modal = document.querySelector('.modal-delete-board') as HTMLElement
-    modal.classList.add('active')
-    const modalSubmit = document.querySelector(
-      '.confirm-delete-board'
-    ) as HTMLElement
-    const modalCancel = document.querySelector(
-      '.cancel-delete-board'
-    ) as HTMLElement
-    modalCancel.addEventListener('click', () => {
-      modal.classList.remove('active')
-    })
-    modalSubmit.addEventListener('click', () => {
-      this.deleteBoard()
-      modal.classList.remove('active')
-      this.router.navigate(['dashboard/start'])
-    })
+    this.modal.open()
   }
+  provideResultOfModal(value: boolean) {
+    if (value) {
+      this.deleteBoard()
+    } else {
+      this.modal.close()
+    }
+  }
+
   deleteBoard() {
     this.http
       .delete(`${baseUrl}boards/${this.boardId}`, this.config)
       .subscribe((data: any) => {
+        this.modal.close()
         this.router.navigate(['dashboard/start'])
       })
   }

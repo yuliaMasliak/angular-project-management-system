@@ -31,7 +31,19 @@ export class GetBoardService {
     })
   }
   goToBoard(id: string) {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${this.auth.token}`,
+        'Content-Type': 'application/json'
+      }
+    }
+
     this.boardToGoId = id
-    this.router.navigate(['dashboard/board-page'])
+    this.http.get(`${baseUrl}boards/${id}`, config).subscribe((data: any) => {
+      this.boardId = data._id
+      this.boardTitle = data.title
+      this.ownerId = data.owner
+      this.router.navigate(['dashboard/board'])
+    })
   }
 }

@@ -16,6 +16,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader'
 import { ReactiveFormsModule } from '@angular/forms'
 import { AuthService } from './services/auth.service'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { GetBoardService } from './services/get-board.service'
+import { ModalServiceService } from './services/modal-service.service'
 
 function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http)
@@ -48,7 +50,7 @@ function HttpLoaderFactory(http: HttpClient) {
     }),
     BrowserAnimationsModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, GetBoardService, ModalServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

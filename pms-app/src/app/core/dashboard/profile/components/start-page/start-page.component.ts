@@ -50,26 +50,7 @@ export class StartPageComponent {
       })
     })
   }
-  cancelCreateNewBoard() {
-    document
-      .querySelector('.cancel-create-board')
-      ?.addEventListener('click', () => {
-        document
-          .querySelector('.modal-create-board')
-          ?.classList.remove('active')
-      })
-  }
-  submitCreateNewBoard() {
-    const input = document.getElementById('title') as HTMLInputElement
 
-    const body = {
-      title: input.value,
-      owner: this.id,
-      users: ['']
-    }
-    this.boardService.createBoard(body, this.config)
-    document.querySelector('.modal-create-board')?.classList.remove('active')
-  }
   toBoard(id: string) {
     this.boardService.goToBoard(id)
   }

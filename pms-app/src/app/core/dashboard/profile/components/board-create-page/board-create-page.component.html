@@ -24,18 +24,9 @@
     </p>
   </div>
 </div>
-<div class="input-group mb-3 modal-delete-board">
-  <div class="input-block">
-    <div class="delete-confirmation">
-      <h4>{{ 'newBoard.deleteBoardAsk' | translate }}</h4>
-    </div>
-    <div class="buttons">
-      <button class="btn btn-primary confirm-delete-board" type="button">
-        {{ 'modal.confirm' | translate }}
-      </button>
-      <button class="btn btn-primary cancel-delete-board" type="button">
-        {{ 'modal.cancel' | translate }}
-      </button>
-    </div>
-  </div>
-</div>
+
+<app-modal
+  *ngIf="modal.value"
+  title="{{ 'newBoard.deleteBoardAsk' | translate }}"
+  (submitResult)="provideResultOfModal($event)"
+></app-modal>

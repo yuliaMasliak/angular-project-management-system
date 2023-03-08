@@ -11,8 +11,10 @@ import { AccountComponent } from './dashboard/profile/components/account/account
 import { MatButtonModule } from '@angular/material/button'
 import { StartPageComponent } from './dashboard/profile/components/start-page/start-page.component'
 import { BoardCreatePageComponent } from './dashboard/profile/components/board-create-page/board-create-page.component'
-import { BoardPageComponent } from './dashboard/profile/components/board-page/board-page.component'
 import { ModalComponent } from './modal/modal.component'
+import { AuthService } from '../services/auth.service'
+import { GetBoardService } from '../services/get-board.service'
+import { ModalServiceService } from '../services/modal-service.service'
 function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http)
 }
@@ -24,7 +26,6 @@ function HttpLoaderFactory(http: HttpClient) {
     AccountComponent,
     StartPageComponent,
     BoardCreatePageComponent,
-    BoardPageComponent,
     ModalComponent
   ],
   exports: [MatButtonModule],
@@ -42,6 +43,7 @@ function HttpLoaderFactory(http: HttpClient) {
       },
       defaultLanguage: 'en'
     })
-  ]
+  ],
+  providers: [AuthService, GetBoardService, ModalServiceService]
 })
 export class CoreModule {}
