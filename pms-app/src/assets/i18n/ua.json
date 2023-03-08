@@ -61,7 +61,8 @@
     "newBoardTitle": "Введіть назву проекту"
   },
   "boards": {
-    "toBoard": "До проекту"
+    "toBoard": "До проекту",
+    "back": "Назад"
   },
   "newBoard": {
     "addColumn": "Створити розділ",

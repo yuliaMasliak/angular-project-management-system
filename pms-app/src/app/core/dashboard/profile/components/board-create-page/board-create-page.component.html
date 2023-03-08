@@ -3,19 +3,26 @@
 
   <hr class="my-4" />
   <p class="content"></p>
-  <p class="lead">
-    <button type="button" class="btn btn-outline-dark">
-      {{ 'newBoard.addColumn' | translate }}
-    </button>
+  <div class="board-btns">
+    <p class="lead">
+      <button type="button" class="btn btn-outline-dark">
+        {{ 'newBoard.addColumn' | translate }}
+      </button>
 
-    <button
-      type="button"
-      class="btn btn-outline-danger"
-      (click)="modalDelete()"
-    >
-      {{ 'newBoard.deleteBoard' | translate }}
-    </button>
-  </p>
+      <button
+        type="button"
+        class="btn btn-outline-danger"
+        (click)="modalDelete()"
+      >
+        {{ 'newBoard.deleteBoard' | translate }}
+      </button>
+    </p>
+    <p class="lead">
+      <button type="button" class="btn btn-outline-dark" (click)="back()">
+        {{ 'boards.back' | translate }}
+      </button>
+    </p>
+  </div>
 </div>
 <div class="input-group mb-3 modal-delete-board">
   <div class="input-block">

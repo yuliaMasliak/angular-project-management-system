@@ -62,4 +62,7 @@ export class BoardPageComponent implements OnInit {
         this.router.navigate(['dashboard/start'])
       })
   }
+  back() {
+    this.router.navigate(['dashboard/start'])
+  }
 }

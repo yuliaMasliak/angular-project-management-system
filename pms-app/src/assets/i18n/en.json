@@ -61,7 +61,8 @@
     "newBoardTitle": "Enter board title"
   },
   "boards": {
-    "toBoard": "Go to board"
+    "toBoard": "Go to board",
+    "back": "Back"
   },
   "newBoard": {
     "addColumn": "Add column",
