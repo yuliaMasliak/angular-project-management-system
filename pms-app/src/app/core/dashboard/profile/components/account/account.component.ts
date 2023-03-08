@@ -29,7 +29,6 @@ export class AccountComponent implements OnInit {
       Authorization: this.userToken
     }
   }
-  input = document.querySelector('.form-control') as HTMLInputElement
 
   ngOnInit() {
     this.http.get(`${baseUrl}users`, this.config).subscribe((data: any) => {
@@ -38,7 +37,6 @@ export class AccountComponent implements OnInit {
           this.login = el.login
           this.name = el.name
           this.id = el._id
-          console.log(this.id)
         }
       })
     })
@@ -53,24 +51,34 @@ export class AccountComponent implements OnInit {
   editPassword() {
     this.modal.openPassword()
   }
+  deleteUserClick() {
+    this.modal.openDelete()
+  }
 
   provideResultOfModal(value: boolean) {
     if (value && this.modal.name) {
-      this.name = this.input.value
+      const input = document.querySelector('.form-control') as HTMLInputElement
+      this.name = input.value
       this.updateUser()
       this.modal.closeName()
     } else if (value && this.modal.login) {
-      this.login = this.input.value
+      const input = document.querySelector('.form-control') as HTMLInputElement
+      this.login = input.value
       this.updateUser()
       this.modal.closeLogin()
     } else if (value && this.modal.password) {
-      this.login = this.input.value
+      const input = document.querySelector('.form-control') as HTMLInputElement
+      this.password = input.value
       this.updateUser()
+      this.modal.closePassword()
+    } else if (value && this.modal.delete) {
+      this.deleteUser()
       this.modal.closePassword()
     } else {
       this.modal.closeName()
       this.modal.closeLogin()
       this.modal.closePassword()
+      this.modal.closeDelete()
     }
   }
   updateUser() {
@@ -90,7 +98,6 @@ export class AccountComponent implements OnInit {
     this.http
       .delete(`${baseUrl}users/${this.id}`, this.config)
       .subscribe((data) => {
-        this.modal.close()
         window.localStorage.clear()
         this.router.navigate(['main/welcome'])
       })

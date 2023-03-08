@@ -26,7 +26,7 @@ export class GetBoardService {
       this.boardTitle = data.title
       this.boardId = data._id
       this.ownerId = data.owner
-      this.modal.close()
+      this.modal.closeNewBoard()
       this.router.navigate(['dashboard/board'])
     })
   }

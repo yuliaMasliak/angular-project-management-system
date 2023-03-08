@@ -22,39 +22,6 @@ label {
   bottom: 0px;
   background-color: rgba(98, 98, 126, 0.603);
 }
-.active {
-  visibility: visible;
-}
-.input-block {
-  height: 30%;
-  width: 40%;
-  margin: 0px auto;
-  margin-top: 10%;
-  background-color: azure;
-  border-radius: 5px;
-  text-align: center;
-}
-.form-control {
-  max-width: 55%;
-  max-height: 25%;
-  margin: 0px auto;
-  margin-top: 10%;
-  margin-bottom: 15px;
-}
-.buttons {
-  margin: 0px auto;
-  width: 70%;
-  display: flex;
-  justify-content: center;
-  column-gap: 15px;
-}
-.delete-confirmation {
-  max-width: 55%;
-  max-height: 25%;
-  margin: 0px auto;
-  margin-top: 10%;
-  margin-bottom: 15px;
-}
 
 .btn-outline-danger {
   margin-top: 10px;

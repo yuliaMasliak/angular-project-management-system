@@ -58,7 +58,7 @@ export class HeaderUserComponent implements OnInit {
     this.router.navigate(['dashboard/account'])
   }
   createBoardModalOpen() {
-    this.modal.open()
+    this.modal.openNewBoard()
   }
   toBoards() {
     this.router.navigate(['dashboard/start'])
@@ -76,7 +76,7 @@ export class HeaderUserComponent implements OnInit {
 
       this.boardService.createBoard(body, this.config)
     } else {
-      this.modal.close()
+      this.modal.closeNewBoard()
     }
   }
   submitCreateNewBoard() {

@@ -38,7 +38,7 @@
 </div>
 
 <app-modal
-  *ngIf="modal.value"
+  *ngIf="modal.newBoard"
   title="{{ 'modal.createBoard' | translate }}"
   (submitResult)="provideResultOfModal($event)"
 ></app-modal>

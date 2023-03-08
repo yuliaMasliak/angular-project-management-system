@@ -38,7 +38,11 @@
       </svg>
     </button>
 
-    <button type="button" class="btn btn-outline-danger" (click)="deleteUser()">
+    <button
+      type="button"
+      class="btn btn-outline-danger"
+      (click)="deleteUserClick()"
+    >
       {{ 'account.delete' | translate }}
     </button>
   </ul>
@@ -58,5 +62,11 @@
 <app-modal
   *ngIf="modal.password"
   title="{{ 'modal.password' | translate }}"
+  (submitResult)="provideResultOfModal($event)"
+></app-modal>
+
+<app-modal
+  *ngIf="modal.delete"
+  title="{{ 'modal.deleteAccount' | translate }}"
   (submitResult)="provideResultOfModal($event)"
 ></app-modal>

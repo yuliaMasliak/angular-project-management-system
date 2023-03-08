@@ -8,6 +8,8 @@ export class ModalServiceService {
   login: boolean = false
   name: boolean = false
   password: boolean = false
+  delete: boolean = false
+  newBoard: boolean = false
 
   constructor() {}
   open() {
@@ -15,6 +17,9 @@ export class ModalServiceService {
   }
   close() {
     this.value = false
+  }
+  openNewBoard() {
+    this.newBoard = true
   }
   openName() {
     this.name = true
@@ -25,6 +30,9 @@ export class ModalServiceService {
   openPassword() {
     this.password = true
   }
+  openDelete() {
+    this.delete = true
+  }
   closeName() {
     this.name = false
   }
@@ -33,5 +41,11 @@ export class ModalServiceService {
   }
   closePassword() {
     this.password = false
+  }
+  closeDelete() {
+    this.delete = false
+  }
+  closeNewBoard() {
+    this.newBoard = false
   }
 }
