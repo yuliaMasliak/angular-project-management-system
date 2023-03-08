@@ -1,0 +1,22 @@
+<div class="modal-overlap">
+  <div class="input-block">
+    <h3>{{ title }}</h3>
+    <div class="form-group">
+      <input type="text" class="form-control" id="title1" />
+    </div>
+    <button
+      class="btn btn-primary submit-create-board"
+      type="button"
+      (click)="onClick(true)"
+    >
+      {{ 'modal.submit' | translate }}
+    </button>
+    <button
+      class="btn btn-primary cancel-create-board"
+      type="button"
+      (click)="onClick(false)"
+    >
+      {{ 'modal.cancel' | translate }}
+    </button>
+  </div>
+</div>

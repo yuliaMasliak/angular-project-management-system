@@ -8,6 +8,7 @@ import { baseUrl } from 'src/environment/environment'
 import { HttpClient } from '@angular/common/http'
 import { config } from 'rxjs'
 import { GetBoardService } from 'src/app/services/get-board.service'
+import { ModalServiceService } from 'src/app/services/modal-service.service'
 
 @Component({
   selector: 'app-header-user',
@@ -20,7 +21,8 @@ export class HeaderUserComponent implements OnInit {
     private http: HttpClient,
     public translate: TranslateService,
     private auth: AuthService,
-    private boardService: GetBoardService
+    private boardService: GetBoardService,
+    public modal: ModalServiceService
   ) {}
 
   @Input() name: string = ''
@@ -55,31 +57,29 @@ export class HeaderUserComponent implements OnInit {
   editProfile() {
     this.router.navigate(['dashboard/account'])
   }
-  createNewBoard() {
-    document.getElementById('create-new-board')?.classList.add('active')
+  createBoardModalOpen() {
+    this.modal.open()
   }
   toBoards() {
     this.router.navigate(['dashboard/start'])
   }
-  cancelCreateNewBoard() {
-    document
-      .querySelector('.cancel-create-board')
-      ?.addEventListener('click', () => {
-        document
-          .querySelector('.modal-create-board')
-          ?.classList.remove('active')
-      })
+
+  provideResultOfModal(value: boolean) {
+    if (value) {
+      const input = document.getElementById('title1') as HTMLInputElement
+
+      const body = {
+        title: input.value,
+        owner: this.id,
+        users: ['']
+      }
+
+      this.boardService.createBoard(body, this.config)
+    } else {
+      this.modal.close()
+    }
   }
   submitCreateNewBoard() {
-    const input = document.getElementById('title1') as HTMLInputElement
-
-    const body = {
-      title: input.value,
-      owner: this.id,
-      users: ['']
-    }
-
-    this.boardService.createBoard(body, this.config)
     document.querySelector('.modal-create-board')?.classList.remove('active')
   }
 }

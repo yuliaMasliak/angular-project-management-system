@@ -73,39 +73,3 @@ span {
 a {
   cursor: pointer;
 }
-.modal-create-board {
-  z-index: 2;
-  visibility: hidden;
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  background-color: rgba(98, 98, 126, 0.603);
-}
-.active {
-  visibility: visible;
-}
-.hidden {
-  visibility: hidden;
-}
-.input-block {
-  height: 40%;
-  width: 30%;
-  margin: 0px auto;
-  margin-top: 10%;
-  background-color: azure;
-  border-radius: 5px;
-  text-align: center;
-}
-.form-control {
-  max-width: 55%;
-  max-height: 25%;
-  margin: 0px auto;
-  margin-top: 10%;
-  margin-bottom: 15px;
-}
-.submit-create-board {
-  margin-right: 20px;
-}
-h3 {
-  margin-top: 50px;
-}

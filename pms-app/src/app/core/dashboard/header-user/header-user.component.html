@@ -20,7 +20,7 @@
       </button></a
     >
     <a
-      ><button class="btns" (click)="createNewBoard()">
+      ><button class="btns" (click)="createBoardModalOpen()">
         {{ 'board' | translate }}
       </button></a
     >
@@ -36,30 +36,9 @@
     <div class="fake"></div>
   </div>
 </div>
-<div class="input-group mb-3 modal-create-board" id="create-new-board">
-  <div class="input-block">
-    <h3>{{ 'modal.createBoard' | translate }}</h3>
-    <div class="form-group">
-      <input
-        type="text"
-        class="form-control"
-        id="title1"
-        placeholder="{{ 'modal.newBoardTitle' | translate }}"
-      />
-    </div>
-    <button
-      class="btn btn-primary submit-create-board"
-      type="button"
-      (click)="submitCreateNewBoard()"
-    >
-      {{ 'modal.submit' | translate }}
-    </button>
-    <button
-      class="btn btn-primary cancel-create-board"
-      type="button"
-      (click)="cancelCreateNewBoard()"
-    >
-      {{ 'modal.cancel' | translate }}
-    </button>
-  </div>
-</div>
+
+<app-modal
+  *ngIf="modal.value"
+  title="{{ 'modal.createBoard' | translate }}"
+  (submitResult)="provideResultOfModal($event)"
+></app-modal>

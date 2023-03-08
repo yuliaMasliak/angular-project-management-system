@@ -4,6 +4,7 @@ import { Router } from '@angular/router'
 import { HttpClient } from '@angular/common/http'
 import { AuthService } from './auth.service'
 import { IBoardCreate, TConfig } from '../models/user'
+import { ModalServiceService } from './modal-service.service'
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ export class GetBoardService {
   constructor(
     private auth: AuthService,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    public modal: ModalServiceService
   ) {}
   boardTitle: string = ''
   boardId: string = ''
@@ -24,6 +26,7 @@ export class GetBoardService {
       this.boardTitle = data.title
       this.boardId = data._id
       this.ownerId = data.owner
+      this.modal.close()
       this.router.navigate(['dashboard/board'])
     })
   }
