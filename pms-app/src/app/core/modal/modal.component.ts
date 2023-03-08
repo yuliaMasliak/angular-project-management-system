@@ -7,6 +7,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core'
 })
 export class ModalComponent {
   @Input() title: string = ''
+  @Input() class: string = ''
   @Output() submitResult = new EventEmitter()
   onClick(value: boolean) {
     this.submitResult.emit(value)

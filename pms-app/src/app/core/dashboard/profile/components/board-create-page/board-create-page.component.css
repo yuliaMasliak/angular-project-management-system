@@ -20,3 +20,9 @@ h3 {
   display: flex;
   justify-content: space-evenly;
 }
+.hidden {
+  visibility: hidden;
+}
+.btn-outline-info {
+  margin-left: 30px;
+}

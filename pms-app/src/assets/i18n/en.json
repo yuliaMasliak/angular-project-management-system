@@ -62,7 +62,8 @@
   },
   "boards": {
     "toBoard": "Go to board",
-    "back": "Back"
+    "back": "Back",
+    "editTitle": "New board title"
   },
   "newBoard": {
     "addColumn": "Add column",

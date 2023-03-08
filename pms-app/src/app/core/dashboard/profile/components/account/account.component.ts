@@ -23,7 +23,7 @@ export class AccountComponent implements OnInit {
   @Output() id: string = ''
   @Output() password: string = this.auth.user.password
   userToken = `Bearer ${this.auth.token}`
-
+  class: string = ''
   config = {
     headers: {
       Authorization: this.userToken
@@ -53,6 +53,7 @@ export class AccountComponent implements OnInit {
   }
   deleteUserClick() {
     this.modal.openDelete()
+    this.class = 'hidden'
   }
 
   provideResultOfModal(value: boolean) {

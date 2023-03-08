@@ -1,5 +1,14 @@
 <div class="new-board">
-  <h3 class="display-4">{{ boardTitle }}</h3>
+  <h3 class="display-4">
+    {{ boardTitle }}
+    <button
+      type="button"
+      class="btn btn-outline-info"
+      (click)="editBoardTitle()"
+    >
+      {{ 'account.edit' | translate }}
+    </button>
+  </h3>
 
   <hr class="my-4" />
   <p class="content"></p>
@@ -29,4 +38,10 @@
   *ngIf="modal.value"
   title="{{ 'newBoard.deleteBoardAsk' | translate }}"
   (submitResult)="provideResultOfModal($event)"
+  class="{{ class }}"
+></app-modal>
+<app-modal
+  *ngIf="modal.boardTitle"
+  title="{{ 'boards.editTitle' | translate }}"
+  (submitResult)="provideResultOfModalEdit($event)"
 ></app-modal>

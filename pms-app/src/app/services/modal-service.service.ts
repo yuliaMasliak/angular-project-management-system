@@ -10,6 +10,7 @@ export class ModalServiceService {
   password: boolean = false
   delete: boolean = false
   newBoard: boolean = false
+  boardTitle: boolean = false
 
   constructor() {}
   open() {
@@ -33,6 +34,9 @@ export class ModalServiceService {
   openDelete() {
     this.delete = true
   }
+  openEditBoardTitle() {
+    this.boardTitle = true
+  }
   closeName() {
     this.name = false
   }
@@ -47,5 +51,8 @@ export class ModalServiceService {
   }
   closeNewBoard() {
     this.newBoard = false
+  }
+  closeEditBoardTitle() {
+    this.boardTitle = false
   }
 }
