@@ -15,6 +15,7 @@ import { ModalComponent } from './modal/modal.component'
 import { AuthService } from '../services/auth.service'
 import { GetBoardService } from '../services/get-board.service'
 import { ModalServiceService } from '../services/modal-service.service'
+import { ColumnsComponent } from './dashboard/profile/components/columns/columns.component'
 function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http)
 }
@@ -26,7 +27,8 @@ function HttpLoaderFactory(http: HttpClient) {
     AccountComponent,
     StartPageComponent,
     BoardCreatePageComponent,
-    ModalComponent
+    ModalComponent,
+    ColumnsComponent
   ],
   exports: [MatButtonModule],
   imports: [

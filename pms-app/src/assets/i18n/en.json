@@ -63,9 +63,11 @@
   "boards": {
     "toBoard": "Go to board",
     "back": "Back",
-    "editTitle": "New board title"
+    "editTitle": "New board title",
+    "column": "Column name"
   },
   "newBoard": {
+    "board": "Board",
     "addColumn": "Add column",
     "deleteBoard": "Delete board",
     "deleteBoardAsk": "Delete board?"

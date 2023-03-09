@@ -3,7 +3,7 @@ import { baseUrl } from 'src/environment/environment'
 import { Router } from '@angular/router'
 import { HttpClient } from '@angular/common/http'
 import { AuthService } from './auth.service'
-import { IBoardCreate, TConfig } from '../models/user'
+import { IBoardCreate, TConfig } from '../models/interfaces'
 import { ModalServiceService } from './modal-service.service'
 
 @Injectable({

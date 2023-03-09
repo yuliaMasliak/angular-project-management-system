@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http'
 import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { config } from 'rxjs'
-import { IBoardUser } from 'src/app/models/user'
+import { IBoardUser, IColumn } from 'src/app/models/interfaces'
 import { AuthService } from 'src/app/services/auth.service'
 import { GetBoardService } from 'src/app/services/get-board.service'
 import { ModalServiceService } from 'src/app/services/modal-service.service'
@@ -29,9 +29,11 @@ export class BoardCreatePageComponent implements OnInit {
   id = this.auth.id
   config = {
     headers: {
-      Authorization: this.userToken
+      Authorization: this.userToken,
+      'Content-Type': 'application/json'
     }
   }
+  columns: IColumn[] = []
   ngOnInit(): void {
     this.http.get(`${baseUrl}users`, this.config).subscribe((data: any) => {
       data.forEach((elem: IBoardUser) => {
@@ -41,6 +43,16 @@ export class BoardCreatePageComponent implements OnInit {
         }
       })
     })
+    this.columns.length = 0
+    this.http
+      .get(`${baseUrl}boards/${this.boardId}/columns`, this.config)
+      .subscribe((data: any) => {
+        data.forEach((col: any) => {
+          this.columns.push(col)
+        })
+
+        this.modal.closeColumn()
+      })
   }
 
   modalDelete() {
@@ -87,6 +99,46 @@ export class BoardCreatePageComponent implements OnInit {
         this.modal.closeEditBoardTitle()
       })
   }
+
+  addColumnModal() {
+    this.modal.openColumn()
+  }
+  provideResultOfModalColumn(value: boolean) {
+    if (value) {
+      this.createColumn()
+    } else {
+      this.modal.closeColumn()
+    }
+  }
+  createColumn() {
+    const input = document.getElementById('title1') as HTMLInputElement
+
+    const body = {
+      title: input.value,
+      order: 0
+    }
+
+    this.http
+      .post(`${baseUrl}boards/${this.boardId}/columns`, body, this.config)
+      .subscribe((data: any) => {
+        this.columns.push(data)
+        console.log(data)
+        this.modal.closeColumn()
+      })
+  }
+  getAllColumns() {
+    this.columns.length = 0
+    this.http
+      .get(`${baseUrl}boards/${this.boardId}/columns`, this.config)
+      .subscribe((data: any) => {
+        data.forEach((col: any) => {
+          this.columns.push(col)
+        })
+
+        this.modal.closeColumn()
+      })
+  }
+
   back() {
     this.router.navigate(['dashboard/start'])
   }

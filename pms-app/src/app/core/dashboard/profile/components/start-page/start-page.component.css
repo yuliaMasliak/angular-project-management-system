@@ -31,11 +31,20 @@ h3 {
   flex-wrap: wrap;
   column-gap: 50px;
   row-gap: 40px;
+  margin-top: 20px;
   margin-bottom: 20px;
 }
 .board {
-  max-width: 15%;
+  text-align: center;
+  width: 20%;
+  min-height: 150px;
+  background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-.card {
-  z-index: 1;
+.single-card {
+  margin-top: 20px;
 }

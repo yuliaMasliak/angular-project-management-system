@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http'
 import { Component } from '@angular/core'
-import { IBoard, IBoardUser } from 'src/app/models/user'
+import { IBoard, IBoardUser } from 'src/app/models/interfaces'
 import { AuthService } from 'src/app/services/auth.service'
 import { baseUrl } from 'src/environment/environment'
 import { Output } from '@angular/core'

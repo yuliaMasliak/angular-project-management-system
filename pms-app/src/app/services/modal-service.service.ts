@@ -11,10 +11,17 @@ export class ModalServiceService {
   delete: boolean = false
   newBoard: boolean = false
   boardTitle: boolean = false
+  column: boolean = false
 
   constructor() {}
+  openColumn() {
+    this.column = true
+  }
   open() {
     this.value = true
+  }
+  closeColumn() {
+    this.column = false
   }
   close() {
     this.value = false

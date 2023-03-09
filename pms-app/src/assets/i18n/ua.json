@@ -63,9 +63,11 @@
   "boards": {
     "toBoard": "До проекту",
     "back": "Назад",
-    "editTitle": "Нова назва проекту"
+    "editTitle": "Нова назва проекту",
+    "column": "Назва розділу"
   },
   "newBoard": {
+    "board": "Проект",
     "addColumn": "Створити розділ",
     "deleteBoard": "Видалити проект",
     "deleteBoardAsk": "Видалити проект?"

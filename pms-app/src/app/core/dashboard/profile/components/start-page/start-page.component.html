@@ -1,19 +1,13 @@
 <h1>{{ 'welcome' | translate }}, {{ name | titlecase }}</h1>
 <div class="boards">
   <div class="board" *ngFor="let board of boards">
-    <div class="card">
-      <img
-        class="card-img-top"
-        src="../../../../../../assets/task.png"
-        alt="Card image cap"
-      />
-      <div class="card-body">
-        <h5 class="card-title">{{ board.title }}</h5>
-
-        <a class="btn btn-primary btn-to-board" (click)="toBoard(board._id)">{{
-          'boards.toBoard' | translate
-        }}</a>
-      </div>
+    <div class="single-card">
+      <h5 class="card-title">{{ board.title }}</h5>
+    </div>
+    <div>
+      <a class="btn btn-outline-dark" (click)="toBoard(board._id)">{{
+        'boards.toBoard' | translate
+      }}</a>
     </div>
   </div>
 </div>

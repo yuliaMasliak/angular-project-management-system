@@ -1,16 +1,24 @@
 .new-board {
   margin: 0px auto;
   background-color: #e1c3f5c4;
-  max-width: 50%;
-  margin-top: 70px;
+  max-width: 90%;
+  margin-top: 30px;
+  margin-bottom: 50px;
   padding: 20px;
   border-radius: 7px;
 }
-.btn-outline-dark {
+.btn-outline-secondary {
   margin-right: 10px;
 }
-h3 {
+.head {
+  display: flex;
+  justify-content: space-between;
+}
+.board-title {
   text-align: center;
+}
+h6 {
+  margin: 0px auto;
 }
 .content {
   min-height: 150px;
@@ -18,11 +26,14 @@ h3 {
 
 .board-btns {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 .hidden {
   visibility: hidden;
 }
 .btn-outline-info {
   margin-left: 30px;
+}
+.btn-outline-danger {
+  margin-left: 10px;
 }
