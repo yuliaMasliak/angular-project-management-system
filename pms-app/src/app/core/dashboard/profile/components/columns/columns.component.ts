@@ -8,4 +8,9 @@ import { IColumn } from 'src/app/models/interfaces'
 })
 export class ColumnsComponent {
   @Input() columns: IColumn[] = []
+
+  editColumnTitle(id: string) {
+    console.log(id)
+  }
+  modalDelete(id: string) {}
 }

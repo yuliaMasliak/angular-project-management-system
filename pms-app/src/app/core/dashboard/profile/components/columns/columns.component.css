@@ -12,8 +12,13 @@
 }
 .column {
   background-color: #45395380;
-  color: white;
   width: 45%;
   border-radius: 5px;
   min-height: 200px;
+  padding: 10px;
+}
+.settings {
+  display: flex;
+  justify-content: space-between;
+  color: #453953;
 }
