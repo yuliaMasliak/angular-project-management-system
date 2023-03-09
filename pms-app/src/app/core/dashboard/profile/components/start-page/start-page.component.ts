@@ -6,6 +6,7 @@ import { baseUrl } from 'src/environment/environment'
 import { Output } from '@angular/core'
 import { Router } from '@angular/router'
 import { GetBoardService } from 'src/app/services/get-board.service'
+import { ModalServiceService } from 'src/app/services/modal-service.service'
 
 @Component({
   selector: 'app-start-page',
@@ -17,13 +18,16 @@ export class StartPageComponent {
     private auth: AuthService,
     private http: HttpClient,
     private router: Router,
-    private boardService: GetBoardService
+    private boardService: GetBoardService,
+    public modal: ModalServiceService
   ) {}
   name: string = ''
   id: string = ''
   boardId: string = this.boardService.boardId
   userToken = `Bearer ${this.auth.token}`
   @Output() boards: IBoard[] = []
+  boardTitle: string = this.boardService.boardTitle
+  boardToEdit: string = ''
 
   config = {
     headers: {
@@ -53,5 +57,33 @@ export class StartPageComponent {
 
   toBoard(id: string) {
     this.boardService.goToBoard(id)
+  }
+
+  editBoardTitle(id: string) {
+    this.modal.openEditBoardTitle()
+    this.boardToEdit = id
+  }
+  provideResultOfModalEdit(value: boolean) {
+    if (value) {
+      this.updateBoard()
+    } else {
+      this.modal.closeEditBoardTitle()
+    }
+  }
+  updateBoard() {
+    const input = document.getElementById('title1') as HTMLInputElement
+    this.boardTitle = input.value
+    const body = {
+      title: input.value,
+      owner: this.id,
+      users: ['']
+    }
+    this.http
+      .put(`${baseUrl}boards/${this.boardToEdit}`, body, this.config)
+      .subscribe((data: any) => {
+        let board = document.getElementById(this.boardToEdit) as HTMLElement
+        board.innerHTML = input.value
+        this.modal.closeEditBoardTitle()
+      })
   }
 }

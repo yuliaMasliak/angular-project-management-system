@@ -37,3 +37,6 @@ h6 {
 .btn-outline-danger {
   margin-left: 10px;
 }
+.bi {
+  cursor: pointer;
+}

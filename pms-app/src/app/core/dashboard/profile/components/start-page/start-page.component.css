@@ -1,4 +1,4 @@
-h1 {
+h3 {
   margin-top: 50px;
   margin-left: 100px;
 }
@@ -47,4 +47,9 @@ h3 {
 }
 .single-card {
   margin-top: 20px;
+}
+.settings {
+  display: flex;
+  justify-content: space-between;
+  color: #45395380;
 }
