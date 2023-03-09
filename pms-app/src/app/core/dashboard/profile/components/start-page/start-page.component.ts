@@ -28,6 +28,7 @@ export class StartPageComponent {
   @Output() boards: IBoard[] = []
   boardTitle: string = this.boardService.boardTitle
   boardToEdit: string = ''
+  class: string = ''
 
   config = {
     headers: {
@@ -84,6 +85,30 @@ export class StartPageComponent {
         let board = document.getElementById(this.boardToEdit) as HTMLElement
         board.innerHTML = input.value
         this.modal.closeEditBoardTitle()
+      })
+  }
+  modalDelete(id: string) {
+    this.modal.open()
+    this.class = 'hidden'
+    this.boardToEdit = id
+  }
+  provideResultOfModal(value: boolean) {
+    if (value) {
+      this.deleteBoard()
+    } else {
+      this.modal.close()
+    }
+  }
+
+  deleteBoard() {
+    this.http
+      .delete(`${baseUrl}boards/${this.boardToEdit}`, this.config)
+      .subscribe((data: any) => {
+        let board = document.getElementById(
+          `board-${this.boardToEdit}`
+        ) as HTMLElement
+        board.remove()
+        this.modal.close()
       })
   }
 }
