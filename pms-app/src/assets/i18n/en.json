@@ -71,5 +71,9 @@
     "addColumn": "Add column",
     "deleteBoard": "Delete board",
     "deleteBoardAsk": "Delete board?"
+  },
+  "column": {
+    "editTitle": "New column title",
+    "deleteColumnAsk": "Delete column?"
   }
 }

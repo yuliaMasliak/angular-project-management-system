@@ -1,5 +1,9 @@
 <div class="columns">
-  <div *ngFor="let column of columns" class="column">
+  <div
+    *ngFor="let column of columns"
+    class="column"
+    id="column-{{ column._id }}"
+  >
     <div class="settings">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -32,7 +36,18 @@
         />
       </svg>
     </div>
-    <div class="column-title">{{ column.title }}</div>
+    <div class="column-title" id="{{ column._id }}">{{ column.title }}</div>
     <div class="tasks"></div>
   </div>
 </div>
+<app-modal
+  *ngIf="modal.columnEdit"
+  title="{{ 'column.editTitle' | translate }}"
+  (submitResult)="provideResultOfModalEdit($event)"
+></app-modal>
+<app-modal
+  *ngIf="modal.columnDelete"
+  title="{{ 'column.deleteColumnAsk' | translate }}"
+  (submitResult)="provideResultOfModal($event)"
+  class="{{ class }}"
+></app-modal>

@@ -9,9 +9,11 @@
   justify-content: space-evenly;
   text-align: center;
   align-items: center;
+  margin-bottom: 20px;
 }
 .column {
   background-color: #45395380;
+  color: white;
   width: 45%;
   border-radius: 5px;
   min-height: 200px;
@@ -20,5 +22,7 @@
 .settings {
   display: flex;
   justify-content: space-between;
-  color: #453953;
+}
+.bi {
+  cursor: pointer;
 }
