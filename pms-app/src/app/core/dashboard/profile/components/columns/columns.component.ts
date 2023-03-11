@@ -20,12 +20,7 @@ export class ColumnsComponent {
   columnToEditId: string = ''
   columnTitle: string = ''
   @Input() boardId: string = ''
-  config = {
-    headers: {
-      Authorization: `Bearer ${this.auth.token}`,
-      'Content-Type': 'application/json'
-    }
-  }
+
   class: string = ''
   editColumnTitle(id: string) {
     this.modal.openEditColumn()
@@ -48,8 +43,7 @@ export class ColumnsComponent {
     this.http
       .put(
         `${baseUrl}boards/${this.boardId}/columns/${this.columnToEditId}`,
-        body,
-        this.config
+        body
       )
       .subscribe((data: any) => {
         let column = document.getElementById(this.columnToEditId) as HTMLElement
@@ -73,10 +67,7 @@ export class ColumnsComponent {
 
   deleteColumn() {
     this.http
-      .delete(
-        `${baseUrl}boards/${this.boardId}/columns/${this.columnToEditId}`,
-        this.config
-      )
+      .delete(`${baseUrl}boards/${this.boardId}/columns/${this.columnToEditId}`)
       .subscribe((data: any) => {
         let column = document.getElementById(
           `column-${this.columnToEditId}`

@@ -48,7 +48,7 @@ export class HeaderUserComponent implements OnInit {
   }
 
   deleteToken() {
-    window.localStorage.clear()
+    window.localStorage.removeItem(this.auth.user.login)
     this.router.navigate(['../main/welcome'])
   }
   toMainPage() {

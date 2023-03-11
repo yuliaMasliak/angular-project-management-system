@@ -27,15 +27,10 @@ export class BoardCreatePageComponent implements OnInit {
   userToken = `Bearer ${this.auth.token}`
   name: string = ''
   id = this.auth.id
-  config = {
-    headers: {
-      Authorization: this.userToken,
-      'Content-Type': 'application/json'
-    }
-  }
+
   columns: IColumn[] = []
   ngOnInit(): void {
-    this.http.get(`${baseUrl}users`, this.config).subscribe((data: any) => {
+    this.http.get(`${baseUrl}users`).subscribe((data: any) => {
       data.forEach((elem: IBoardUser) => {
         if (elem.login == this.auth.user.login) {
           this.name = elem.name
@@ -45,7 +40,7 @@ export class BoardCreatePageComponent implements OnInit {
     })
     this.columns.length = 0
     this.http
-      .get(`${baseUrl}boards/${this.boardId}/columns`, this.config)
+      .get(`${baseUrl}boards/${this.boardId}/columns`)
       .subscribe((data: any) => {
         data.forEach((col: any) => {
           this.columns.push(col)
@@ -69,7 +64,7 @@ export class BoardCreatePageComponent implements OnInit {
 
   deleteBoard() {
     this.http
-      .delete(`${baseUrl}boards/${this.boardId}`, this.config)
+      .delete(`${baseUrl}boards/${this.boardId}`)
       .subscribe((data: any) => {
         this.modal.close()
         this.router.navigate(['dashboard/start'])
@@ -94,7 +89,7 @@ export class BoardCreatePageComponent implements OnInit {
       users: ['']
     }
     this.http
-      .put(`${baseUrl}boards/${this.boardId}`, body, this.config)
+      .put(`${baseUrl}boards/${this.boardId}`, body)
       .subscribe((data: any) => {
         this.modal.closeEditBoardTitle()
       })
@@ -119,7 +114,7 @@ export class BoardCreatePageComponent implements OnInit {
     }
 
     this.http
-      .post(`${baseUrl}boards/${this.boardId}/columns`, body, this.config)
+      .post(`${baseUrl}boards/${this.boardId}/columns`, body)
       .subscribe((data: any) => {
         this.columns.push(data)
         console.log(data)
@@ -129,7 +124,7 @@ export class BoardCreatePageComponent implements OnInit {
   getAllColumns() {
     this.columns.length = 0
     this.http
-      .get(`${baseUrl}boards/${this.boardId}/columns`, this.config)
+      .get(`${baseUrl}boards/${this.boardId}/columns`)
       .subscribe((data: any) => {
         data.forEach((col: any) => {
           this.columns.push(col)
