@@ -1,7 +1,12 @@
 import { HttpClient } from '@angular/common/http'
 import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
-import { config } from 'rxjs'
+import { DragDropModule } from '@angular/cdk/drag-drop'
+import {
+  CdkDragDrop,
+  moveItemInArray,
+  transferArrayItem
+} from '@angular/cdk/drag-drop'
 import { IBoardUser, IColumn } from 'src/app/models/interfaces'
 import { AuthService } from 'src/app/services/auth.service'
 import { GetBoardService } from 'src/app/services/get-board.service'
@@ -29,6 +34,28 @@ export class BoardCreatePageComponent implements OnInit {
   id = this.auth.id
 
   columns: IColumn[] = []
+
+  todo = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep']
+
+  done = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog']
+
+  drop(event: CdkDragDrop<IColumn[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      )
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      )
+    }
+  }
+
   ngOnInit(): void {
     this.http.get(`${baseUrl}users`).subscribe((data: any) => {
       data.forEach((elem: IBoardUser) => {

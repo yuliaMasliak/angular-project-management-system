@@ -25,7 +25,13 @@
   </div>
   <hr class="my-4" />
 
-  <app-columns [columns]="columns" [boardId]="boardId"></app-columns>
+  <app-columns
+    [columns]="columns"
+    [boardId]="boardId"
+    (cdkDropListDropped)="drop($event)"
+    cdkDropList
+    [cdkDropListData]="columns"
+  ></app-columns>
 
   <div class="board-btns">
     <p class="lead">

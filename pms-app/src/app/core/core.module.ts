@@ -17,6 +17,7 @@ import { GetBoardService } from '../services/get-board.service'
 import { ModalServiceService } from '../services/modal-service.service'
 import { ColumnsComponent } from './dashboard/profile/components/columns/columns.component'
 import { AuthInterceptor } from '../services/auth.interceptor'
+import { DragDropModule } from '@angular/cdk/drag-drop'
 function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http)
 }
@@ -37,7 +38,7 @@ function HttpLoaderFactory(http: HttpClient) {
     CommonModule,
     MatButtonModule,
     ReactiveFormsModule,
-
+    DragDropModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

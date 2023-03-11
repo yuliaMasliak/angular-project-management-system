@@ -3,6 +3,7 @@
     *ngFor="let column of columns"
     class="column"
     id="column-{{ column._id }}"
+    cdkDrag
   >
     <div class="settings">
       <svg
@@ -40,6 +41,7 @@
     <div class="tasks"></div>
   </div>
 </div>
+
 <app-modal
   *ngIf="modal.columnEdit"
   title="{{ 'column.editTitle' | translate }}"
