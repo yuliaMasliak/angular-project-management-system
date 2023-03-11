@@ -24,14 +24,9 @@ export class AccountComponent implements OnInit {
   @Output() password: string = this.auth.user.password
   userToken = `Bearer ${this.auth.token}`
   class: string = ''
-  config = {
-    headers: {
-      Authorization: this.userToken
-    }
-  }
 
   ngOnInit() {
-    this.http.get(`${baseUrl}users`, this.config).subscribe((data: any) => {
+    this.http.get(`${baseUrl}users`).subscribe((data: any) => {
       data.forEach((el: any) => {
         if (el.login == this.auth.user.login) {
           this.login = el.login
@@ -60,7 +55,7 @@ export class AccountComponent implements OnInit {
     if (value && this.modal.name) {
       const input = document.querySelector('.form-control') as HTMLInputElement
       this.name = input.value
-      this.updateUser()
+      this.updateUserName()
       this.modal.closeName()
     } else if (value && this.modal.login) {
       const input = document.querySelector('.form-control') as HTMLInputElement
@@ -82,25 +77,47 @@ export class AccountComponent implements OnInit {
       this.modal.closeDelete()
     }
   }
-  updateUser() {
+  updateUserName() {
+    const input = document.querySelector('.form-control') as HTMLInputElement
+
     const body = {
       name: this.name,
       login: this.login,
       password: this.password
     }
-    this.http
-      .put(`${baseUrl}users/${this.id}`, body, this.config)
-      .subscribe((data: any) => {
+
+    this.http.put(`${baseUrl}users/${this.id}`, body).subscribe((data: any) => {
+      this.id = data._id
+      this.modal.close()
+    })
+  }
+  updateUser() {
+    const input = document.querySelector('.form-control') as HTMLInputElement
+
+    const body = {
+      name: this.name,
+      login: this.login,
+      password: this.password
+    }
+
+    this.http.put(`${baseUrl}users/${this.id}`, body).subscribe(
+      (data: any) => {
+        alert('Data was successfully updated. Please, reauthorize.')
+        this.router.navigate(['main/login'])
+
         this.id = data._id
         this.modal.close()
-      })
+      },
+      (err) => {
+        alert('Login already exists. Choose another one')
+        this.login = ''
+      }
+    )
   }
   deleteUser() {
-    this.http
-      .delete(`${baseUrl}users/${this.id}`, this.config)
-      .subscribe((data) => {
-        window.localStorage.clear()
-        this.router.navigate(['main/welcome'])
-      })
+    this.http.delete(`${baseUrl}users/${this.id}`).subscribe((data) => {
+      window.localStorage.clear()
+      this.router.navigate(['main/welcome'])
+    })
   }
 }

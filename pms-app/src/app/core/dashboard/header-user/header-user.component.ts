@@ -37,7 +37,7 @@ export class HeaderUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.http.get(`${baseUrl}users`, this.config).subscribe((data: any) => {
+    this.http.get(`${baseUrl}users`).subscribe((data: any) => {
       data.forEach((elem: IBoardUser) => {
         if (elem.login == this.auth.user.login) {
           this.name = elem.name
@@ -48,7 +48,7 @@ export class HeaderUserComponent implements OnInit {
   }
 
   deleteToken() {
-    window.localStorage.removeItem(this.auth.user.login)
+    window.localStorage.removeItem('access_token')
     this.router.navigate(['../main/welcome'])
   }
   toMainPage() {

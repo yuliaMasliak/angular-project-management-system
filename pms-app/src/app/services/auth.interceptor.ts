@@ -7,7 +7,7 @@ import {
   HttpResponse,
   HttpErrorResponse
 } from '@angular/common/http'
-import { map, Observable, tap } from 'rxjs'
+import { Observable, tap } from 'rxjs'
 import { AuthService } from './auth.service'
 
 @Injectable()
@@ -18,14 +18,9 @@ export class AuthInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    console.log(this.authService.user.login)
-    const token: any = localStorage.getItem(
-      `${this.authService.user.login}token`
-    )
-    console.log('token string', token)
+    const token: any = localStorage.getItem('access_token')
 
     if (token) {
-      console.log('token ', token)
       request = request.clone({
         headers: request.headers.set('Authorization', 'Bearer ' + token)
       })

@@ -61,7 +61,7 @@ export class AuthService {
         if (data.token) {
           this.token = data.token
           console.log(this.token)
-          window.localStorage.setItem(`${userLogin}token`, data.token)
+          window.localStorage.setItem('access_token', data.token)
 
           this.user.login = usertoLogin.login
           this.user.password = usertoLogin.password

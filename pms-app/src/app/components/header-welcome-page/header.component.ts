@@ -16,7 +16,7 @@ export class HeaderComponent {
   ) {}
 
   checkTokenLogin() {
-    if (window.localStorage.getItem(`${this.authService.user.login}token`)) {
+    if (window.localStorage.getItem('access_token')) {
       this.router.navigate(['dashboard/start'])
     } else {
       this.router.navigate(['main', 'login'])
