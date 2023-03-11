@@ -1,6 +1,16 @@
 <h3>{{ 'welcome' | translate }}, {{ name | titlecase }}</h3>
-<div class="boards">
-  <div class="board" *ngFor="let board of boards" id="board-{{ board._id }}">
+<div
+  class="boards"
+  (cdkDropListDropped)="drop($event)"
+  cdkDropList
+  [cdkDropListData]="boards"
+>
+  <div
+    class="board"
+    *ngFor="let board of boards"
+    id="board-{{ board._id }}"
+    cdkDrag
+  >
     <div class="settings">
       <svg
         xmlns="http://www.w3.org/2000/svg"

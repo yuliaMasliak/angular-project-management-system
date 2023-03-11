@@ -1,12 +1,17 @@
 import { HttpClient } from '@angular/common/http'
 import { Component } from '@angular/core'
-import { IBoard, IBoardUser } from 'src/app/models/interfaces'
+import { IBoard, IBoardUser, IColumn } from 'src/app/models/interfaces'
 import { AuthService } from 'src/app/services/auth.service'
 import { baseUrl } from 'src/environment/environment'
 import { Output } from '@angular/core'
 import { Router } from '@angular/router'
 import { GetBoardService } from 'src/app/services/get-board.service'
 import { ModalServiceService } from 'src/app/services/modal-service.service'
+import {
+  CdkDragDrop,
+  moveItemInArray,
+  transferArrayItem
+} from '@angular/cdk/drag-drop'
 
 @Component({
   selector: 'app-start-page',
@@ -24,33 +29,24 @@ export class StartPageComponent {
   name: string = ''
   id: string = ''
   boardId: string = this.boardService.boardId
-  userToken = `Bearer ${this.auth.token}`
   @Output() boards: IBoard[] = []
   boardTitle: string = this.boardService.boardTitle
   boardToEdit: string = ''
   class: string = ''
 
-  config = {
-    headers: {
-      Authorization: this.userToken,
-      'Content-Type': 'application/json'
-    }
-  }
   ngOnInit() {
-    this.http.get(`${baseUrl}users`, this.config).subscribe((data: any) => {
+    this.http.get(`${baseUrl}users`).subscribe((data: any) => {
       data.forEach((elem: IBoardUser) => {
         if (elem.login == this.auth.user.login) {
           this.name = elem.name
-          this.http
-            .get(`${baseUrl}boards`, this.config)
-            .subscribe((data: any) =>
-              data.forEach((el: IBoard) => {
-                if (el.owner === elem._id) {
-                  this.id = elem._id
-                  this.boards.push(el)
-                }
-              })
-            )
+          this.http.get(`${baseUrl}boards`).subscribe((data: any) =>
+            data.forEach((el: IBoard) => {
+              if (el.owner === elem._id) {
+                this.id = elem._id
+                this.boards.push(el)
+              }
+            })
+          )
         }
       })
     })
@@ -80,7 +76,7 @@ export class StartPageComponent {
       users: ['']
     }
     this.http
-      .put(`${baseUrl}boards/${this.boardToEdit}`, body, this.config)
+      .put(`${baseUrl}boards/${this.boardToEdit}`, body)
       .subscribe((data: any) => {
         let board = document.getElementById(this.boardToEdit) as HTMLElement
         board.innerHTML = input.value
@@ -102,7 +98,7 @@ export class StartPageComponent {
 
   deleteBoard() {
     this.http
-      .delete(`${baseUrl}boards/${this.boardToEdit}`, this.config)
+      .delete(`${baseUrl}boards/${this.boardToEdit}`)
       .subscribe((data: any) => {
         let board = document.getElementById(
           `board-${this.boardToEdit}`
@@ -110,5 +106,21 @@ export class StartPageComponent {
         board.remove()
         this.modal.close()
       })
+  }
+  drop(event: CdkDragDrop<IBoard[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      )
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      )
+    }
   }
 }

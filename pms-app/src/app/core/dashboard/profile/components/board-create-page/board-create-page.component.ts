@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http'
 import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
-import { DragDropModule } from '@angular/cdk/drag-drop'
 import {
   CdkDragDrop,
   moveItemInArray,
@@ -34,10 +33,6 @@ export class BoardCreatePageComponent implements OnInit {
   id = this.auth.id
 
   columns: IColumn[] = []
-
-  todo = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep']
-
-  done = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog']
 
   drop(event: CdkDragDrop<IColumn[]>) {
     if (event.previousContainer === event.container) {
