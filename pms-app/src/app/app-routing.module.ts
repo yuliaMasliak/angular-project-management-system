@@ -65,7 +65,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  imports: [CoreModule, RouterModule.forRoot(routes)],
+  imports: [CoreModule, RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}
