@@ -37,11 +37,12 @@ export class StartPageComponent {
   ngOnInit() {
     this.http.get(`${baseUrl}users`).subscribe((data: any) => {
       data.forEach((elem: IBoardUser) => {
-        if (elem.login == this.auth.user.login) {
+        if (elem._id == this.auth.user.id) {
           this.name = elem.name
           this.http.get(`${baseUrl}boards`).subscribe((data: any) =>
             data.forEach((el: IBoard) => {
               if (el.owner === elem._id) {
+                console.log(el.owner)
                 this.id = elem._id
                 this.boards.push(el)
               }

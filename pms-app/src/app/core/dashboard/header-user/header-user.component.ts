@@ -26,7 +26,7 @@ export class HeaderUserComponent implements OnInit {
   ) {}
 
   @Input() name: string = ''
-  id = this.auth.id
+  @Input() id: string = ''
   userToken = `Bearer ${this.auth.token}`
 
   config = {
@@ -36,16 +36,7 @@ export class HeaderUserComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
-    this.http.get(`${baseUrl}users`).subscribe((data: any) => {
-      data.forEach((elem: IBoardUser) => {
-        if (elem.login == this.auth.user.login) {
-          this.name = elem.name
-          this.id = elem._id
-        }
-      })
-    })
-  }
+  ngOnInit(): void {}
 
   deleteToken() {
     window.localStorage.removeItem('access_token')
@@ -73,7 +64,7 @@ export class HeaderUserComponent implements OnInit {
         owner: this.id,
         users: ['']
       }
-
+      console.log(body)
       this.boardService.createBoard(body, this.config)
     } else {
       this.modal.closeNewBoard()

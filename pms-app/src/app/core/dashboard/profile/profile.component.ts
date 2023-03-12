@@ -11,8 +11,8 @@ import { Output } from '@angular/core'
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  @Output() name: string = ''
-  @Output() id: number = 0
+  name: string = ''
+  @Output() id: string = ''
   constructor(
     private router: Router,
     private http: HttpClient,
@@ -28,7 +28,7 @@ export class ProfileComponent implements OnInit {
     }
     this.http.get(`${baseUrl}users`, config).subscribe((data: any) => {
       data.forEach((el: any) => {
-        if (el.login == this.authService.user.login) {
+        if (el._id == this.authService.user.id) {
           this.name = el.name
           this.id = el._id
         }

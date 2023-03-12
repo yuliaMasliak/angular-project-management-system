@@ -28,7 +28,7 @@ export class AccountComponent implements OnInit {
   ngOnInit() {
     this.http.get(`${baseUrl}users`).subscribe((data: any) => {
       data.forEach((el: any) => {
-        if (el.login == this.auth.user.login) {
+        if (el._id == this.auth.user.id) {
           this.login = el.login
           this.name = el.name
           this.id = el._id

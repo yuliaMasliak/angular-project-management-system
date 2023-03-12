@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http'
-import { Injectable } from '@angular/core'
+import { Injectable, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { IUser } from '../models/interfaces'
 import { baseUrl } from 'src/environment/environment'
@@ -10,6 +10,7 @@ import { baseUrl } from 'src/environment/environment'
 export class AuthService {
   token: string = ''
   user = {
+    id: localStorage.getItem('access_id'),
     name: '',
     login: '',
     password: ''
@@ -27,9 +28,10 @@ export class AuthService {
     this.http.post(`${baseUrl}auth/signup`, user, { headers }).subscribe(
       (data: any) => {
         if (data._id) {
+          this.id = data._id
           this.userLogin(user.login, user.password)
           this.user.name = data.name
-          this.id = data._id
+          window.localStorage.setItem('access_id', data._id)
         }
       },
       (err) => {
@@ -49,7 +51,6 @@ export class AuthService {
     const headers = {
       'Content-Type': 'application/json'
     }
-
     const usertoLogin = {
       login: userLogin,
       password: userPassword
@@ -60,8 +61,9 @@ export class AuthService {
       (data: any) => {
         if (data.token) {
           this.token = data.token
-          console.log(this.token)
           window.localStorage.setItem('access_token', data.token)
+          window.localStorage.setItem('access_id', this.id)
+          console.log(window.localStorage.getItem('access_id'))
 
           this.user.login = usertoLogin.login
           this.user.password = usertoLogin.password

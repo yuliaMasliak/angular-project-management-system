@@ -1,10 +1,19 @@
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http'
+import { Component, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'pms-app';
+export class AppComponent implements OnInit {
+  constructor(private router: Router, private http: HttpClient) {}
+  title = 'pms-app'
+  ngOnInit(): void {
+    if (window.localStorage.getItem('access_token')) {
+      // this.router.navigate(['dashboard/start'])
+      console.log(window.localStorage.getItem('access_token'))
+    }
+  }
 }
