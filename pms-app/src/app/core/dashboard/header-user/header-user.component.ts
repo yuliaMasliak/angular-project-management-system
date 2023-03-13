@@ -39,7 +39,8 @@ export class HeaderUserComponent implements OnInit {
   ngOnInit(): void {}
 
   deleteToken() {
-    window.localStorage.clear()
+    localStorage.clear()
+    console.log(window.localStorage.getItem('access_id'))
     this.router.navigate(['../main/welcome'])
   }
   toMainPage() {

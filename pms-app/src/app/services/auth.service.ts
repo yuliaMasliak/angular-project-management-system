@@ -28,10 +28,12 @@ export class AuthService {
     this.http.post(`${baseUrl}auth/signup`, user, { headers }).subscribe(
       (data: any) => {
         if (data._id) {
+          this.user.id = data._id
           this.id = data._id
           this.userLogin(user.login, user.password)
           this.user.name = data.name
-          window.localStorage.setItem('access_id', data._id)
+          localStorage.setItem('access_id', data._id)
+          console.log(window.localStorage.getItem('access_id'))
         }
       },
       (err) => {
@@ -55,11 +57,27 @@ export class AuthService {
       login: userLogin,
       password: userPassword
     }
+
     let modalResult = document.querySelector('.success-login') as HTMLElement
     let result = document.querySelector('.modal-result-login') as HTMLElement
     this.http.post(`${baseUrl}auth/signin`, usertoLogin, { headers }).subscribe(
       (data: any) => {
         if (data.token) {
+          const userToken = `Bearer ${data.token}`
+          const config = {
+            headers: {
+              Authorization: userToken
+            }
+          }
+          this.http.get(`${baseUrl}users`, config).subscribe((data: any) => {
+            data.forEach((el: any) => {
+              if (el.login == userLogin) {
+                console.log(el._id)
+                window.localStorage.setItem('access_id', el._id)
+              }
+            })
+          })
+
           this.token = data.token
           window.localStorage.setItem('access_token', data.token)
           window.localStorage.setItem('access_id', this.id)

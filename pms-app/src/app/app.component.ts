@@ -11,9 +11,6 @@ export class AppComponent implements OnInit {
   constructor(private router: Router, private http: HttpClient) {}
   title = 'pms-app'
   ngOnInit(): void {
-    if (window.localStorage.getItem('access_token')) {
-      // this.router.navigate(['dashboard/start'])
-      console.log(window.localStorage.getItem('access_token'))
-    }
+    console.log(window.localStorage.getItem('access_id'))
   }
 }
