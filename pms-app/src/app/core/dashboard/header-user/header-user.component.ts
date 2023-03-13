@@ -74,4 +74,16 @@ export class HeaderUserComponent implements OnInit {
   submitCreateNewBoard() {
     document.querySelector('.modal-create-board')?.classList.remove('active')
   }
+  toggleBurger() {
+    let burger = document.querySelector('.collapsed') as HTMLElement
+    let close = document.querySelector('.close') as HTMLElement
+    burger.classList.toggle('active')
+    close.classList.toggle('active')
+  }
+  closeBurger() {
+    let burger = document.querySelector('.collapsed') as HTMLElement
+    burger.classList.remove('active')
+    let close = document.querySelector('.close') as HTMLElement
+    close.classList.remove('active')
+  }
 }
