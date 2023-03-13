@@ -22,4 +22,16 @@ export class HeaderComponent {
       this.router.navigate(['main', 'login'])
     }
   }
+  toggleBurger() {
+    let burger = document.querySelector('.collapsed') as HTMLElement
+    let close = document.querySelector('.close') as HTMLElement
+    burger.classList.toggle('active')
+    close.classList.toggle('active')
+  }
+  closeBurger() {
+    let burger = document.querySelector('.collapsed') as HTMLElement
+    burger.classList.remove('active')
+    let close = document.querySelector('.close') as HTMLElement
+    close.classList.remove('active')
+  }
 }

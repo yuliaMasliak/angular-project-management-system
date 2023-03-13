@@ -68,3 +68,67 @@ button:hover {
   text-align: center;
   font-size: 30px;
 }
+.burger {
+  visibility: hidden;
+}
+.burger svg {
+  visibility: hidden;
+  position: absolute;
+}
+.collapsed {
+  visibility: hidden;
+  position: absolute;
+}
+.close {
+  visibility: hidden;
+  position: absolute;
+}
+
+@media only screen and (max-width: 910px) {
+  .burger {
+    visibility: visible;
+    top: 0px;
+    width: 100%;
+    height: 90px;
+    background: #453953;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .burger svg {
+    position: absolute;
+    visibility: visible;
+    margin-right: 2rem;
+    width: 2em;
+    fill: white;
+  }
+  .svg-div {
+    width: 100px;
+    margin-bottom: 2rem;
+  }
+  .banner {
+    visibility: hidden;
+    position: absolute;
+  }
+  .active {
+    visibility: visible;
+  }
+  .active {
+    visibility: visible;
+  }
+  .collapsed {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    padding-right: 10px;
+    background-color: #453953;
+    color: white;
+    line-height: 4rem;
+  }
+  .close {
+    position: absolute;
+    right: 15px;
+    width: 1em;
+    fill: rgb(224, 41, 41);
+  }
+}
