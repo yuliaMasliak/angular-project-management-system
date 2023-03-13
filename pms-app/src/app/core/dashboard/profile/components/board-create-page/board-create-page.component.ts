@@ -52,14 +52,17 @@ export class BoardCreatePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.http.get(`${baseUrl}boards/${this.boardId}`).subscribe((data: any) => {
+    let boardId = localStorage.getItem('board_id')!
+
+    this.http.get(`${baseUrl}boards/${boardId}`).subscribe((data: any) => {
+      console.log(data)
       this.boardTitle = data.title
     })
 
     this.columns.length = 0
 
     this.http
-      .get(`${baseUrl}boards/${this.boardId}/columns`)
+      .get(`${baseUrl}boards/${boardId}/columns`)
       .subscribe((data: any) => {
         data.forEach((col: any) => {
           this.columns.push(col)
