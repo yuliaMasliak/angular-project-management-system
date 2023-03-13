@@ -53,7 +53,7 @@ export class BoardCreatePageComponent implements OnInit {
 
   ngOnInit(): void {
     let boardId = localStorage.getItem('board_id')!
-
+    this.boardId = boardId
     this.http.get(`${baseUrl}boards/${boardId}`).subscribe((data: any) => {
       console.log(data)
       this.boardTitle = data.title
