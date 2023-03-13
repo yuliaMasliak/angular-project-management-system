@@ -65,6 +65,7 @@ export class BoardCreatePageComponent implements OnInit {
       .get(`${baseUrl}boards/${boardId}/columns`)
       .subscribe((data: any) => {
         data.forEach((col: any) => {
+          console.log(col)
           this.columns.push(col)
         })
 

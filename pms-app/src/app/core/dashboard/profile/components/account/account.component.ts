@@ -102,9 +102,6 @@ export class AccountComponent implements OnInit {
 
     this.http.put(`${baseUrl}users/${this.id}`, body).subscribe(
       (data: any) => {
-        alert('Data was successfully updated. Please, reauthorize.')
-        this.router.navigate(['main/login'])
-
         this.id = data._id
         this.modal.close()
       },
