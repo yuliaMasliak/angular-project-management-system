@@ -25,7 +25,7 @@ export class BoardCreatePageComponent implements OnInit {
     private auth: AuthService,
     public modal: ModalServiceService
   ) {}
-  boardTitle: string = this.boardService.boardTitle
+  boardTitle: string = ''
   boardId: string = this.boardService.boardId
   class: string = ''
   userToken = `Bearer ${this.auth.token}`
@@ -52,15 +52,12 @@ export class BoardCreatePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.http.get(`${baseUrl}users`).subscribe((data: any) => {
-      data.forEach((elem: IBoardUser) => {
-        if (elem.login == this.auth.user.login) {
-          this.name = elem.name
-          this.id = elem._id
-        }
-      })
+    this.http.get(`${baseUrl}boards/${this.boardId}`).subscribe((data: any) => {
+      this.boardTitle = data.title
     })
+
     this.columns.length = 0
+
     this.http
       .get(`${baseUrl}boards/${this.boardId}/columns`)
       .subscribe((data: any) => {

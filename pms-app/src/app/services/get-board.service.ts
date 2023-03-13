@@ -17,14 +17,15 @@ export class GetBoardService {
     public modal: ModalServiceService
   ) {}
   boardTitle: string = ''
-  boardId: string = ''
+  boardId: string = localStorage.getItem('board_id')!
   ownerId: string = ''
   boardToGoId: string = ''
 
   createBoard(board: IBoardCreate, config: TConfig) {
     this.http.post(`${baseUrl}boards`, board, config).subscribe((data: any) => {
+      localStorage.setItem('board_id', data._id)
       this.boardTitle = data.title
-      this.boardId = data._id
+
       this.ownerId = data.owner
       this.modal.closeNewBoard()
       this.router.navigate(['dashboard/board'])
@@ -37,10 +38,10 @@ export class GetBoardService {
         'Content-Type': 'application/json'
       }
     }
-
+    localStorage.setItem('board_id', id)
+    console.log(this.boardId)
     this.boardToGoId = id
     this.http.get(`${baseUrl}boards/${id}`, config).subscribe((data: any) => {
-      this.boardId = data._id
       this.boardTitle = data.title
       this.ownerId = data.owner
       this.router.navigate(['dashboard/board'])

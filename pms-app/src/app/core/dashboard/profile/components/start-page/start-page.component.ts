@@ -38,7 +38,6 @@ export class StartPageComponent {
     this.http.get(`${baseUrl}users`).subscribe((data: any) => {
       data.forEach((elem: IBoardUser) => {
         if (elem._id == this.auth.user.id) {
-          console.log(elem._id)
           this.http
             .get(`${baseUrl}boardsSet/${this.auth.user.id}`)
             .subscribe((data: any) => {
