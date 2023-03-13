@@ -62,7 +62,7 @@ export class HeaderUserComponent implements OnInit {
 
       const body = {
         title: input.value,
-        owner: this.id,
+        owner: this.auth.user.id!,
         users: ['']
       }
       console.log(body)

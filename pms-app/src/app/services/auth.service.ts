@@ -63,6 +63,7 @@ export class AuthService {
     this.http.post(`${baseUrl}auth/signin`, usertoLogin, { headers }).subscribe(
       (data: any) => {
         if (data.token) {
+          console.log(data.token)
           const userToken = `Bearer ${data.token}`
           const config = {
             headers: {

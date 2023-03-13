@@ -38,20 +38,31 @@ export class StartPageComponent {
     this.http.get(`${baseUrl}users`).subscribe((data: any) => {
       data.forEach((elem: IBoardUser) => {
         if (elem._id == this.auth.user.id) {
-          this.name = elem.name
-          this.http.get(`${baseUrl}boards`).subscribe((data: any) =>
-            data.forEach((el: IBoard) => {
-              if (el.owner === elem._id) {
-                console.log(el.owner)
-                this.id = elem._id
-                this.boards.push(el)
-              }
+          console.log(elem._id)
+          this.http
+            .get(`${baseUrl}boardsSet/${this.auth.user.id}`)
+            .subscribe((data: any) => {
+              console.log(data)
+              data.forEach((elem: any) => {
+                this.boards.push(elem)
+              })
             })
-          )
+          this.name = elem.name
         }
       })
     })
   }
+
+  //           this.http.get(`${baseUrl}boards`).subscribe((data: any) =>
+  //             data.forEach((el: IBoard) => {
+  //               console.log(el)
+  //               if (el.owner === elem._id) {
+  //                 console.log(el.owner)
+  //                 this.id = elem._id
+  //                 this.boards.push(el)
+  //               }
+  //             })
+  // )
 
   toBoard(id: string) {
     this.boardService.goToBoard(id)
@@ -73,7 +84,7 @@ export class StartPageComponent {
     this.boardTitle = input.value
     const body = {
       title: input.value,
-      owner: this.id,
+      owner: this.auth.user.id!,
       users: ['']
     }
     this.http

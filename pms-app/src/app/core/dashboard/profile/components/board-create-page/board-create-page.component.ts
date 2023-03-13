@@ -107,12 +107,13 @@ export class BoardCreatePageComponent implements OnInit {
     this.boardTitle = input.value
     const body = {
       title: input.value,
-      owner: this.id,
+      owner: this.auth.user.id,
       users: ['']
     }
     this.http
       .put(`${baseUrl}boards/${this.boardId}`, body)
       .subscribe((data: any) => {
+        console.log(data)
         this.modal.closeEditBoardTitle()
       })
   }
