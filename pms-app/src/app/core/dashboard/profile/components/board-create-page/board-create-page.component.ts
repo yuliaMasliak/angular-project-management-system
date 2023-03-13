@@ -86,12 +86,12 @@ export class BoardCreatePageComponent implements OnInit {
   }
 
   deleteBoard() {
-    this.http
-      .delete(`${baseUrl}boards/${this.boardId}`)
-      .subscribe((data: any) => {
-        this.modal.close()
-        this.router.navigate(['dashboard/start'])
-      })
+    let boardId = localStorage.getItem('board_id')!
+
+    this.http.delete(`${baseUrl}boards/${boardId}`).subscribe((data: any) => {
+      this.modal.close()
+      this.router.navigate(['dashboard/start'])
+    })
   }
   editBoardTitle() {
     this.modal.openEditBoardTitle()
@@ -105,6 +105,8 @@ export class BoardCreatePageComponent implements OnInit {
   }
   updateBoard() {
     const input = document.getElementById('title1') as HTMLInputElement
+    let boardId = localStorage.getItem('board_id')!
+
     this.boardTitle = input.value
     const body = {
       title: input.value,
@@ -112,7 +114,7 @@ export class BoardCreatePageComponent implements OnInit {
       users: ['']
     }
     this.http
-      .put(`${baseUrl}boards/${this.boardId}`, body)
+      .put(`${baseUrl}boards/${boardId}`, body)
       .subscribe((data: any) => {
         console.log(data)
         this.modal.closeEditBoardTitle()
@@ -136,9 +138,10 @@ export class BoardCreatePageComponent implements OnInit {
       title: input.value,
       order: 0
     }
+    let boardId = localStorage.getItem('board_id')!
 
     this.http
-      .post(`${baseUrl}boards/${this.boardId}/columns`, body)
+      .post(`${baseUrl}boards/${boardId}/columns`, body)
       .subscribe((data: any) => {
         this.columns.push(data)
         console.log(data)
@@ -147,8 +150,10 @@ export class BoardCreatePageComponent implements OnInit {
   }
   getAllColumns() {
     this.columns.length = 0
+    let boardId = localStorage.getItem('board_id')!
+
     this.http
-      .get(`${baseUrl}boards/${this.boardId}/columns`)
+      .get(`${baseUrl}boards/${boardId}/columns`)
       .subscribe((data: any) => {
         data.forEach((col: any) => {
           this.columns.push(col)
