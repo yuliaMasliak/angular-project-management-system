@@ -43,13 +43,8 @@
         />
       </svg>
     </div>
-    <div class="single-card">
+    <div class="single-card" (click)="toBoard(board._id)">
       <div class="card-title" id="{{ board._id }}">{{ board.title }}</div>
-    </div>
-    <div>
-      <a class="btn btn-outline-dark" (click)="toBoard(board._id)">{{
-        'boards.toBoard' | translate
-      }}</a>
     </div>
   </div>
 </div>

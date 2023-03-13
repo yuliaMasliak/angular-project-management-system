@@ -30,29 +30,32 @@ h3 {
   margin-top: 20px;
   margin-bottom: 20px;
   overflow: auto;
-  overflow-x: scroll;
+
+  overflow-y: hidden;
   white-space: nowrap;
 }
 .board {
   text-align: center;
-  width: 30%;
-  height: 100%;
-  min-height: 200px;
-  background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+  width: 12rem;
+  height: 12rem;
+  background: linear-gradient(135deg, #fab4abda 0%, #e9a3fade 100%);
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   padding: 10px;
   display: inline-block;
   margin: 10px;
 }
 .board:hover {
-  background: #fdd6d6c9;
+  box-shadow: rgba(107, 25, 25, 0.55) 0px 5px 15px;
   cursor: pointer;
 }
 .single-card {
-  margin-top: 20px;
+  height: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -2rem;
 }
 .card-title {
-  margin-bottom: 20px;
   font-size: 26px;
 }
 .settings {
@@ -62,4 +65,10 @@ h3 {
 }
 .bi {
   cursor: pointer;
+}
+svg {
+  color: rgb(2, 140, 231);
+}
+svg:hover {
+  color: rgba(119, 158, 202, 0.822);
 }

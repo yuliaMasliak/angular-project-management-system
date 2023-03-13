@@ -42,7 +42,6 @@ export class StartPageComponent {
           this.http
             .get(`${baseUrl}boardsSet/${this.auth.user.id}`)
             .subscribe((data: any) => {
-              console.log(data)
               data.forEach((elem: any) => {
                 this.boards.push(elem)
               })
