@@ -124,6 +124,13 @@ export class ColumnsComponent {
         this.modal.closeCreateTask()
       })
   }
+
+  editTaskFulfill(task: ITask) {
+    this.modal.openEditTask()
+    this.taskToedit = task
+    console.log(this.taskToedit)
+  }
+
   provideResultOfModalEditTask(value: boolean) {
     if (value) {
       this.updateTask()
@@ -131,10 +138,6 @@ export class ColumnsComponent {
     } else {
       this.modal.closeEditTask()
     }
-  }
-  editTaskFulfil(task: ITask) {
-    this.taskToedit = task
-    console.log(this.taskToedit)
   }
   updateTask() {}
 }
