@@ -139,5 +139,30 @@ export class ColumnsComponent {
       this.modal.closeEditTask()
     }
   }
-  updateTask() {}
+  updateTask() {
+    const title = document.getElementById('title1') as HTMLInputElement
+    const desc = document.getElementById('description') as HTMLInputElement
+
+    const body = {
+      title: title.value,
+      order: 0,
+      description: desc.value,
+      columnId: this.taskToedit.columnId,
+      userId: this.taskToedit.userId,
+      users: ['']
+    }
+
+    console.log(body)
+    this.http
+      .put(
+        `${baseUrl}boards/${this.taskToedit.boardId}/columns/${this.taskToedit.columnId}/tasks/${this.taskToedit._id}`,
+        body
+      )
+      .subscribe((data: any) => {
+        console.log(data)
+        // let column = document.getElementById(this.columnToEditId) as HTMLElement
+        // column.innerHTML = input.value
+        this.modal.closeEditColumn()
+      })
+  }
 }

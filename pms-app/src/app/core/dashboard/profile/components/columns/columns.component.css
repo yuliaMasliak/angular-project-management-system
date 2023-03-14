@@ -35,6 +35,7 @@
   color: pink;
   padding: 4px;
   text-decoration: none;
+  cursor: pointer;
 }
 svg:hover {
   cursor: pointer;
