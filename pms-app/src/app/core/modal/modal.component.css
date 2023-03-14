@@ -32,3 +32,15 @@
 h3 {
   padding-top: 50px;
 }
+@media (max-width: 680px) {
+  .input-block {
+    height: 50%;
+    width: 50%;
+  }
+}
+@media (max-width: 420px) {
+  .input-block {
+    height: 40%;
+    width: 70%;
+  }
+}
