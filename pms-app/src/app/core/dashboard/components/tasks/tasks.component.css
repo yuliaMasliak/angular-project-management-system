@@ -1,5 +1,6 @@
 .task-row {
   display: flex;
+  width: 100%;
   flex-wrap: nowrap;
   border: 0.5px dashed rgba(255, 192, 203, 0.589);
 }
@@ -7,19 +8,23 @@
   width: 30%;
   border-right: 0.5px dashed rgba(255, 192, 203, 0.589);
 }
-.task-desc {
+.task-flex {
   width: 70%;
-}
-.settings {
   display: flex;
-  width: 10%;
-  float: right;
   justify-content: space-between;
 }
-svg {
+.task-settings {
+  width: 15%;
+  float: right;
+  display: flex;
+  justify-content: space-between;
+}
+.bi {
   cursor: pointer;
-  color: rgb(20, 64, 122);
+}
+svg {
+  color: rgb(14, 66, 100);
 }
 svg:hover {
-  color: rgba(180, 22, 61, 0.589);
+  color: rgba(173, 32, 103, 0.822);
 }

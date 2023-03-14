@@ -38,6 +38,8 @@ export interface IColumn {
 export interface ITask {
   title: string
   order: 0
+  boardId: string
+  columnId: string
   description: string
   userId: string
   users: [string]

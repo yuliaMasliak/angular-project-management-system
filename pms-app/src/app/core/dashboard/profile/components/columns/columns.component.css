@@ -36,3 +36,10 @@
   padding: 4px;
   text-decoration: none;
 }
+svg:hover {
+  cursor: pointer;
+  color: rgb(40, 57, 206);
+}
+svg {
+  color: rgb(172, 39, 72);
+}
