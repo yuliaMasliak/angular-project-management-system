@@ -1,5 +1,6 @@
 .task-row {
   display: flex;
+  align-items: center;
   flex-wrap: nowrap;
   border: 0.5px dashed rgba(255, 192, 203, 0.589);
 }
@@ -12,6 +13,7 @@
 }
 .settings {
   display: flex;
+  align-items: center;
   width: 10%;
   float: right;
   justify-content: space-between;

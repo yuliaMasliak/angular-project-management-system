@@ -65,14 +65,14 @@
 ></app-modal>
 <app-modal
   *ngIf="modal.createTask"
-  title="{{ 'task.add' | translate }}"
+  title="{{ 'task.name' | translate }}"
   (submitResult)="provideResultOfModalCreateTask($event)"
   class="{{ classDesc }}"
 ></app-modal>
 
 <app-modal
   *ngIf="modal.editTask"
-  title="{{ 'task.add' | translate }}"
+  title="{{ 'task.name' | translate }}"
   (submitResult)="provideResultOfModalEditTask($event)"
   class="{{ classDesc }}"
 ></app-modal>
