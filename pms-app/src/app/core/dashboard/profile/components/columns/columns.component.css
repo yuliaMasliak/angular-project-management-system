@@ -44,3 +44,11 @@ svg:hover {
 svg {
   color: rgb(172, 39, 72);
 }
+@media (max-width: 640px) {
+  .columns {
+    flex-direction: column;
+  }
+  .column {
+    width: 85%;
+  }
+}
