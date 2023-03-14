@@ -18,6 +18,7 @@ import { ModalServiceService } from '../services/modal-service.service'
 import { ColumnsComponent } from './dashboard/profile/components/columns/columns.component'
 import { AuthInterceptor } from '../services/auth.interceptor'
 import { DragDropModule } from '@angular/cdk/drag-drop'
+import { TasksComponent } from './dashboard/profile/components/tasks/tasks.component'
 function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http)
 }
@@ -30,7 +31,8 @@ function HttpLoaderFactory(http: HttpClient) {
     StartPageComponent,
     BoardCreatePageComponent,
     ModalComponent,
-    ColumnsComponent
+    ColumnsComponent,
+    TasksComponent
   ],
   exports: [MatButtonModule],
   imports: [

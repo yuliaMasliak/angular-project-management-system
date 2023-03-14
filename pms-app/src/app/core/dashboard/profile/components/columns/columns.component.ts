@@ -107,7 +107,7 @@ export class ColumnsComponent {
     this.http
       .post(`${baseUrl}boards/${boardId}/columns/${this.columnId}/tasks`, body)
       .subscribe((data: any) => {
-        this.tasks.push(data)
+        console.log(data)
 
         this.modal.closeCreateTask()
       })
