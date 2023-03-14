@@ -32,6 +32,9 @@
 h3 {
   padding-top: 50px;
 }
+.form-group-desc {
+  visibility: hidden;
+}
 @media (max-width: 680px) {
   .input-block {
     height: 50%;

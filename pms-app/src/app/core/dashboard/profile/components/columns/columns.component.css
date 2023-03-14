@@ -27,3 +27,13 @@
 .bi {
   cursor: pointer;
 }
+.column-title {
+  font-size: 2rem;
+}
+.task {
+  width: fit-content;
+  color: pink;
+  border: 0.5px dotted rgb(58, 55, 55);
+  padding: 4px;
+  text-decoration: none;
+}

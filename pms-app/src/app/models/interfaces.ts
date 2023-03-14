@@ -35,3 +35,10 @@ export interface IColumn {
   order: number
   boardId: string
 }
+export interface ITask {
+  title: string
+  order: 0
+  description: string
+  userId: string
+  users: [string]
+}

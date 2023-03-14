@@ -75,5 +75,10 @@
   "column": {
     "editTitle": "New column title",
     "deleteColumnAsk": "Delete column?"
+  },
+  "task": {
+    "add": "Add Task",
+    "name": "Task name",
+    "desc": "Task description"
   }
 }

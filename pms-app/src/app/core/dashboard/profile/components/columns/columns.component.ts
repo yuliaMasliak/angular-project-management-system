@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http'
-import { Component, Input } from '@angular/core'
-import { IColumn } from 'src/app/models/interfaces'
+import { Component, Input, Output } from '@angular/core'
+import { IColumn, ITask } from 'src/app/models/interfaces'
 import { AuthService } from 'src/app/services/auth.service'
 import { ModalServiceService } from 'src/app/services/modal-service.service'
 import { baseUrl } from 'src/environment/environment'
@@ -17,11 +17,14 @@ export class ColumnsComponent {
     private auth: AuthService
   ) {}
   @Input() columns: IColumn[] = []
+  @Output() tasks: ITask[] = []
   columnToEditId: string = ''
   columnTitle: string = ''
   @Input() boardId: string = ''
+  @Output() columnId: string = ''
 
   class: string = ''
+  @Output() classDesc: string = 'active'
   editColumnTitle(id: string) {
     this.modal.openEditColumn()
     this.columnToEditId = id
@@ -57,7 +60,7 @@ export class ColumnsComponent {
     this.class = 'hidden'
     this.columnToEditId = id
   }
-  provideResultOfModal(value: boolean) {
+  provideResultOfModalDelete(value: boolean) {
     if (value) {
       this.deleteColumn()
     } else {
@@ -74,6 +77,39 @@ export class ColumnsComponent {
         ) as HTMLElement
         column.remove()
         this.modal.closeDeleteColumn()
+      })
+  }
+  openModalTask(columnId: string) {
+    this.columnId = columnId
+    this.modal.openCreateTask()
+  }
+  provideResultOfModalCreateTask(value: boolean) {
+    if (value) {
+      this.createTask()
+    } else {
+      this.modal.closeCreateTask()
+    }
+  }
+  createTask() {
+    const input = document.getElementById('title1') as HTMLInputElement
+    const description = document.getElementById(
+      'description'
+    ) as HTMLInputElement
+    const body = {
+      title: input.value,
+      order: 0,
+      description: description.value,
+      userId: this.auth.user.id,
+      users: ['string']
+    }
+    let boardId = localStorage.getItem('board_id')!
+
+    this.http
+      .post(`${baseUrl}boards/${boardId}/columns/${this.columnId}/tasks`, body)
+      .subscribe((data: any) => {
+        this.tasks.push(data)
+
+        this.modal.closeCreateTask()
       })
   }
 }

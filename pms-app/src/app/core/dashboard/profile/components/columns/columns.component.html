@@ -38,7 +38,11 @@
       </svg>
     </div>
     <div class="column-title" id="{{ column._id }}">{{ column.title }}</div>
-    <div class="tasks"></div>
+    <div>
+      <a class="task" (click)="openModalTask(column._id)">
+        + {{ 'task.add' | translate }}</a
+      >
+    </div>
   </div>
 </div>
 
@@ -50,6 +54,12 @@
 <app-modal
   *ngIf="modal.columnDelete"
   title="{{ 'column.deleteColumnAsk' | translate }}"
-  (submitResult)="provideResultOfModal($event)"
+  (submitResult)="provideResultOfModalDelete($event)"
   class="{{ class }}"
+></app-modal>
+<app-modal
+  *ngIf="modal.createTask"
+  title="{{ 'task.add' | translate }}"
+  (submitResult)="provideResultOfModalCreateTask($event)"
+  class="{{ classDesc }}"
 ></app-modal>
