@@ -4,6 +4,9 @@
     class="column"
     id="column-{{ column._id }}"
     cdkDrag
+    [cdkDropListData]="tasksGroup"
+    cdkDropList
+    (cdkDropListDropped)="drop($event)"
   >
     <div class="fixed">
       <div class="settings">
@@ -46,11 +49,9 @@
       >
     </div>
     <app-tasks
+      cdkDrag
       [columnId]="column._id"
       (editTaskEvent)="editTaskFulfill($event)"
-      (cdkDropListDropped)="drop($event)"
-      cdkDropList
-      [cdkDropListData]="tasks"
       (deleteTaskEvent)="deleteTaskFulfill($event)"
     ></app-tasks>
   </div>

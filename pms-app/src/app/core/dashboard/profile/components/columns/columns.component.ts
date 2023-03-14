@@ -4,7 +4,7 @@ import {
   transferArrayItem
 } from '@angular/cdk/drag-drop'
 import { HttpClient } from '@angular/common/http'
-import { Component, EventEmitter, Input, Output } from '@angular/core'
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { IColumn, ITask } from 'src/app/models/interfaces'
 import { AuthService } from 'src/app/services/auth.service'
 import { ModalServiceService } from 'src/app/services/modal-service.service'
@@ -15,14 +15,15 @@ import { baseUrl } from 'src/environment/environment'
   templateUrl: './columns.component.html',
   styleUrls: ['./columns.component.css']
 })
-export class ColumnsComponent {
+export class ColumnsComponent implements OnInit {
   constructor(
     public modal: ModalServiceService,
     private http: HttpClient,
     private auth: AuthService
   ) {}
+  @Input() columnID: string = ''
   @Input() columns: IColumn[] = []
-  @Output() tasks: ITask[] = []
+  @Output() tasksGroup: ITask[] = []
   columnToEditId: string = ''
   columnTitle: string = ''
   @Input() boardId: string = ''
@@ -37,6 +38,18 @@ export class ColumnsComponent {
     userId: '',
     users: ['']
   }
+
+  ngOnInit(): void {
+    this.http
+      .get(`${baseUrl}boards/${this.boardId}/columns/${this.columnId}/tasks`)
+      .subscribe((data: any) => {
+        console.log(data)
+        data.forEach((el: ITask) => {
+          this.tasksGroup.push(el)
+        })
+      })
+  }
+
   drop(event: CdkDragDrop<ITask[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(
@@ -53,6 +66,7 @@ export class ColumnsComponent {
       )
     }
   }
+
   taskToDelete: ITask = {
     _id: '',
     title: '',

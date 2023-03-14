@@ -1,3 +1,8 @@
+import {
+  CdkDragDrop,
+  moveItemInArray,
+  transferArrayItem
+} from '@angular/cdk/drag-drop'
 import { HttpClient } from '@angular/common/http'
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { ITask } from 'src/app/models/interfaces'
@@ -17,7 +22,6 @@ export class TasksComponent implements OnInit {
   @Output() editTaskEvent = new EventEmitter()
   @Output() deleteTaskEvent = new EventEmitter()
   ngOnInit(): void {
-    console.log(this.columnId)
     let boardId = localStorage.getItem('board_id')!
     this.http
       .get(`${baseUrl}boards/${boardId}/columns/${this.columnId}/tasks`)
@@ -35,5 +39,21 @@ export class TasksComponent implements OnInit {
   }
   modalDelete(task: ITask) {
     this.deleteTaskEvent.emit(task)
+  }
+  drop(event: CdkDragDrop<ITask[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      )
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      )
+    }
   }
 }
