@@ -48,6 +48,9 @@
     <app-tasks
       [columnId]="column._id"
       (editTaskEvent)="editTaskFulfill($event)"
+      (cdkDropListDropped)="drop($event)"
+      cdkDropList
+      [cdkDropListData]="tasks"
       (deleteTaskEvent)="deleteTaskFulfill($event)"
     ></app-tasks>
   </div>

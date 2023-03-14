@@ -1,3 +1,8 @@
+import {
+  CdkDragDrop,
+  moveItemInArray,
+  transferArrayItem
+} from '@angular/cdk/drag-drop'
 import { HttpClient } from '@angular/common/http'
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { IColumn, ITask } from 'src/app/models/interfaces'
@@ -31,6 +36,22 @@ export class ColumnsComponent {
     description: '',
     userId: '',
     users: ['']
+  }
+  drop(event: CdkDragDrop<ITask[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      )
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      )
+    }
   }
   taskToDelete: ITask = {
     _id: '',
