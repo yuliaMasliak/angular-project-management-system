@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http'
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { ITask } from 'src/app/models/interfaces'
+import { ModalServiceService } from 'src/app/services/modal-service.service'
 import { baseUrl } from 'src/environment/environment'
 
 @Component({
@@ -9,10 +10,11 @@ import { baseUrl } from 'src/environment/environment'
   styleUrls: ['./tasks.component.css']
 })
 export class TasksComponent implements OnInit {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, public modal: ModalServiceService) {}
   tasks: ITask[] = []
   @Input() columnId: any = ''
-
+  @Output() classDesc: string = 'active'
+  @Output() editTaskEvent = new EventEmitter()
   ngOnInit(): void {
     console.log(this.columnId)
     let boardId = localStorage.getItem('board_id')!
@@ -26,6 +28,9 @@ export class TasksComponent implements OnInit {
         console.log(data)
       })
   }
-  editTask(task: ITask) {}
+
+  editTask(task: ITask) {
+    this.editTaskEvent.emit(task)
+  }
   modalDelete(task: ITask) {}
 }

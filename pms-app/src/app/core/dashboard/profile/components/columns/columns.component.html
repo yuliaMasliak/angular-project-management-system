@@ -45,7 +45,10 @@
         + {{ 'task.add' | translate }}</a
       >
     </div>
-    <app-tasks [columnId]="column._id"></app-tasks>
+    <app-tasks
+      [columnId]="column._id"
+      (editTaskEvent)="editTaskFulfil($event)"
+    ></app-tasks>
   </div>
 </div>
 
@@ -64,5 +67,12 @@
   *ngIf="modal.createTask"
   title="{{ 'task.add' | translate }}"
   (submitResult)="provideResultOfModalCreateTask($event)"
+  class="{{ classDesc }}"
+></app-modal>
+
+<app-modal
+  *ngIf="modal.editTask"
+  title="{{ 'task.add' | translate }}"
+  (submitResult)="provideResultOfModalEditTask($event)"
   class="{{ classDesc }}"
 ></app-modal>

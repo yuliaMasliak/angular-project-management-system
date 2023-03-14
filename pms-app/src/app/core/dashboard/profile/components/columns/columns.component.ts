@@ -22,7 +22,16 @@ export class ColumnsComponent {
   columnTitle: string = ''
   @Input() boardId: string = ''
   @Output() columnId: string = ''
-
+  taskToedit: ITask = {
+    _id: '',
+    title: '',
+    order: 0,
+    boardId: '',
+    columnId: '',
+    description: '',
+    userId: '',
+    users: ['']
+  }
   class: string = ''
   @Output() classDesc: string = 'active'
   @Output() successNewTask = new EventEmitter()
@@ -115,4 +124,17 @@ export class ColumnsComponent {
         this.modal.closeCreateTask()
       })
   }
+  provideResultOfModalEditTask(value: boolean) {
+    if (value) {
+      this.updateTask()
+      this.modal.closeEditTask()
+    } else {
+      this.modal.closeEditTask()
+    }
+  }
+  editTaskFulfil(task: ITask) {
+    this.taskToedit = task
+    console.log(this.taskToedit)
+  }
+  updateTask() {}
 }

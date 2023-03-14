@@ -15,8 +15,15 @@ export class ModalServiceService {
   columnEdit: boolean = false
   columnDelete: boolean = false
   createTask: boolean = false
+  editTask: boolean = false
   constructor() {}
 
+  openEditTask() {
+    this.editTask = true
+  }
+  closeEditTask() {
+    this.editTask = false
+  }
   openCreateTask() {
     this.createTask = true
   }
