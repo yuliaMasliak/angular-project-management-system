@@ -160,6 +160,8 @@ export class ColumnsComponent {
       )
       .subscribe((data: any) => {
         console.log(data)
+        let value = true
+        this.successNewTask.emit(value)
         // let column = document.getElementById(this.columnToEditId) as HTMLElement
         // column.innerHTML = input.value
         this.modal.closeEditColumn()
