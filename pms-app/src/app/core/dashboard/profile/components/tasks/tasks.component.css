@@ -1,5 +1,9 @@
 .task-row {
   display: flex;
   flex-wrap: nowrap;
-  justify-content: space-between;
+  border: 0.5px dashed rgba(255, 192, 203, 0.589);
+}
+.task-row :first-child {
+  width: 30%;
+  border-right: 0.5px dashed rgba(255, 192, 203, 0.589);
 }

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http'
-import { Component, Input, Output } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { IColumn, ITask } from 'src/app/models/interfaces'
 import { AuthService } from 'src/app/services/auth.service'
 import { ModalServiceService } from 'src/app/services/modal-service.service'
@@ -25,6 +25,8 @@ export class ColumnsComponent {
 
   class: string = ''
   @Output() classDesc: string = 'active'
+  @Output() successNewTask = new EventEmitter()
+
   editColumnTitle(id: string) {
     this.modal.openEditColumn()
     this.columnToEditId = id
@@ -108,7 +110,8 @@ export class ColumnsComponent {
       .post(`${baseUrl}boards/${boardId}/columns/${this.columnId}/tasks`, body)
       .subscribe((data: any) => {
         console.log(data)
-
+        let value = true
+        this.successNewTask.emit(value)
         this.modal.closeCreateTask()
       })
   }

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http'
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { ITask } from 'src/app/models/interfaces'
 import { baseUrl } from 'src/environment/environment'
 

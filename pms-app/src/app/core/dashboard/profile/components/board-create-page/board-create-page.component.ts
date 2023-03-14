@@ -72,6 +72,11 @@ export class BoardCreatePageComponent implements OnInit {
         this.modal.closeColumn()
       })
   }
+  reload(value: any) {
+    if (value) {
+      this.ngOnInit()
+    }
+  }
 
   modalDelete() {
     this.modal.open()
