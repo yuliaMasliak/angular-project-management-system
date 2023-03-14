@@ -34,6 +34,15 @@ h3 {
 }
 .form-group-desc {
   visibility: hidden;
+  position: absolute;
+}
+.active {
+  visibility: visible;
+  position: relative;
+  margin-top: 5px;
+}
+label {
+  margin-top: 0px;
 }
 @media (max-width: 680px) {
   .input-block {
