@@ -79,6 +79,7 @@
   "task": {
     "add": "Add Task",
     "name": "Task name",
-    "desc": "Task description"
+    "desc": "Task description",
+    "deleteTask": "Delete task?"
   }
 }

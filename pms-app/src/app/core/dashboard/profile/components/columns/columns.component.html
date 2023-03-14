@@ -48,6 +48,7 @@
     <app-tasks
       [columnId]="column._id"
       (editTaskEvent)="editTaskFulfill($event)"
+      (deleteTaskEvent)="deleteTaskFulfill($event)"
     ></app-tasks>
   </div>
 </div>
@@ -75,4 +76,10 @@
   title="{{ 'task.name' | translate }}"
   (submitResult)="provideResultOfModalEditTask($event)"
   class="{{ classDesc }}"
+></app-modal>
+<app-modal
+  *ngIf="modal.deleteTask"
+  title="{{ 'task.deleteTask' | translate }}"
+  (submitResult)="provideResultOfModalDeleteTask($event)"
+  class="{{ classHidden }}"
 ></app-modal>

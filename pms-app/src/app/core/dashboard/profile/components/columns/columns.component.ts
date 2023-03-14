@@ -32,8 +32,19 @@ export class ColumnsComponent {
     userId: '',
     users: ['']
   }
+  taskToDelete: ITask = {
+    _id: '',
+    title: '',
+    order: 0,
+    boardId: '',
+    columnId: '',
+    description: '',
+    userId: '',
+    users: ['']
+  }
   class: string = ''
   @Output() classDesc: string = 'active'
+  @Output() classHidden: string = 'hidden'
   @Output() successNewTask = new EventEmitter()
 
   editColumnTitle(id: string) {
@@ -128,7 +139,10 @@ export class ColumnsComponent {
   editTaskFulfill(task: ITask) {
     this.modal.openEditTask()
     this.taskToedit = task
-    console.log(this.taskToedit)
+  }
+  deleteTaskFulfill(task: ITask) {
+    this.modal.openDeleteTask()
+    this.taskToDelete = task
   }
 
   provideResultOfModalEditTask(value: boolean) {
@@ -142,7 +156,6 @@ export class ColumnsComponent {
   updateTask() {
     const title = document.getElementById('title1') as HTMLInputElement
     const desc = document.getElementById('description') as HTMLInputElement
-
     const body = {
       title: title.value,
       order: 0,
@@ -151,8 +164,12 @@ export class ColumnsComponent {
       userId: this.taskToedit.userId,
       users: ['']
     }
+    if (title.value == '') {
+      body.title = this.taskToedit.title
+    } else if (desc.value == '') {
+      body.description = this.taskToedit.description
+    }
 
-    console.log(body)
     this.http
       .put(
         `${baseUrl}boards/${this.taskToedit.boardId}/columns/${this.taskToedit.columnId}/tasks/${this.taskToedit._id}`,
@@ -165,6 +182,28 @@ export class ColumnsComponent {
         // let column = document.getElementById(this.columnToEditId) as HTMLElement
         // column.innerHTML = input.value
         this.modal.closeEditColumn()
+      })
+  }
+  provideResultOfModalDeleteTask(value: boolean) {
+    if (value) {
+      this.deleteTask()
+      this.modal.closeDeleteTask()
+    } else {
+      this.modal.closeDeleteTask()
+    }
+  }
+  deleteTask() {
+    this.http
+      .delete(
+        `${baseUrl}boards/${this.taskToDelete.boardId}/columns/${this.taskToDelete.columnId}/tasks/${this.taskToDelete._id}`
+      )
+      .subscribe((data: any) => {
+        console.log(data)
+        let value = true
+        this.successNewTask.emit(value)
+        // let column = document.getElementById(this.columnToEditId) as HTMLElement
+        // column.innerHTML = input.value
+        this.modal.closeDeleteColumn()
       })
   }
 }

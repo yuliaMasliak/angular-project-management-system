@@ -15,6 +15,7 @@ export class TasksComponent implements OnInit {
   @Input() columnId: any = ''
   @Output() classDesc: string = 'active'
   @Output() editTaskEvent = new EventEmitter()
+  @Output() deleteTaskEvent = new EventEmitter()
   ngOnInit(): void {
     console.log(this.columnId)
     let boardId = localStorage.getItem('board_id')!
@@ -32,5 +33,7 @@ export class TasksComponent implements OnInit {
   editTask(task: ITask) {
     this.editTaskEvent.emit(task)
   }
-  modalDelete(task: ITask) {}
+  modalDelete(task: ITask) {
+    this.deleteTaskEvent.emit(task)
+  }
 }
