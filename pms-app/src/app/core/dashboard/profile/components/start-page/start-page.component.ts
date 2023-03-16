@@ -62,9 +62,11 @@ export class StartPageComponent {
       .subscribe((data: any) => {
         if (data.length > 0) {
           data.forEach((el: any) => {
-            let link = document.createElement('a')
+            let link = document.createElement('div')
             link.classList.add('link')
-            link.innerHTML = 'Task' + el.title + '</br>'
+            link.innerHTML = 'Task ' + el.title + '</br>'
+            link.style.color = 'blue'
+            link.style.cursor = 'pointer'
             block.append(link)
             link.onclick = () => {
               this.boardService.goToBoard(el.boardId)

@@ -1,14 +1,15 @@
+<h3>{{ 'welcome' | translate }}, {{ name | titlecase }}</h3>
+
 <input
   name="searchInput"
   [(ngModel)]="searchInput"
   type="text"
-  placeholder="Search for tasks"
+  placeholder="{{ 'task.search' | translate }}"
   size="50"
   class="search-input"
 />
-<button type="button" (click)="search()">Search</button>
+<button type="button" (click)="search()">{{ 'search' | translate }}</button>
 <div class="search-result"></div>
-<h3>{{ 'welcome' | translate }}, {{ name | titlecase }}</h3>
 
 <div
   class="boards"

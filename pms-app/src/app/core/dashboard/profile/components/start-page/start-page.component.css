@@ -2,23 +2,14 @@ h3 {
   margin-top: 30px;
   margin-left: 100px;
 }
-.link {
-  display: block;
-  text-decoration: none;
-  color: rgb(33, 92, 53);
-}
-a {
-  cursor: pointer;
-}
-span {
-  color: black;
-}
+
 .search-input,
 .search-result {
   margin-top: 30px;
   margin-left: 100px;
   width: 25%;
 }
+
 .input-block {
   height: 40%;
   width: 30%;
@@ -44,7 +35,6 @@ span {
   margin-top: 20px;
   margin-bottom: 20px;
   overflow: auto;
-
   overflow-y: hidden;
   white-space: nowrap;
 }

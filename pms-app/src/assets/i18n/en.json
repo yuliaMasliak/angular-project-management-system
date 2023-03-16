@@ -1,4 +1,5 @@
 {
+  "search": "Search",
   "lang": {
     "en": "EN",
     "ua": "UA"
@@ -80,6 +81,7 @@
     "add": "Add Task",
     "name": "Task name",
     "desc": "Task description",
-    "deleteTask": "Delete task?"
+    "deleteTask": "Delete task?",
+    "search": "Search for tasks"
   }
 }
