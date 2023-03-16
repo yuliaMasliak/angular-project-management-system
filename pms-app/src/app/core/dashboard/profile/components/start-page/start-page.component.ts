@@ -55,20 +55,24 @@ export class StartPageComponent {
   }
 
   search() {
+    let block = document.querySelector('.search-result') as HTMLElement
+    block.innerHTML = ''
     this.http
       .get(`${baseUrl}tasksSet?search=${this.searchInput}`)
       .subscribe((data: any) => {
-        data.forEach((el: any) => {
-          console.log(el)
-          let link = document.createElement('a')
-
-          link.onclick = () => {
-            this.boardService.goToBoard(el.boardId)
-          }
-          link.setAttribute(`routerLink`, `['dashboard/board']`)
-          link.innerHTML = el.title
-          document.querySelector('.search-result')!.append(link)
-        })
+        if (data.length > 0) {
+          data.forEach((el: any) => {
+            let link = document.createElement('a')
+            link.classList.add('link')
+            link.innerHTML = 'Task' + el.title + '</br>'
+            block.append(link)
+            link.onclick = () => {
+              this.boardService.goToBoard(el.boardId)
+            }
+          })
+        } else {
+          block.innerHTML = 'No tasks with such parameters'
+        }
       })
   }
   toBoard(id: string) {

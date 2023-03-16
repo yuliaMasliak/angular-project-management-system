@@ -2,11 +2,22 @@ h3 {
   margin-top: 30px;
   margin-left: 100px;
 }
+.link {
+  display: block;
+  text-decoration: none;
+  color: rgb(33, 92, 53);
+}
+a {
+  cursor: pointer;
+}
+span {
+  color: black;
+}
 .search-input,
 .search-result {
   margin-top: 30px;
   margin-left: 100px;
-  max-width: 15%;
+  width: 25%;
 }
 .input-block {
   height: 40%;
@@ -74,4 +85,29 @@ svg {
 }
 svg:hover {
   color: rgba(119, 158, 202, 0.822);
+}
+input {
+  width: 18%;
+  margin-right: 5px;
+}
+form {
+  text-align: left;
+}
+* {
+  font-family: 'Haas Grot Text R Web', 'Helvetica Neue', Helvetica, Arial,
+    sans-serif;
+}
+
+button {
+  background-color: #612b2e;
+  border: 1px solid #975a5e;
+  color: white;
+  height: 2rem;
+  border-radius: 5px;
+}
+button:hover {
+  background-color: #442628;
+  border: 1px solid #442628;
+  box-shadow: 0px 5px 10px 0px rgba(47, 21, 58, 0.822);
+  color: white;
 }
