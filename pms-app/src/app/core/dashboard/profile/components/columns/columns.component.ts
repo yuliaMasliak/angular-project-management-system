@@ -40,7 +40,9 @@ export class ColumnsComponent implements OnInit {
   }
 
   ngOnInit(): void {}
-
+  createTasksGroup(tasksToGroup: ITask[]) {
+    this.tasksGroup = tasksToGroup
+  }
   drop(event: CdkDragDrop<ITask[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(
@@ -202,11 +204,12 @@ export class ColumnsComponent implements OnInit {
         body
       )
       .subscribe((data: any) => {
-        console.log(data)
-        let value = true
-        this.successNewTask.emit(value)
-        // let column = document.getElementById(this.columnToEditId) as HTMLElement
-        // column.innerHTML = input.value
+        document.getElementById(
+          `task-title-${this.taskToedit._id}`
+        )!.innerHTML = data.title
+        document.getElementById(`task-desc-${this.taskToedit._id}`)!.innerHTML =
+          data.description
+
         this.modal.closeEditColumn()
       })
   }

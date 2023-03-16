@@ -21,6 +21,7 @@ export class TasksComponent implements OnInit {
   @Output() classDesc: string = 'active'
   @Output() editTaskEvent = new EventEmitter()
   @Output() deleteTaskEvent = new EventEmitter()
+  @Output() sendTasks = new EventEmitter()
   ngOnInit(): void {
     let boardId = localStorage.getItem('board_id')!
     this.http
@@ -30,6 +31,8 @@ export class TasksComponent implements OnInit {
           this.tasks.push(el)
         })
       })
+
+    this.sendTasks.emit(this.tasks)
   }
 
   editTask(task: ITask) {

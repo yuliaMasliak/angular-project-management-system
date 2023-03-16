@@ -1,11 +1,11 @@
-<div class="columns">
+<div class="columns" cdkDropListGroup>
   <div
+    cdkDropList
     *ngFor="let column of columns"
     class="column"
     id="column-{{ column._id }}"
     cdkDrag
     [cdkDropListData]="tasksGroup"
-    cdkDropList
     (cdkDropListDropped)="drop($event)"
   >
     <div class="fixed">
@@ -41,7 +41,13 @@
           />
         </svg>
       </div>
-      <div class="column-title" id="{{ column._id }}">{{ column.title }}</div>
+      <div
+        class="column-title"
+        id="{{ column._id }}"
+        (click)="editColumnTitle(column._id)"
+      >
+        {{ column.title }}
+      </div>
     </div>
     <div>
       <a class="task" (click)="openModalTask(column._id)">
@@ -49,10 +55,10 @@
       >
     </div>
     <app-tasks
-      cdkDrag
       [columnId]="column._id"
       (editTaskEvent)="editTaskFulfill($event)"
       (deleteTaskEvent)="deleteTaskFulfill($event)"
+      (sendTasks)="createTasksGroup($event)"
     ></app-tasks>
   </div>
 </div>

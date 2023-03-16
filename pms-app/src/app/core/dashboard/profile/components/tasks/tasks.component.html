@@ -4,9 +4,18 @@
   cdkDropList
   (cdkDropListDropped)="drop($event)"
 >
-  <div *ngFor="let task of tasks" cdkDrag class="task-row">
-    <div class="task-title">{{ task.title }}</div>
-    <div class="task-desc">{{ task.description }}</div>
+  <div
+    *ngFor="let task of tasks"
+    cdkDrag
+    class="task-row"
+    (click)="editTask(task)"
+  >
+    <div class="task-title" id="task-title-{{ task._id }}">
+      {{ task.title }}
+    </div>
+    <div class="task-desc" id="task-desc-{{ task._id }}">
+      {{ task.description }}
+    </div>
     <div class="settings">
       <svg
         xmlns="http://www.w3.org/2000/svg"

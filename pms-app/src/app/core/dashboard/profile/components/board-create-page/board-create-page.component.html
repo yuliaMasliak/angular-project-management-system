@@ -1,6 +1,6 @@
-<div class="new-board">
+<div class="new-board" cdkDropListGroup>
   <div class="head">
-    <div class="board-title">
+    <div class="board-title" (click)="editBoardTitle()">
       <h6 class="display-4">
         {{ 'newBoard.board' | translate }}: {{ boardTitle }}
       </h6>
@@ -24,6 +24,7 @@
   <hr class="my-4" />
 
   <app-columns
+    cdkDropListGroup
     [columns]="columns"
     [boardId]="boardId"
     (cdkDropListDropped)="drop($event)"
