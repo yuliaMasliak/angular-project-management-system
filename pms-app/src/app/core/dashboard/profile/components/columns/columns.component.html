@@ -1,10 +1,12 @@
 <div class="columns" cdkDropListGroup>
   <div
     cdkDropList
+    #column._id="cdkDropList"
     *ngFor="let column of columns"
     class="column"
     id="column-{{ column._id }}"
     cdkDrag
+    [cdkDropListConnectedTo]="[column._id]"
     [cdkDropListData]="tasksGroup"
     (cdkDropListDropped)="drop($event)"
   >

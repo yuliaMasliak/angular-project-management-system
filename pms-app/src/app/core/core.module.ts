@@ -19,6 +19,8 @@ import { ColumnsComponent } from './dashboard/profile/components/columns/columns
 import { AuthInterceptor } from '../services/auth.interceptor'
 import { DragDropModule } from '@angular/cdk/drag-drop'
 import { TasksComponent } from './dashboard/profile/components/tasks/tasks.component'
+import { FormsModule } from '@angular/forms';
+import { BoardComponent } from './dashboard/profile/components/board/board.component'
 function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http)
 }
@@ -32,7 +34,8 @@ function HttpLoaderFactory(http: HttpClient) {
     BoardCreatePageComponent,
     ModalComponent,
     ColumnsComponent,
-    TasksComponent
+    TasksComponent,
+    BoardComponent
   ],
   exports: [MatButtonModule],
   imports: [
@@ -41,6 +44,7 @@ function HttpLoaderFactory(http: HttpClient) {
     MatButtonModule,
     ReactiveFormsModule,
     DragDropModule,
+    FormsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

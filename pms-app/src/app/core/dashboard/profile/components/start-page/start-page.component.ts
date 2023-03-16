@@ -33,7 +33,10 @@ export class StartPageComponent {
   boardTitle: string = this.boardService.boardTitle
   boardToEdit: string = ''
   class: string = ''
+  title = 'instant-search'
 
+  public searchInput: string = ''
+  public tasks = []
   ngOnInit() {
     this.http.get(`${baseUrl}users`).subscribe((data: any) => {
       data.forEach((elem: IBoardUser) => {
@@ -51,17 +54,23 @@ export class StartPageComponent {
     })
   }
 
-  //           this.http.get(`${baseUrl}boards`).subscribe((data: any) =>
-  //             data.forEach((el: IBoard) => {
-  //               console.log(el)
-  //               if (el.owner === elem._id) {
-  //                 console.log(el.owner)
-  //                 this.id = elem._id
-  //                 this.boards.push(el)
-  //               }
-  //             })
-  // )
+  search() {
+    this.http
+      .get(`${baseUrl}tasksSet?search=${this.searchInput}`)
+      .subscribe((data: any) => {
+        data.forEach((el: any) => {
+          console.log(el)
+          let link = document.createElement('a')
 
+          link.onclick = () => {
+            this.boardService.goToBoard(el.boardId)
+          }
+          link.setAttribute(`routerLink`, `['dashboard/board']`)
+          link.innerHTML = el.title
+          document.querySelector('.search-result')!.append(link)
+        })
+      })
+  }
   toBoard(id: string) {
     this.boardService.goToBoard(id)
   }

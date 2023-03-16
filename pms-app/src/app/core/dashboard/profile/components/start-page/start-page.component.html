@@ -1,4 +1,15 @@
+<input
+  name="searchInput"
+  [(ngModel)]="searchInput"
+  type="text"
+  placeholder="Search for tasks"
+  size="50"
+  class="search-input"
+/>
+<button type="button" (click)="search()">Search</button>
+<div class="search-result"></div>
 <h3>{{ 'welcome' | translate }}, {{ name | titlecase }}</h3>
+
 <div
   class="boards"
   (cdkDropListDropped)="drop($event)"
