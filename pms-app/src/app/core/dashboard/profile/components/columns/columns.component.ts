@@ -157,7 +157,6 @@ export class ColumnsComponent implements OnInit {
     this.http
       .post(`${baseUrl}boards/${boardId}/columns/${this.columnId}/tasks`, body)
       .subscribe((data: any) => {
-        console.log(data)
         let value = true
         this.successNewTask.emit(value)
         this.modal.closeCreateTask()
@@ -227,11 +226,7 @@ export class ColumnsComponent implements OnInit {
         `${baseUrl}boards/${this.taskToDelete.boardId}/columns/${this.taskToDelete.columnId}/tasks/${this.taskToDelete._id}`
       )
       .subscribe((data: any) => {
-        console.log(data)
-        let value = true
-        this.successNewTask.emit(value)
-        // let column = document.getElementById(this.columnToEditId) as HTMLElement
-        // column.innerHTML = input.value
+        document.querySelector(`.task-row-${data._id}`)!.remove() // column.innerHTML = input.value
         this.modal.closeDeleteColumn()
       })
   }

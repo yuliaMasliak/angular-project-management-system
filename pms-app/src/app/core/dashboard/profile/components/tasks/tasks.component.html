@@ -1,5 +1,5 @@
 <div
-  class="tasks-list"
+  class="tasks-list-{{ columnId }}"
   [cdkDropListData]="tasks"
   cdkDropList
   (cdkDropListDropped)="drop($event)"
@@ -7,13 +7,20 @@
   <div
     *ngFor="let task of tasks"
     cdkDrag
-    class="task-row"
-    (click)="editTask(task)"
+    class="task-row task-row-{{ task._id }}"
   >
-    <div class="task-title" id="task-title-{{ task._id }}">
+    <div
+      class="task-title"
+      id="task-title-{{ task._id }}"
+      (click)="editTask(task)"
+    >
       {{ task.title }}
     </div>
-    <div class="task-desc" id="task-desc-{{ task._id }}">
+    <div
+      class="task-desc"
+      id="task-desc-{{ task._id }}"
+      (click)="editTask(task)"
+    >
       {{ task.description }}
     </div>
     <div class="settings">
