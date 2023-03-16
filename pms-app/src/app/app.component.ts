@@ -10,7 +10,5 @@ import { Router } from '@angular/router'
 export class AppComponent implements OnInit {
   constructor(private router: Router, private http: HttpClient) {}
   title = 'pms-app'
-  ngOnInit(): void {
-    console.log(window.localStorage.getItem('access_id'))
-  }
+  ngOnInit(): void {}
 }

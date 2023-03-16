@@ -19,7 +19,7 @@ export class AuthInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     const token: any = localStorage.getItem('access_token')
-
+    let result: string = ''
     if (token) {
       request = request.clone({
         headers: request.headers.set('Authorization', 'Bearer ' + token)
@@ -36,7 +36,7 @@ export class AuthInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       tap(
         (event) => {
-          if (event instanceof HttpResponse) console.log('Server response')
+          if (event instanceof HttpResponse) result = 'Server response'
         },
         (err) => {
           if (err instanceof HttpErrorResponse) {

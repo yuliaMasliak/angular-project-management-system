@@ -39,16 +39,7 @@ export class ColumnsComponent implements OnInit {
     users: ['']
   }
 
-  ngOnInit(): void {
-    this.http
-      .get(`${baseUrl}boards/${this.boardId}/columns/${this.columnId}/tasks`)
-      .subscribe((data: any) => {
-        console.log(data)
-        data.forEach((el: ITask) => {
-          this.tasksGroup.push(el)
-        })
-      })
-  }
+  ngOnInit(): void {}
 
   drop(event: CdkDragDrop<ITask[]>) {
     if (event.previousContainer === event.container) {

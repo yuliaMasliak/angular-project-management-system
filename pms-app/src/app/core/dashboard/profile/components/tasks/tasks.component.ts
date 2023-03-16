@@ -29,8 +29,6 @@ export class TasksComponent implements OnInit {
         data.forEach((el: any) => {
           this.tasks.push(el)
         })
-
-        console.log(data)
       })
   }
 

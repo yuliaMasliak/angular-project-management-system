@@ -31,7 +31,7 @@ export class BoardCreatePageComponent implements OnInit {
   userToken = `Bearer ${this.auth.token}`
   name: string = ''
   id = this.auth.id
-
+  editedBoard: any = {}
   columns: IColumn[] = []
 
   drop(event: CdkDragDrop<IColumn[]>) {
@@ -55,7 +55,6 @@ export class BoardCreatePageComponent implements OnInit {
     let boardId = localStorage.getItem('board_id')!
     this.boardId = boardId
     this.http.get(`${baseUrl}boards/${boardId}`).subscribe((data: any) => {
-      console.log(data)
       this.boardTitle = data.title
     })
 
@@ -65,7 +64,6 @@ export class BoardCreatePageComponent implements OnInit {
       .get(`${baseUrl}boards/${boardId}/columns`)
       .subscribe((data: any) => {
         data.forEach((col: any) => {
-          console.log(col)
           this.columns.push(col)
         })
 
@@ -121,7 +119,7 @@ export class BoardCreatePageComponent implements OnInit {
     this.http
       .put(`${baseUrl}boards/${boardId}`, body)
       .subscribe((data: any) => {
-        console.log(data)
+        this.editedBoard = data
         this.modal.closeEditBoardTitle()
       })
   }
