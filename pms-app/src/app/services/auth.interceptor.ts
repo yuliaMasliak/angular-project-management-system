@@ -9,10 +9,11 @@ import {
 } from '@angular/common/http'
 import { Observable, tap } from 'rxjs'
 import { AuthService } from './auth.service'
+import { Router } from '@angular/router'
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   intercept(
     request: HttpRequest<any>,
@@ -40,7 +41,10 @@ export class AuthInterceptor implements HttpInterceptor {
         },
         (err) => {
           if (err instanceof HttpErrorResponse) {
-            if (err.status == 401) console.log('Unauthorized')
+            if (err) {
+              result = 'Unauthorized'
+              this.router.navigate(['main', 'login'])
+            }
           }
         }
       )
