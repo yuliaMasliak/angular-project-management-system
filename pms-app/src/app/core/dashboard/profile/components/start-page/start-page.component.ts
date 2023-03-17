@@ -38,20 +38,19 @@ export class StartPageComponent {
   public searchInput: string = ''
   public tasks = []
   ngOnInit() {
-    this.http.get(`${baseUrl}users`).subscribe((data: any) => {
-      data.forEach((elem: IBoardUser) => {
-        if (elem._id == this.auth.user.id) {
-          this.http
-            .get(`${baseUrl}boardsSet/${this.auth.user.id}`)
-            .subscribe((data: any) => {
-              data.forEach((elem: any) => {
-                this.boards.push(elem)
-              })
-            })
-          this.name = elem.name
-        }
+    console.log(localStorage.getItem('access_id'))
+    this.http
+      .get(`${baseUrl}users/${localStorage.getItem('access_id')}`)
+      .subscribe((data: any) => {
+        this.name = data.name
       })
-    })
+    this.http
+      .get(`${baseUrl}boardsSet/${localStorage.getItem('access_id')}`)
+      .subscribe((data: any) => {
+        data.forEach((el: any) => {
+          this.boards.push(el)
+        })
+      })
   }
 
   search() {

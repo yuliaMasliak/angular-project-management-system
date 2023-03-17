@@ -42,8 +42,6 @@ export class AuthInterceptor implements HttpInterceptor {
         (err) => {
           if (err instanceof HttpErrorResponse) {
             if (err) {
-              alert('Please, relogin. \n Current user session has been expired')
-
               this.router.navigate(['main', 'login'])
             }
           }

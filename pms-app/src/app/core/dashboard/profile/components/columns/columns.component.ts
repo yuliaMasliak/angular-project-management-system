@@ -152,12 +152,15 @@ export class ColumnsComponent implements OnInit {
       userId: this.auth.user.id,
       users: ['string']
     }
+    console.log(body)
     let boardId = localStorage.getItem('board_id')!
 
     this.http
       .post(`${baseUrl}boards/${boardId}/columns/${this.columnId}/tasks`, body)
       .subscribe((data: any) => {
+        console.log(data)
         let value = true
+        console.log('test')
         this.successNewTask.emit(value)
         this.modal.closeCreateTask()
       })
