@@ -42,6 +42,7 @@ export class AuthInterceptor implements HttpInterceptor {
         (err) => {
           if (err instanceof HttpErrorResponse) {
             if (err) {
+              result = 'Unauthorized'
               this.router.navigate(['main', 'login'])
             }
           }
