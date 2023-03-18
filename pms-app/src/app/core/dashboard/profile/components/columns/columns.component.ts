@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http'
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { IColumn, ITask } from 'src/app/models/interfaces'
 import { AuthService } from 'src/app/services/auth.service'
+import { GetBoardService } from 'src/app/services/get-board.service'
 import { ModalServiceService } from 'src/app/services/modal-service.service'
 import { baseUrl } from 'src/environment/environment'
 
@@ -19,7 +20,8 @@ export class ColumnsComponent implements OnInit {
   constructor(
     public modal: ModalServiceService,
     private http: HttpClient,
-    private auth: AuthService
+    private auth: AuthService,
+    private boardService: GetBoardService
   ) {}
   @Input() columnID: string = ''
   @Input() columns: IColumn[] = []
@@ -39,7 +41,9 @@ export class ColumnsComponent implements OnInit {
     users: ['']
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.boardService.getAllTasks()
+  }
   createTasksGroup(tasksToGroup: ITask[]) {
     this.tasksGroup = tasksToGroup
   }

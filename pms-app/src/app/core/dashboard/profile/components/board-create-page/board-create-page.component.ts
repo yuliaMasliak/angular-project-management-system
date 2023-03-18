@@ -31,9 +31,20 @@ export class BoardCreatePageComponent implements OnInit {
   userToken = `Bearer ${this.auth.token}`
   name: string = ''
   id = this.auth.id
-  editedBoard: any = {}
+  deletedBoard = {}
   columns: IColumn[] = []
 
+  ngOnInit(): void {
+    let boardId = localStorage.getItem('board_id')!
+    this.boardId = boardId
+    this.http.get(`${baseUrl}boards/${boardId}`).subscribe((data: any) => {
+      this.boardTitle = data.title
+    })
+    this.boardService.getColumns().subscribe((data: any) => {
+      this.columns = data
+      console.log(this.columns)
+    })
+  }
   drop(event: CdkDragDrop<IColumn[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(
@@ -50,17 +61,6 @@ export class BoardCreatePageComponent implements OnInit {
       )
     }
   }
-
-  ngOnInit(): void {
-    let boardId = localStorage.getItem('board_id')!
-    this.boardId = boardId
-    this.http.get(`${baseUrl}boards/${boardId}`).subscribe((data: any) => {
-      this.boardTitle = data.title
-    })
-    this.boardService.getColumns().subscribe((data: any) => {
-      this.columns = data
-    })
-  }
   reload(value: any) {
     if (value) {
       this.ngOnInit()
@@ -74,6 +74,9 @@ export class BoardCreatePageComponent implements OnInit {
   provideResultOfModal(value: boolean) {
     if (value) {
       this.deleteBoard()
+      this.boardService.getColumns().subscribe((data: any) => {
+        this.columns = data
+      })
     } else {
       this.modal.close()
     }
@@ -81,20 +84,18 @@ export class BoardCreatePageComponent implements OnInit {
 
   deleteBoard() {
     let boardId = localStorage.getItem('board_id')!
-
     this.http.delete(`${baseUrl}boards/${boardId}`).subscribe((data: any) => {
-      this.modal.close()
-      this.router.navigate(['dashboard/start'])
+      this.deletedBoard = data
     })
+    this.modal.close()
+    this.router.navigate(['dashboard/start'])
   }
   editBoardTitle() {
     this.modal.openEditBoardTitle()
   }
   provideResultOfModalEdit(value: boolean) {
     if (value) {
-      this.boardService.getColumns().subscribe((data: any) => {
-        this.columns = data
-      })
+      this.updateBoard()
     } else {
       this.modal.closeEditBoardTitle()
     }
@@ -106,13 +107,12 @@ export class BoardCreatePageComponent implements OnInit {
     this.boardTitle = input.value
     const body = {
       title: input.value,
-      owner: this.auth.user.id,
+      owner: localStorage.getItem('access_id'),
       users: ['']
     }
     this.http
       .put(`${baseUrl}boards/${boardId}`, body)
       .subscribe((data: any) => {
-        this.editedBoard = data
         this.modal.closeEditBoardTitle()
       })
   }
@@ -139,7 +139,10 @@ export class BoardCreatePageComponent implements OnInit {
     this.http
       .post(`${baseUrl}boards/${boardId}/columns`, body)
       .subscribe((data: any) => {
-        this.columns.push(data)
+        data
+        this.boardService.getColumns().subscribe((data: any) => {
+          this.columns = data
+        })
         this.modal.closeColumn()
       })
   }

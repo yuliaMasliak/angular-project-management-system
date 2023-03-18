@@ -3,7 +3,13 @@ import { baseUrl } from 'src/environment/environment'
 import { Router } from '@angular/router'
 import { HttpClient } from '@angular/common/http'
 import { AuthService } from './auth.service'
-import { IBoard, IBoardCreate, TConfig } from '../models/interfaces'
+import {
+  IBoard,
+  IBoardCreate,
+  IColumn,
+  ITask,
+  TConfig
+} from '../models/interfaces'
 import { ModalServiceService } from './modal-service.service'
 import { Observable } from 'rxjs/internal/Observable'
 import { map } from 'rxjs'
@@ -23,6 +29,8 @@ export class GetBoardService {
   ownerId: string = ''
   boardToGoId: string = ''
   boards: IBoard[] = []
+  columns: IColumn[] = []
+  tasks: any = []
 
   createBoard(board: IBoardCreate, config: TConfig) {
     this.http.post(`${baseUrl}boards`, board, config).subscribe((data: any) => {
@@ -36,16 +44,56 @@ export class GetBoardService {
   }
 
   getAllBoards() {
-    return this.http
+    const result = this.http.get(
+      `${baseUrl}boardsSet/${localStorage.getItem('access_id')}`
+    )
+    this.http
       .get(`${baseUrl}boardsSet/${localStorage.getItem('access_id')}`)
-      .pipe(map((res) => res))
+      .subscribe((data: any) => {
+        this.boards = data
+        console.log(this.boards)
+      })
+    return result
   }
   getColumns() {
-    return this.http
+    const result = this.http.get(
+      `${baseUrl}boards/${localStorage.getItem('board_id')}/columns`
+    )
+    this.http
       .get(`${baseUrl}boards/${localStorage.getItem('board_id')}/columns`)
-      .pipe(map((res) => res))
+      .subscribe((data: any) => {
+        this.columns = data
+        console.log(this.columns)
+      })
+    return result
+  }
+  getAllTasks() {
+    this.getColumns().subscribe((data: any) => {
+      data.forEach((el: any) => {
+        this.tasks.push(el)
+        this.http
+          .get(
+            `${baseUrl}boards/${localStorage.getItem('board_id')}/columns/${
+              el._id
+            }/tasks`
+          )
+          .subscribe((task: any) => {
+            this.tasks.forEach((elem: any) => {
+              if (!task) {
+                this.tasks[el].tasks = []
+              }
+              this.tasks[el].tasks.push(elem)
+            })
+          })
+        console.log(this.tasks)
+      })
+    })
   }
 
+  //   this.tasks.forEach((elem) => {
+  //     this.tasks[el].tasks = [elem]
+  //   })
+  // })
   goToBoard(id: string) {
     const config = {
       headers: {

@@ -45,3 +45,14 @@ export interface ITask {
   userId: string
   users: [string]
 }
+export interface ITask {
+  _id: string
+  title: string
+  order: 0
+  boardId: string
+  columnId: string
+  description: string
+  userId: string
+  users: [string]
+  tasks?: [ITask]
+}

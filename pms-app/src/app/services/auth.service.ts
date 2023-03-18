@@ -79,7 +79,7 @@ export class AuthService {
 
           this.token = data.token
 
-          window.localStorage.setItem('access_token', data.token)
+          localStorage.setItem('access_token', data.token)
 
           this.user.login = usertoLogin.login
           this.user.password = usertoLogin.password
@@ -95,9 +95,8 @@ export class AuthService {
         modalResult.classList.remove('hidden')
         result.innerHTML = 'Failed login'
         setTimeout(() => {
-          modalResult.classList.add('active'),
+          modalResult.classList.add('hidden'),
             this.router.navigate(['main/welcome'])
-          modalResult.classList.add('hidden')
         }, 2000)
       }
     )
