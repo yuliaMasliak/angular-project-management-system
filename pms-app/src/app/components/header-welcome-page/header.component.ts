@@ -16,7 +16,11 @@ export class HeaderComponent {
   ) {}
 
   checkTokenLogin() {
-    this.router.navigate(['dashboard/start'])
+    if (window.localStorage.getItem('access_token')) {
+      this.router.navigate(['dashboard/start'])
+    } else {
+      this.router.navigate(['main', 'login'])
+    }
   }
   toggleBurger() {
     let burger = document.querySelector('.collapsed') as HTMLElement

@@ -14,13 +14,14 @@ import { Router } from '@angular/router'
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   constructor(private authService: AuthService, private router: Router) {}
+  result: string = ''
 
   intercept(
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     const token: any = localStorage.getItem('access_token')
-    let result: string = ''
+    this.result = ''
     if (token) {
       request = request.clone({
         headers: request.headers.set('Authorization', 'Bearer ' + token)
@@ -37,13 +38,13 @@ export class AuthInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       tap(
         (event) => {
-          if (event instanceof HttpResponse) result = 'Server response'
+          if (event instanceof HttpResponse) this.result = 'Server response'
         },
         (err) => {
           if (err instanceof HttpErrorResponse) {
             if (err) {
-              result = 'Unauthorized'
-              this.router.navigate(['main', 'login'])
+              this.result = 'Unauthorized'
+              localStorage.removeItem('access_token')
             }
           }
         }

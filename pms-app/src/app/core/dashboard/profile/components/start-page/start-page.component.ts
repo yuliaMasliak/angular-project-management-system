@@ -38,7 +38,7 @@ export class StartPageComponent {
   public searchInput: string = ''
   public tasks = []
   ngOnInit() {
-    console.log(localStorage.getItem('access_id'))
+    console.log(window.localStorage.getItem('access_id'))
     this.http
       .get(`${baseUrl}users/${localStorage.getItem('access_id')}`)
       .subscribe((data: any) => {

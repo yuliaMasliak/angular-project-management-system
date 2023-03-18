@@ -132,3 +132,9 @@ button:hover {
     fill: rgb(224, 41, 41);
   }
 }
+@media only screen and (max-width: 600px) {
+  .modal-result-login {
+    width: 60%;
+    height: 60%;
+  }
+}
