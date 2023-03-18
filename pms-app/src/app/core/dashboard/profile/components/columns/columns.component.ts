@@ -152,7 +152,7 @@ export class ColumnsComponent implements OnInit {
       userId: this.auth.user.id,
       users: ['string']
     }
-    console.log(body)
+
     let boardId = localStorage.getItem('board_id')!
 
     this.http

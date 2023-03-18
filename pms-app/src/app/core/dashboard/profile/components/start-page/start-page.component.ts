@@ -38,18 +38,14 @@ export class StartPageComponent {
   public searchInput: string = ''
   public tasks = []
   ngOnInit() {
-    console.log(window.localStorage.getItem('access_id'))
+    this.boardService.getAllBoards().subscribe((data: any) => {
+      this.boards = data
+    })
+
     this.http
       .get(`${baseUrl}users/${localStorage.getItem('access_id')}`)
       .subscribe((data: any) => {
         this.name = data.name
-      })
-    this.http
-      .get(`${baseUrl}boardsSet/${localStorage.getItem('access_id')}`)
-      .subscribe((data: any) => {
-        data.forEach((el: any) => {
-          this.boards.push(el)
-        })
       })
   }
 

@@ -57,18 +57,9 @@ export class BoardCreatePageComponent implements OnInit {
     this.http.get(`${baseUrl}boards/${boardId}`).subscribe((data: any) => {
       this.boardTitle = data.title
     })
-
-    this.columns.length = 0
-
-    this.http
-      .get(`${baseUrl}boards/${boardId}/columns`)
-      .subscribe((data: any) => {
-        data.forEach((col: any) => {
-          this.columns.push(col)
-        })
-
-        this.modal.closeColumn()
-      })
+    this.boardService.getColumns().subscribe((data: any) => {
+      this.columns = data
+    })
   }
   reload(value: any) {
     if (value) {
@@ -101,7 +92,9 @@ export class BoardCreatePageComponent implements OnInit {
   }
   provideResultOfModalEdit(value: boolean) {
     if (value) {
-      this.updateBoard()
+      this.boardService.getColumns().subscribe((data: any) => {
+        this.columns = data
+      })
     } else {
       this.modal.closeEditBoardTitle()
     }
@@ -147,21 +140,6 @@ export class BoardCreatePageComponent implements OnInit {
       .post(`${baseUrl}boards/${boardId}/columns`, body)
       .subscribe((data: any) => {
         this.columns.push(data)
-        console.log(data)
-        this.modal.closeColumn()
-      })
-  }
-  getAllColumns() {
-    this.columns.length = 0
-    let boardId = localStorage.getItem('board_id')!
-
-    this.http
-      .get(`${baseUrl}boards/${boardId}/columns`)
-      .subscribe((data: any) => {
-        data.forEach((col: any) => {
-          this.columns.push(col)
-        })
-
         this.modal.closeColumn()
       })
   }

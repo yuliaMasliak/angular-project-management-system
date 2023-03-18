@@ -40,7 +40,6 @@ export class HeaderUserComponent implements OnInit {
 
   deleteToken() {
     localStorage.clear()
-    console.log(window.localStorage.getItem('access_id'))
     this.router.navigate(['../main/welcome'])
   }
   toMainPage() {
@@ -62,7 +61,7 @@ export class HeaderUserComponent implements OnInit {
 
       const body = {
         title: input.value,
-        owner: this.auth.user.id!,
+        owner: localStorage.getItem('access_id')!,
         users: ['']
       }
       console.log(body)

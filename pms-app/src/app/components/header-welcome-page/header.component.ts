@@ -19,14 +19,17 @@ export class HeaderComponent {
   ) {}
 
   checkTokenLogin() {
+    let result = ''
+    let users = []
     this.http.get(`${baseUrl}users`).subscribe(
-      (data) => {
-        console.log(data)
+      (data: any) => {
+        data.forEach((user: any) => {
+          users.push(user)
+        })
         this.router.navigate(['dashboard/start'])
       },
       (err) => {
-        console.log(err.message)
-
+        result = err.message
         this.router.navigate(['main', 'login'])
       }
     )

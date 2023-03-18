@@ -72,15 +72,13 @@ export class AuthService {
           this.http.get(`${baseUrl}users`, config).subscribe((data: any) => {
             data.forEach((el: any) => {
               if (el.login == userLogin) {
-                console.log(el.id)
                 window.localStorage.setItem('access_id', el._id)
-                console.log(window.localStorage.getItem('access_id'))
               }
             })
           })
 
           this.token = data.token
-          console.log(window.localStorage.getItem('access_id'))
+
           window.localStorage.setItem('access_token', data.token)
 
           this.user.login = usertoLogin.login
