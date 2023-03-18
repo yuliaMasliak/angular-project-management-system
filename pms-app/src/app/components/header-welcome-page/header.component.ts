@@ -1,7 +1,9 @@
+import { HttpClient } from '@angular/common/http'
 import { Component } from '@angular/core'
 import { Router } from '@angular/router'
 import { TranslateService } from '@ngx-translate/core'
 import { AuthService } from 'src/app/services/auth.service'
+import { baseUrl } from 'src/environment/environment'
 
 @Component({
   selector: 'app-header',
@@ -12,15 +14,22 @@ export class HeaderComponent {
   constructor(
     public translate: TranslateService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private http: HttpClient
   ) {}
 
   checkTokenLogin() {
-    if (window.localStorage.getItem('access_token')) {
-      this.router.navigate(['dashboard/start'])
-    } else {
-      this.router.navigate(['main', 'login'])
-    }
+    this.http.get(`${baseUrl}users`).subscribe(
+      (data) => {
+        console.log(data)
+        this.router.navigate(['dashboard/start'])
+      },
+      (err) => {
+        console.log(err.message)
+
+        this.router.navigate(['main', 'login'])
+      }
+    )
   }
   toggleBurger() {
     let burger = document.querySelector('.collapsed') as HTMLElement
