@@ -8,6 +8,7 @@ import {
   IBoardCreate,
   IColumn,
   ITask,
+  ITaskItem,
   TConfig
 } from '../models/interfaces'
 import { ModalServiceService } from './modal-service.service'
@@ -110,5 +111,53 @@ export class GetBoardService {
 
     this.router.navigate(['dashboard/board'])
   }
-  updateTasksInColumn() {}
+  updateDraggedTasks(
+    previousColumnId: string,
+    currentColumnIid: string,
+    draggedTask: any
+  ) {
+    let droppedTask = {
+      title: '',
+      order: 0,
+      description: '',
+      userId: localStorage.getItem('access_id'),
+      users: ['']
+    }
+
+    this.data.forEach((el: any) => {
+      if (el.columnId == previousColumnId.replace('columnId-', '')) {
+        el.tasks.forEach((task: any) => {
+          if (task._id == draggedTask.id.replace('task-', '')) {
+            console.log(task._id)
+            droppedTask.title = task.title
+            droppedTask.description = task.description
+          }
+        })
+      }
+    })
+    let result = ''
+    this.http
+      .post(
+        `${baseUrl}boards/${localStorage.getItem(
+          'board_id'
+        )}/columns/${currentColumnIid.replace('columnId-', '')}/tasks`,
+        droppedTask
+      )
+      .subscribe((data: any) => {
+        result = data
+      })
+
+    this.http
+      .delete(
+        `${baseUrl}boards/${localStorage.getItem(
+          'board_id'
+        )}/columns/${currentColumnIid.replace(
+          'columnId-',
+          ''
+        )}/tasks/${draggedTask.id.replace('task-', '')}`
+      )
+      .subscribe((data: any) => {
+        result = data
+      })
+  }
 }

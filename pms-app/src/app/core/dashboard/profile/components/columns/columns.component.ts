@@ -64,8 +64,11 @@ export class ColumnsComponent implements OnInit {
         event.currentIndex
       )
     } else {
-      console.log(event.previousContainer.id)
-      console.log(event.container.id)
+      this.boardService.updateDraggedTasks(
+        event.previousContainer.id,
+        event.container.id,
+        event.item.element.nativeElement.firstChild
+      )
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
