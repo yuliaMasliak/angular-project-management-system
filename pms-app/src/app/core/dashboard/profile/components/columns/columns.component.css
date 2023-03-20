@@ -1,5 +1,4 @@
 .column {
-  display: inline-block;
   background-color: #45395380;
   color: white;
   width: 300px;
@@ -44,6 +43,14 @@ svg {
     flex-direction: column;
   }
   .column {
-    min-width: 250px;
+    width: 280px;
+  }
+}
+@media (max-width: 440px) {
+  .columns {
+    flex-direction: column;
+  }
+  .column {
+    width: 250px;
   }
 }

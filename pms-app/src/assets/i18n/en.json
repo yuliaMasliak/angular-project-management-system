@@ -58,7 +58,7 @@
     "confirm": "CONFIRM",
     "submit": "SUBMIT",
     "cancel": "CANCEL",
-    "createBoard": "Create new board",
+    "createBoard": "New board name",
     "newBoardTitle": "Enter board title"
   },
   "boards": {

@@ -46,13 +46,17 @@ h6 {
   cursor: pointer;
   color: rgb(172, 39, 72);
 }
+.display-4 {
+  cursor: pointer;
+}
 .columns-flex {
+  display: flex;
+  flex-wrap: nowrap;
   overflow: hidden;
   overflow-x: auto;
   width: 95%;
   flex-grow: 1;
   flex-basis: 0;
-  justify-content: space-evenly;
   text-align: center;
   align-items: center;
   margin-bottom: 20px;
@@ -61,7 +65,7 @@ h6 {
 .app-column {
   min-height: 300px;
 }
-@media (max-width: 640px) {
+@media (max-width: 840px) {
   .columns-flex {
     flex-direction: column;
   }
