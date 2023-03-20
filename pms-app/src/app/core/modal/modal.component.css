@@ -12,9 +12,12 @@
 }
 .input-block {
   height: fit-content;
-  width: 30%;
-  margin: 0px auto;
-  margin-top: 10%;
+  padding: 10px;
+  position: fixed;
+  float: left;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   background-color: rgba(154, 164, 185, 0.726);
   border-radius: 5px;
   text-align: center;
@@ -45,14 +48,6 @@ label {
   margin-top: 0px;
 }
 @media (max-width: 680px) {
-  .input-block {
-    height: 50%;
-    width: 50%;
-  }
 }
 @media (max-width: 420px) {
-  .input-block {
-    height: 40%;
-    width: 70%;
-  }
 }

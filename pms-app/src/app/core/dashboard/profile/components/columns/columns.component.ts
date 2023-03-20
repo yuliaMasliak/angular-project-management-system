@@ -5,7 +5,7 @@ import {
 } from '@angular/cdk/drag-drop'
 import { HttpClient } from '@angular/common/http'
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
-import { IColumn, ITask } from 'src/app/models/interfaces'
+import { IColumn, ITask, ITaskItem } from 'src/app/models/interfaces'
 import { AuthService } from 'src/app/services/auth.service'
 import { GetBoardService } from 'src/app/services/get-board.service'
 import { ModalServiceService } from 'src/app/services/modal-service.service'
@@ -23,218 +23,62 @@ export class ColumnsComponent implements OnInit {
     private auth: AuthService,
     private boardService: GetBoardService
   ) {}
-  @Input() columnID: string = ''
-  @Input() columns: IColumn[] = []
-  @Output() tasksGroup: ITask[] = []
-  columnToEditId: string = ''
-  columnTitle: string = ''
-  @Input() boardId: string = ''
-  @Output() columnId: string = ''
-  taskToedit: ITask = {
-    _id: '',
-    title: '',
-    order: 0,
-    boardId: '',
-    columnId: '',
-    description: '',
-    userId: '',
-    users: ['']
-  }
 
-  ngOnInit(): void {
-    this.boardService.getAllTasks()
-  }
-  createTasksGroup(tasksToGroup: ITask[]) {
-    this.tasksGroup = tasksToGroup
-  }
-  drop(event: CdkDragDrop<ITask[]>) {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      )
-    } else {
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      )
-    }
-  }
-
-  taskToDelete: ITask = {
-    _id: '',
-    title: '',
-    order: 0,
+  @Input() column: any = {
     boardId: '',
-    columnId: '',
-    description: '',
-    userId: '',
-    users: ['']
+    order: 0,
+    title: '',
+    _id: '',
+    tasks: []
   }
   class: string = ''
-  @Output() classDesc: string = 'active'
-  @Output() classHidden: string = 'hidden'
-  @Output() successNewTask = new EventEmitter()
 
-  editColumnTitle(id: string) {
-    this.modal.openEditColumn()
-    this.columnToEditId = id
+  @Input() columns = []
+  @Input() columnTasks: ITaskItem[] = []
+  columnToEditId = ''
+  columnToDeleteId = ''
+  @Output() editColumnEvent = new EventEmitter()
+  @Output() deleteColumnEvent = new EventEmitter()
+  @Output() createTaskEvent = new EventEmitter()
+  @Output() editTaskEvent = new EventEmitter()
+  @Output() deleteTaskEvent = new EventEmitter()
+
+  ngOnInit(): void {}
+
+  editColumn(id: string) {
+    this.editColumnEvent.emit(id)
   }
-  provideResultOfModalEdit(value: boolean) {
-    if (value) {
-      this.updateColumn()
-    } else {
-      this.modal.closeEditColumn()
-    }
-  }
-  updateColumn() {
-    const input = document.getElementById('title1') as HTMLInputElement
-    this.columnTitle = input.value
-    const body = {
-      title: input.value,
-      order: 0
-    }
-    this.http
-      .put(
-        `${baseUrl}boards/${this.boardId}/columns/${this.columnToEditId}`,
-        body
-      )
-      .subscribe((data: any) => {
-        let column = document.getElementById(this.columnToEditId) as HTMLElement
-        column.innerHTML = input.value
-        this.modal.closeEditColumn()
-      })
+  deleteColumn(id: string) {
+    this.deleteColumnEvent.emit(id)
   }
 
-  modalDelete(id: string) {
-    this.modal.openDeleteColumn()
-    this.class = 'hidden'
-    this.columnToEditId = id
-  }
-  provideResultOfModalDelete(value: boolean) {
-    if (value) {
-      this.deleteColumn()
-    } else {
-      this.modal.closeDeleteColumn()
-    }
-  }
-
-  deleteColumn() {
-    this.http
-      .delete(`${baseUrl}boards/${this.boardId}/columns/${this.columnToEditId}`)
-      .subscribe((data: any) => {
-        let column = document.getElementById(
-          `column-${this.columnToEditId}`
-        ) as HTMLElement
-        column.remove()
-        this.modal.closeDeleteColumn()
-      })
-  }
-  openModalTask(columnId: string) {
-    this.columnId = columnId
-    this.modal.openCreateTask()
-  }
-  provideResultOfModalCreateTask(value: boolean) {
-    if (value) {
-      this.createTask()
-    } else {
-      this.modal.closeCreateTask()
-    }
-  }
-  createTask() {
-    const input = document.getElementById('title1') as HTMLInputElement
-    const description = document.getElementById(
-      'description'
-    ) as HTMLInputElement
-    const body = {
-      title: input.value,
-      order: 0,
-      description: description.value,
-      userId: this.auth.user.id,
-      users: ['string']
-    }
-
-    let boardId = localStorage.getItem('board_id')!
-
-    this.http
-      .post(`${baseUrl}boards/${boardId}/columns/${this.columnId}/tasks`, body)
-      .subscribe((data: any) => {
-        console.log(data)
-        let value = true
-        console.log('test')
-        this.successNewTask.emit(value)
-        this.modal.closeCreateTask()
-      })
+  // drop(event: CdkDragDrop<ITask[]>) {
+  //   if (event.previousContainer === event.container) {
+  //     moveItemInArray(
+  //       event.container.data,
+  //       event.previousIndex,
+  //       event.currentIndex
+  //     )
+  //   } else {
+  //     transferArrayItem(
+  //       event.previousContainer.data,
+  //       event.container.data,
+  //       event.previousIndex,
+  //       event.currentIndex
+  //     )
+  //   }
+  // }
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.column.tasks, event.previousIndex, event.currentIndex)
   }
 
-  editTaskFulfill(task: ITask) {
-    this.modal.openEditTask()
-    this.taskToedit = task
+  editTaskEventEmit(id: string) {
+    this.editTaskEvent.emit(id)
   }
-  deleteTaskFulfill(task: ITask) {
-    this.modal.openDeleteTask()
-    this.taskToDelete = task
+  deleteTaskEventEmit(id: string) {
+    this.deleteTaskEvent.emit(id)
   }
-
-  provideResultOfModalEditTask(value: boolean) {
-    if (value) {
-      this.updateTask()
-      this.modal.closeEditTask()
-    } else {
-      this.modal.closeEditTask()
-    }
-  }
-  updateTask() {
-    const title = document.getElementById('title1') as HTMLInputElement
-    const desc = document.getElementById('description') as HTMLInputElement
-    const body = {
-      title: title.value,
-      order: 0,
-      description: desc.value,
-      columnId: this.taskToedit.columnId,
-      userId: this.taskToedit.userId,
-      users: ['']
-    }
-    if (title.value == '') {
-      body.title = this.taskToedit.title
-    } else if (desc.value == '') {
-      body.description = this.taskToedit.description
-    }
-
-    this.http
-      .put(
-        `${baseUrl}boards/${this.taskToedit.boardId}/columns/${this.taskToedit.columnId}/tasks/${this.taskToedit._id}`,
-        body
-      )
-      .subscribe((data: any) => {
-        document.getElementById(
-          `task-title-${this.taskToedit._id}`
-        )!.innerHTML = data.title
-        document.getElementById(`task-desc-${this.taskToedit._id}`)!.innerHTML =
-          data.description
-
-        this.modal.closeEditColumn()
-      })
-  }
-  provideResultOfModalDeleteTask(value: boolean) {
-    if (value) {
-      this.deleteTask()
-      this.modal.closeDeleteTask()
-    } else {
-      this.modal.closeDeleteTask()
-    }
-  }
-  deleteTask() {
-    this.http
-      .delete(
-        `${baseUrl}boards/${this.taskToDelete.boardId}/columns/${this.taskToDelete.columnId}/tasks/${this.taskToDelete._id}`
-      )
-      .subscribe((data: any) => {
-        document.querySelector(`.task-row-${data._id}`)!.remove() // column.innerHTML = input.value
-        this.modal.closeDeleteColumn()
-      })
+  createTaskEmit(id: string) {
+    this.createTaskEvent.emit(id)
   }
 }

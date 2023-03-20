@@ -56,3 +56,11 @@ export interface ITask {
   users: [string]
   tasks?: [ITask]
 }
+export interface ITaskItem {
+  columnId: string
+  columnTitle?: string
+  description: string
+  order: number
+  title: string
+  _id: string
+}

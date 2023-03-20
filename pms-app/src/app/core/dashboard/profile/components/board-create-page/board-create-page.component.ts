@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http'
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, Output } from '@angular/core'
 import { Router } from '@angular/router'
 import {
   CdkDragDrop,
@@ -26,25 +26,56 @@ export class BoardCreatePageComponent implements OnInit {
     public modal: ModalServiceService
   ) {}
   boardTitle: string = ''
-  boardId: string = this.boardService.boardId
+
   class: string = ''
   userToken = `Bearer ${this.auth.token}`
   name: string = ''
   id = this.auth.id
   deletedBoard = {}
-  columns: IColumn[] = []
+  @Output() columns: any = []
+  classDesc: string = 'active'
+  @Output() classHidden: string = 'hidden'
+  columnTiEditId: string = ''
+  columnToDeleteId: string = ''
+  taskToEditId: string = ''
+  taskToDeleteId: string = ''
+  columnIdToAddTask: string = ''
 
   ngOnInit(): void {
+    this.boardService.getFullData()
+    this.columns = this.boardService.data
     let boardId = localStorage.getItem('board_id')!
-    this.boardId = boardId
     this.http.get(`${baseUrl}boards/${boardId}`).subscribe((data: any) => {
       this.boardTitle = data.title
     })
-    this.boardService.getColumns().subscribe((data: any) => {
-      this.columns = data
-      console.log(this.columns)
-    })
   }
+  // addListenetrs() {
+  //   let editBtns = document.querySelectorAll('.edit-column-btn')
+  //   let deleteBtns = document.querySelectorAll('.delete-column-btn')
+  //   editBtns.forEach((el: any) => {
+  //     el.addEventListener('click', () => {
+  //       this.columns.forEach((col: any) => {
+  //         if (
+  //           el.id.replace('svg-', '') == col.columnId ||
+  //           el.id == col.columnId
+  //         ) {
+  //           this.columnTiEditId = col.columnId
+  //           this.editColumnTitle()
+  //         }
+  //       })
+  //     })
+  //   })
+  //   deleteBtns.forEach((el: any) => {
+  //     el.addEventListener('click', () => {
+  //       this.columns.forEach((col: any) => {
+  //         if (el.id.replace('svg-delete-', '') == col.columnId) {
+  //           this.columnToDeleteId = col.columnId
+  //           this.deleteColumnModal()
+  //         }
+  //       })
+  //     })
+  //   })
+  // }
   drop(event: CdkDragDrop<IColumn[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(
@@ -74,9 +105,9 @@ export class BoardCreatePageComponent implements OnInit {
   provideResultOfModal(value: boolean) {
     if (value) {
       this.deleteBoard()
-      this.boardService.getColumns().subscribe((data: any) => {
-        this.columns = data
-      })
+      // this.boardService.getColumns().subscribe((data: any) => {
+      //   this.columns = data
+      // )
     } else {
       this.modal.close()
     }
@@ -101,6 +132,7 @@ export class BoardCreatePageComponent implements OnInit {
     }
   }
   updateBoard() {
+    let fakeData = ''
     const input = document.getElementById('title1') as HTMLInputElement
     let boardId = localStorage.getItem('board_id')!
 
@@ -113,10 +145,14 @@ export class BoardCreatePageComponent implements OnInit {
     this.http
       .put(`${baseUrl}boards/${boardId}`, body)
       .subscribe((data: any) => {
+        fakeData = data
         this.modal.closeEditBoardTitle()
       })
   }
-
+  back() {
+    this.router.navigate(['dashboard/start'])
+  }
+  //// columns
   addColumnModal() {
     this.modal.openColumn()
   }
@@ -139,15 +175,215 @@ export class BoardCreatePageComponent implements OnInit {
     this.http
       .post(`${baseUrl}boards/${boardId}/columns`, body)
       .subscribe((data: any) => {
-        data
-        this.boardService.getColumns().subscribe((data: any) => {
-          this.columns = data
+        let columnToPush = {
+          columnId: data._id,
+          columnTitle: data.title,
+          tasks: []
+        }
+        this.boardService.data.push(columnToPush)
+      })
+
+    this.modal.closeColumn()
+  }
+  openModalEditColumn(id: string) {
+    this.columnTiEditId = id
+    this.modal.openEditColumn()
+  }
+  openModalDeleteColumn(id: string) {
+    this.columnToDeleteId = id
+    this.modal.openDeleteColumn()
+    this.class = 'hidden'
+  }
+
+  provideResultOfModalEditColumn(value: boolean) {
+    if (value) {
+      this.updateColumn()
+    } else {
+      this.modal.closeEditColumn()
+    }
+  }
+  updateColumn() {
+    const input = document.getElementById('title1') as HTMLInputElement
+
+    const body = {
+      title: input.value,
+      order: 0
+    }
+    let boardId = localStorage.getItem('board_id')
+
+    this.http
+      .put(`${baseUrl}boards/${boardId}/columns/${this.columnTiEditId}`, body)
+      .subscribe((data: any) => {
+        this.boardService.data.forEach((el: any) => {
+          if (el.columnId == this.columnTiEditId) {
+            el.columnTitle = body.title
+          }
         })
-        this.modal.closeColumn()
+      })
+    this.modal.closeEditColumn()
+  }
+
+  provideResultOfModalDeleteColumn(value: boolean) {
+    if (value) {
+      this.deleteColumn()
+    } else {
+      this.modal.closeDeleteColumn()
+    }
+  }
+
+  deleteColumn() {
+    let boardId = localStorage.getItem('board_id')
+    this.http
+      .delete(`${baseUrl}boards/${boardId}/columns/${this.columnToDeleteId}`)
+      .subscribe((data: any) => {
+        this.boardService.data.forEach((el: any, index: any) => {
+          if (el.columnId == data._id) {
+            this.boardService.data.splice(index, 1)
+          }
+        })
+        this.modal.closeDeleteColumn()
       })
   }
 
-  back() {
-    this.router.navigate(['dashboard/start'])
+  //// tasks
+  openModalEditTask(id: string) {
+    this.taskToEditId = id
+    this.modal.openEditTask()
+  }
+  provideResultOfModalEditTask(value: boolean) {
+    if (value) {
+      this.updateTask()
+      this.modal.closeEditTask()
+    } else {
+      this.modal.closeEditTask()
+    }
+  }
+  updateTask() {
+    const title = document.getElementById('title1') as HTMLInputElement
+    const desc = document.getElementById('description') as HTMLInputElement
+
+    let taskToEdit: any = {}
+    this.boardService.data.forEach((el: any) => {
+      el.tasks.forEach((task: any) => {
+        if (task._id === this.taskToEditId) {
+          taskToEdit = task
+        }
+      })
+    })
+    const body = {
+      title: title.value,
+      order: 0,
+      description: desc.value,
+      columnId: taskToEdit.columnId,
+      userId: localStorage.getItem('access_id')!,
+      users: ['']
+    }
+    if (title.value == '') {
+      body.title = taskToEdit.title
+    } else if (desc.value == '') {
+      body.description = taskToEdit.description
+    }
+
+    this.http
+      .put(
+        `${baseUrl}boards/${localStorage.getItem('board_id')}/columns/${
+          taskToEdit.columnId
+        }/tasks/${taskToEdit._id}`,
+        body
+      )
+      .subscribe((data: any) => {
+        this.boardService.data.forEach((el: any) => {
+          el.tasks.forEach((task: any) => {
+            if (task._id === this.taskToEditId) {
+              task.title = body.title
+              task.description = body.description
+            }
+          })
+        })
+
+        this.modal.closeEditColumn()
+      })
+  }
+  openModalDeleteTask(id: string) {
+    this.taskToDeleteId = id
+    this.modal.openDeleteTask()
+  }
+
+  provideResultOfModalDeleteTask(value: boolean) {
+    if (value) {
+      this.deleteTask()
+      this.modal.closeDeleteTask()
+    } else {
+      this.modal.closeDeleteTask()
+    }
+  }
+  deleteTask() {
+    let taskToDelete: any = {}
+    this.boardService.data.forEach((el: any) => {
+      el.tasks.forEach((task: any) => {
+        if (task._id === this.taskToDeleteId) {
+          taskToDelete = task
+        }
+      })
+    })
+    this.http
+      .delete(
+        `${baseUrl}boards/${localStorage.getItem('board_id')}/columns/${
+          taskToDelete.columnId
+        }/tasks/${taskToDelete._id}`
+      )
+      .subscribe((data: any) => {
+        this.boardService.data.forEach((el: any) => {
+          el.tasks.forEach((task: any, index: any) => {
+            if (task._id === data._id) {
+              el.tasks.splice(index, 1)
+            }
+          })
+        })
+        this.modal.closeDeleteColumn()
+      })
+  }
+  openModalCreateTask(id: string) {
+    this.columnIdToAddTask = id
+    this.modal.openCreateTask()
+  }
+
+  provideResultOfModalCreateTask(value: boolean) {
+    if (value) {
+      this.createTask()
+    } else {
+      this.modal.closeCreateTask()
+    }
+  }
+  createTask() {
+    const title = document.getElementById('title1') as HTMLInputElement
+    const desc = document.getElementById('description') as HTMLInputElement
+    const body = {
+      title: title.value,
+      order: 0,
+      description: desc.value,
+      userId: localStorage.getItem('access_id'),
+      users: ['']
+    }
+    if (title.value == '') {
+      body.title = 'Add task name'
+    } else if (desc.value == '') {
+      body.description = 'Add task description'
+    }
+    this.http
+      .post(
+        `${baseUrl}boards/${localStorage.getItem('board_id')}/columns/${
+          this.columnIdToAddTask
+        }/tasks`,
+        body
+      )
+      .subscribe((data: any) => {
+        this.boardService.data.forEach((el: any) => {
+          if (el.columnId === this.columnIdToAddTask) {
+            el.tasks.push(data)
+          }
+        })
+        this.modal.closeCreateTask()
+      })
   }
 }

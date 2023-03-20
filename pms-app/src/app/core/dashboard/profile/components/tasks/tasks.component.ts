@@ -5,7 +5,7 @@ import {
 } from '@angular/cdk/drag-drop'
 import { HttpClient } from '@angular/common/http'
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
-import { ITask } from 'src/app/models/interfaces'
+import { ITask, ITaskItem } from 'src/app/models/interfaces'
 import { ModalServiceService } from 'src/app/services/modal-service.service'
 import { baseUrl } from 'src/environment/environment'
 
@@ -16,32 +16,27 @@ import { baseUrl } from 'src/environment/environment'
 })
 export class TasksComponent implements OnInit {
   constructor(private http: HttpClient, public modal: ModalServiceService) {}
-  tasks: ITask[] = []
-  @Input() columnId: any = ''
+  @Input() task: ITaskItem = {
+    columnId: '',
+    description: '',
+    order: 0,
+    title: '',
+    _id: ''
+  }
+
   @Output() classDesc: string = 'active'
   @Output() editTaskEvent = new EventEmitter()
   @Output() deleteTaskEvent = new EventEmitter()
-  @Output() sendTasks = new EventEmitter()
-  ngOnInit(): void {
-    let boardId = localStorage.getItem('board_id')!
-    this.http
-      .get(`${baseUrl}boards/${boardId}/columns/${this.columnId}/tasks`)
-      .subscribe((data: any) => {
-        data.forEach((el: any) => {
-          this.tasks.push(el)
-        })
-      })
 
-    this.sendTasks.emit(this.tasks)
-  }
+  ngOnInit(): void {}
 
-  editTask(task: ITask) {
-    this.editTaskEvent.emit(task)
+  editTask(id: string) {
+    this.editTaskEvent.emit(id)
   }
-  modalDelete(task: ITask) {
-    this.deleteTaskEvent.emit(task)
+  modalDelete(id: string) {
+    this.deleteTaskEvent.emit(id)
   }
-  drop(event: CdkDragDrop<ITask[]>) {
+  drop(event: CdkDragDrop<ITaskItem[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(
         event.container.data,

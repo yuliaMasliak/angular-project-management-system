@@ -64,7 +64,7 @@ export class HeaderUserComponent implements OnInit {
         owner: localStorage.getItem('access_id')!,
         users: ['']
       }
-      console.log(body)
+
       this.boardService.createBoard(body, this.config)
     } else {
       this.modal.closeNewBoard()

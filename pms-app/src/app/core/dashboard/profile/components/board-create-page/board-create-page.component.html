@@ -1,7 +1,7 @@
 <div class="new-board" cdkDropListGroup>
   <div class="head">
-    <div class="board-title" (click)="editBoardTitle()">
-      <h6 class="display-4">
+    <div class="board-title">
+      <h6 class="display-4" (click)="editBoardTitle()">
         {{ 'newBoard.board' | translate }}: {{ boardTitle }}
       </h6>
     </div>
@@ -24,13 +24,17 @@
   <hr class="my-4" />
 
   <app-columns
-    cdkDropListGroup
-    [columns]="columns"
-    [boardId]="boardId"
+    *ngFor="let column of columns"
+    [column]="column"
     (cdkDropListDropped)="drop($event)"
     cdkDropList
     [cdkDropListData]="columns"
     (successNewTask)="reload($event)"
+    (editColumnEvent)="openModalEditColumn($event)"
+    (deleteColumnEvent)="openModalDeleteColumn($event)"
+    (editTaskEvent)="openModalEditTask($event)"
+    (deleteTaskEvent)="openModalDeleteTask($event)"
+    (createTaskEvent)="openModalCreateTask($event)"
   ></app-columns>
 
   <div class="board-btns">
@@ -74,4 +78,35 @@
   *ngIf="modal.column"
   title="{{ 'boards.column' | translate }}"
   (submitResult)="provideResultOfModalColumn($event)"
+></app-modal>
+<app-modal
+  *ngIf="modal.columnEdit"
+  title="{{ 'column.editTitle' | translate }}"
+  (submitResult)="provideResultOfModalEditColumn($event)"
+></app-modal>
+<app-modal
+  *ngIf="modal.columnDelete"
+  title="{{ 'column.deleteColumnAsk' | translate }}"
+  (submitResult)="provideResultOfModalDeleteColumn($event)"
+  class="{{ class }}"
+></app-modal>
+
+<app-modal
+  *ngIf="modal.createTask"
+  title="{{ 'task.name' | translate }}"
+  (submitResult)="provideResultOfModalCreateTask($event)"
+  class="{{ classDesc }}"
+></app-modal>
+
+<app-modal
+  *ngIf="modal.editTask"
+  title="{{ 'task.name' | translate }}"
+  (submitResult)="provideResultOfModalEditTask($event)"
+  class="{{ classDesc }}"
+></app-modal>
+<app-modal
+  *ngIf="modal.deleteTask"
+  title="{{ 'task.deleteTask' | translate }}"
+  (submitResult)="provideResultOfModalDeleteTask($event)"
+  class="{{ classHidden }}"
 ></app-modal>

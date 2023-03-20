@@ -1,13 +1,11 @@
 <div class="columns" cdkDropListGroup>
   <div
     cdkDropList
-    #column._id="cdkDropList"
-    *ngFor="let column of columns"
+    #columnId="cdkDropList"
     class="column"
-    id="column-{{ column._id }}"
+    id="column-{{ column.columnId }}"
     cdkDrag
-    [cdkDropListConnectedTo]="[column._id]"
-    [cdkDropListData]="tasksGroup"
+    [cdkDropListConnectedTo]="[columnId]"
     (cdkDropListDropped)="drop($event)"
   >
     <div class="fixed">
@@ -19,7 +17,9 @@
           fill="currentColor"
           class="bi bi-pencil-square"
           viewBox="0 0 16 16"
-          (click)="editColumnTitle(column._id)"
+          class="edit-column-btn"
+          id="svg-{{ column.columnId }}"
+          (click)="editColumn(column.columnId)"
         >
           <path
             d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"
@@ -36,7 +36,9 @@
           fill="currentColor"
           class="bi bi-trash3-fill"
           viewBox="0 0 16 16"
-          (click)="modalDelete(column._id)"
+          class="delete-column-btn"
+          id="svg-delete-{{ column.columnId }}"
+          (click)="deleteColumn(column.columnId)"
         >
           <path
             d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"
@@ -45,53 +47,30 @@
       </div>
       <div
         class="column-title"
-        id="{{ column._id }}"
-        (click)="editColumnTitle(column._id)"
+        id="{{ column.columnId }}"
+        class="edit-column-btn"
+        (click)="editColumn(column.columnId)"
       >
-        {{ column.title }}
+        {{ column.columnTitle }}
       </div>
     </div>
     <div>
-      <a class="task" (click)="openModalTask(column._id)">
+      <a class="task" (click)="createTaskEmit(column.columnId)">
         + {{ 'task.add' | translate }}</a
       >
     </div>
-    <app-tasks
-      [columnId]="column._id"
-      (editTaskEvent)="editTaskFulfill($event)"
-      (deleteTaskEvent)="deleteTaskFulfill($event)"
-      (sendTasks)="createTasksGroup($event)"
-    ></app-tasks>
+    <div
+      class="tasks-list-{{ column.columnId }}"
+      cdkDropList
+      (cdkDropListDropped)="drop($event)"
+    >
+      <app-tasks
+        cdkDrag
+        *ngFor="let task of column.tasks"
+        [task]="task"
+        (editTaskEvent)="editTaskEventEmit($event)"
+        (deleteTaskEvent)="deleteTaskEventEmit($event)"
+      ></app-tasks>
+    </div>
   </div>
 </div>
-
-<app-modal
-  *ngIf="modal.columnEdit"
-  title="{{ 'column.editTitle' | translate }}"
-  (submitResult)="provideResultOfModalEdit($event)"
-></app-modal>
-<app-modal
-  *ngIf="modal.columnDelete"
-  title="{{ 'column.deleteColumnAsk' | translate }}"
-  (submitResult)="provideResultOfModalDelete($event)"
-  class="{{ class }}"
-></app-modal>
-<app-modal
-  *ngIf="modal.createTask"
-  title="{{ 'task.name' | translate }}"
-  (submitResult)="provideResultOfModalCreateTask($event)"
-  class="{{ classDesc }}"
-></app-modal>
-
-<app-modal
-  *ngIf="modal.editTask"
-  title="{{ 'task.name' | translate }}"
-  (submitResult)="provideResultOfModalEditTask($event)"
-  class="{{ classDesc }}"
-></app-modal>
-<app-modal
-  *ngIf="modal.deleteTask"
-  title="{{ 'task.deleteTask' | translate }}"
-  (submitResult)="provideResultOfModalDeleteTask($event)"
-  class="{{ classHidden }}"
-></app-modal>
