@@ -110,4 +110,5 @@ export class GetBoardService {
 
     this.router.navigate(['dashboard/board'])
   }
+  updateTasksInColumn() {}
 }

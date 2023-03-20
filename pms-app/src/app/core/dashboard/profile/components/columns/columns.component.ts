@@ -32,7 +32,7 @@ export class ColumnsComponent implements OnInit {
     tasks: []
   }
   class: string = ''
-
+  columnIds: string[] = []
   @Input() columns = []
   @Input() columnTasks: ITaskItem[] = []
   columnToEditId = ''
@@ -43,7 +43,11 @@ export class ColumnsComponent implements OnInit {
   @Output() editTaskEvent = new EventEmitter()
   @Output() deleteTaskEvent = new EventEmitter()
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.boardService.data.forEach((el: any) => {
+      this.columnIds.push(`columnId-${el.columnId}`)
+    })
+  }
 
   editColumn(id: string) {
     this.editColumnEvent.emit(id)
@@ -52,24 +56,23 @@ export class ColumnsComponent implements OnInit {
     this.deleteColumnEvent.emit(id)
   }
 
-  // drop(event: CdkDragDrop<ITask[]>) {
-  //   if (event.previousContainer === event.container) {
-  //     moveItemInArray(
-  //       event.container.data,
-  //       event.previousIndex,
-  //       event.currentIndex
-  //     )
-  //   } else {
-  //     transferArrayItem(
-  //       event.previousContainer.data,
-  //       event.container.data,
-  //       event.previousIndex,
-  //       event.currentIndex
-  //     )
-  //   }
-  // }
-  drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.column.tasks, event.previousIndex, event.currentIndex)
+  drop(event: CdkDragDrop<ITask[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      )
+    } else {
+      console.log(event.previousContainer.id)
+      console.log(event.container.id)
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      )
+    }
   }
 
   editTaskEventEmit(id: string) {

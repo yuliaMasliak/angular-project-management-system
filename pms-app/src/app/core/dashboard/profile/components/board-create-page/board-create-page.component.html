@@ -22,21 +22,21 @@
     </svg>
   </div>
   <hr class="my-4" />
-
-  <app-columns
-    *ngFor="let column of columns"
-    [column]="column"
-    (cdkDropListDropped)="drop($event)"
-    cdkDropList
-    [cdkDropListData]="columns"
-    (successNewTask)="reload($event)"
-    (editColumnEvent)="openModalEditColumn($event)"
-    (deleteColumnEvent)="openModalDeleteColumn($event)"
-    (editTaskEvent)="openModalEditTask($event)"
-    (deleteTaskEvent)="openModalDeleteTask($event)"
-    (createTaskEvent)="openModalCreateTask($event)"
-  ></app-columns>
-
+  <div cdkDropListGroup class="columns-flex">
+    <app-columns
+      *ngFor="let column of columns"
+      [column]="column"
+      (cdkDropListDropped)="drop($event)"
+      cdkDropList
+      [cdkDropListData]="columns"
+      (successNewTask)="reload($event)"
+      (editColumnEvent)="openModalEditColumn($event)"
+      (deleteColumnEvent)="openModalDeleteColumn($event)"
+      (editTaskEvent)="openModalEditTask($event)"
+      (deleteTaskEvent)="openModalDeleteTask($event)"
+      (createTaskEvent)="openModalCreateTask($event)"
+    ></app-columns>
+  </div>
   <div class="board-btns">
     <p class="lead">
       <button

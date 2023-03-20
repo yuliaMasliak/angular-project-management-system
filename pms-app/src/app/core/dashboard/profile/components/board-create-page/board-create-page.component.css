@@ -46,3 +46,16 @@ h6 {
   cursor: pointer;
   color: rgb(172, 39, 72);
 }
+.columns-flex {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 20px;
+  column-gap: 10px;
+  width: 95%;
+  flex-grow: 1;
+  flex-basis: 0;
+  justify-content: space-evenly;
+  text-align: center;
+  align-items: center;
+  margin-bottom: 20px;
+}

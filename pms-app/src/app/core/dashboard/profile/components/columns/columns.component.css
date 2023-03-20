@@ -1,20 +1,7 @@
-.columns {
-  display: flex;
-  flex-wrap: wrap;
-  row-gap: 20px;
-  column-gap: 10px;
-  width: 100%;
-  flex-grow: 1;
-  flex-basis: 0;
-  justify-content: space-evenly;
-  text-align: center;
-  align-items: center;
-  margin-bottom: 20px;
-}
 .column {
   background-color: #45395380;
   color: white;
-  width: 45%;
+  width: 300px;
   border-radius: 5px;
   height: 200px;
   overflow-y: auto;
@@ -43,6 +30,9 @@ svg:hover {
 }
 svg {
   color: rgb(172, 39, 72);
+}
+.task-list {
+  min-height: 7rem;
 }
 @media (max-width: 640px) {
   .columns {
