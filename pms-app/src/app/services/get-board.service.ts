@@ -128,7 +128,6 @@ export class GetBoardService {
       if (el.columnId == previousColumnId.replace('columnId-', '')) {
         el.tasks.forEach((task: any) => {
           if (task._id == draggedTask.id.replace('task-', '')) {
-            console.log(task._id)
             droppedTask.title = task.title
             droppedTask.description = task.description
           }

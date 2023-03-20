@@ -1,12 +1,4 @@
-<div
-  cdkDropList
-  #columnId="cdkDropList"
-  class="column"
-  id="column-{{ column.columnId }}"
-  cdkDrag
-  [cdkDropListConnectedTo]="[columnId]"
-  (cdkDropListDropped)="drop($event)"
->
+<div cdkDrag class="column" id="column-{{ column.columnId }}">
   <div class="fixed">
     <div class="settings">
       <svg
@@ -59,14 +51,12 @@
     >
   </div>
   <div
-    cdkDropListGroup
     class="tasks-list-{{ column.columnId }} task-list"
     id="columnId-{{ column.columnId }}"
     cdkDropList
     (cdkDropListDropped)="drop($event)"
     #tasksList="cdkDropList"
     [cdkDropListData]="column.tasks"
-    [cdkDropListConnectedTo]="columnIds"
   >
     <app-tasks
       cdkDrag

@@ -69,6 +69,7 @@ export class ColumnsComponent implements OnInit {
         event.container.id,
         event.item.element.nativeElement.firstChild
       )
+
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,

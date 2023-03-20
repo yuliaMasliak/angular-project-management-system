@@ -49,54 +49,6 @@ export class BoardCreatePageComponent implements OnInit {
       this.boardTitle = data.title
     })
   }
-  // addListenetrs() {
-  //   let editBtns = document.querySelectorAll('.edit-column-btn')
-  //   let deleteBtns = document.querySelectorAll('.delete-column-btn')
-  //   editBtns.forEach((el: any) => {
-  //     el.addEventListener('click', () => {
-  //       this.columns.forEach((col: any) => {
-  //         if (
-  //           el.id.replace('svg-', '') == col.columnId ||
-  //           el.id == col.columnId
-  //         ) {
-  //           this.columnTiEditId = col.columnId
-  //           this.editColumnTitle()
-  //         }
-  //       })
-  //     })
-  //   })
-  //   deleteBtns.forEach((el: any) => {
-  //     el.addEventListener('click', () => {
-  //       this.columns.forEach((col: any) => {
-  //         if (el.id.replace('svg-delete-', '') == col.columnId) {
-  //           this.columnToDeleteId = col.columnId
-  //           this.deleteColumnModal()
-  //         }
-  //       })
-  //     })
-  //   })
-  // }
-  drop(event: CdkDragDrop<IColumn[]>) {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      )
-    } else {
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      )
-    }
-  }
-  reload(value: any) {
-    if (value) {
-      this.ngOnInit()
-    }
-  }
 
   modalDelete() {
     this.modal.open()
@@ -170,10 +122,12 @@ export class BoardCreatePageComponent implements OnInit {
       title: input.value,
       order: 0
     }
-    let boardId = localStorage.getItem('board_id')!
 
     this.http
-      .post(`${baseUrl}boards/${boardId}/columns`, body)
+      .post(
+        `${baseUrl}boards/${localStorage.getItem('board_id')}/columns`,
+        body
+      )
       .subscribe((data: any) => {
         let columnToPush = {
           columnId: data._id,
@@ -184,6 +138,9 @@ export class BoardCreatePageComponent implements OnInit {
       })
 
     this.modal.closeColumn()
+  }
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.columns, event.previousIndex, event.currentIndex)
   }
   openModalEditColumn(id: string) {
     this.columnTiEditId = id

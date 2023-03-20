@@ -47,10 +47,8 @@ h6 {
   color: rgb(172, 39, 72);
 }
 .columns-flex {
-  display: flex;
-  flex-wrap: wrap;
-  row-gap: 20px;
-  column-gap: 10px;
+  overflow: hidden;
+  overflow-x: auto;
   width: 95%;
   flex-grow: 1;
   flex-basis: 0;
@@ -58,4 +56,13 @@ h6 {
   text-align: center;
   align-items: center;
   margin-bottom: 20px;
+  min-height: 300px;
+}
+.app-column {
+  min-height: 300px;
+}
+@media (max-width: 640px) {
+  .columns-flex {
+    flex-direction: column;
+  }
 }

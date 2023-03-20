@@ -1,11 +1,14 @@
 .column {
+  display: inline-block;
   background-color: #45395380;
   color: white;
   width: 300px;
   border-radius: 5px;
-  height: 200px;
+  min-height: 200px;
   overflow-y: auto;
   padding: 10px;
+  cursor: pointer;
+  margin-right: 20px;
 }
 .settings {
   display: flex;
@@ -32,13 +35,15 @@ svg {
   color: rgb(172, 39, 72);
 }
 .task-list {
-  min-height: 7rem;
+  height: 7rem;
+  overflow: hidden;
+  overflow-y: auto;
 }
 @media (max-width: 640px) {
   .columns {
     flex-direction: column;
   }
   .column {
-    width: 85%;
+    min-width: 250px;
   }
 }
