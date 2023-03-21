@@ -57,15 +57,20 @@ export class StartPageComponent {
       .subscribe((data: any) => {
         if (data.length > 0) {
           data.forEach((el: any) => {
-            let link = document.createElement('div')
-            link.classList.add('link')
-            link.innerHTML = 'Task ' + el.title + '</br>'
-            link.style.color = 'blue'
-            link.style.cursor = 'pointer'
-            block.append(link)
-            link.onclick = () => {
-              this.boardService.goToBoard(el.boardId)
-            }
+            this.http
+              .get(`${baseUrl}boards/${el.boardId}`)
+              .subscribe((boards: any) => {
+                let link = document.createElement('div')
+                link.classList.add('link')
+                link.innerHTML =
+                  'Task ' + el.title + ' board ' + boards.title + '</br>'
+                link.style.color = 'blue'
+                link.style.cursor = 'pointer'
+                block.append(link)
+                link.onclick = () => {
+                  this.boardService.goToBoard(el.boardId)
+                }
+              })
           })
         } else {
           block.innerHTML = 'No tasks with such parameters'
