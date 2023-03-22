@@ -104,7 +104,7 @@ export class StartPageComponent {
       .put(`${baseUrl}boards/${this.boardToEdit}`, body)
       .subscribe((data: any) => {
         let board = document.getElementById(this.boardToEdit) as HTMLElement
-        board.innerHTML = input.value
+        board.innerHTML = data.title
         this.modal.closeEditBoardTitle()
       })
   }
