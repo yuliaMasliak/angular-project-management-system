@@ -13,7 +13,6 @@ export class DropService {
 
   register(dropList: ITask[]) {
     this.dropLists.push(dropList)
-    console.log(this.dropLists)
   }
   dragMoved(event: CdkDragMove<IColumn>) {
     let elementFromPoint = this.document.elementFromPoint(

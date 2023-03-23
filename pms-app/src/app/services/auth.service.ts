@@ -33,7 +33,6 @@ export class AuthService {
           this.userLogin(user.login, user.password)
           this.user.name = data.name
           localStorage.setItem('access_id', data._id)
-          console.log(window.localStorage.getItem('access_id'))
         }
       },
       (err) => {

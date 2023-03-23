@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http'
-import { Component } from '@angular/core'
+import { Component, Input } from '@angular/core'
 import { IBoard, IBoardUser, IColumn } from 'src/app/models/interfaces'
 import { AuthService } from 'src/app/services/auth.service'
 import { baseUrl } from 'src/environment/environment'
@@ -147,5 +147,8 @@ export class StartPageComponent {
         event.currentIndex
       )
     }
+  }
+  editProfile() {
+    this.router.navigate(['dashboard/account'])
   }
 }

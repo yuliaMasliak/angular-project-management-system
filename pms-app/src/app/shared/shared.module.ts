@@ -1,17 +1,10 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { NgInitDirective } from './ng-init.directive';
-import { SearchPipe } from './search.pipe';
-
-
+import { NgModule } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { HighlightDirective } from './highlight.directive'
 
 @NgModule({
-  declarations: [
-    NgInitDirective,
-    SearchPipe
-  ],
-  imports: [
-    CommonModule
-  ]
+  declarations: [HighlightDirective],
+  imports: [CommonModule],
+  exports: [HighlightDirective]
 })
-export class SharedModule { }
+export class SharedModule {}

@@ -21,6 +21,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop'
 import { TasksComponent } from './dashboard/profile/components/tasks/tasks.component'
 import { FormsModule } from '@angular/forms'
 
+import { SharedModule } from '../shared/shared.module'
+
 function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http)
 }
@@ -38,6 +40,7 @@ function HttpLoaderFactory(http: HttpClient) {
   ],
   exports: [MatButtonModule],
   imports: [
+    SharedModule,
     RouterModule,
     CommonModule,
     MatButtonModule,

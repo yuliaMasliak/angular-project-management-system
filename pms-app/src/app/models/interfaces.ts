@@ -7,6 +7,11 @@ export interface IUserToLogin {
   login: string
   password: string
 }
+export interface IUserResponse {
+  _id: string
+  name: string
+  login: string
+}
 export interface IBoard {
   _id: string
   title: string
