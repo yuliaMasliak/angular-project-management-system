@@ -65,7 +65,9 @@
     "toBoard": "Go to board",
     "back": "Back",
     "editTitle": "New board title",
-    "column": "Column name"
+    "column": "Column name",
+    "allBoards": "All Boards",
+    "allColumns": "All Columns"
   },
   "newBoard": {
     "board": "Board",

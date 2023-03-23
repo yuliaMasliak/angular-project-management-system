@@ -37,9 +37,24 @@ export class StartPageComponent {
 
   public searchInput: string = ''
   public tasks = []
+  showAllColumns: boolean = false
+  showAllBords: boolean = true
+  allColumns: any = []
+
   ngOnInit() {
     this.boardService.getAllBoards().subscribe((data: any) => {
       this.boards = data
+      data.forEach((board: any) => {
+        this.http
+          .get(`${baseUrl}boards/${board._id}/columns`)
+          .subscribe((data: any) => {
+            data.forEach((el: any) => {
+              console.log(el)
+              this.allColumns.push(el)
+            })
+          })
+        this.allColumns = this.boardService.data
+      })
     })
 
     this.http
@@ -48,7 +63,18 @@ export class StartPageComponent {
         this.name = data.name
       })
   }
-
+  showColumns() {
+    document.querySelector('.btn-all-boards')?.classList.remove('active')
+    document.querySelector('.btn-all-columns')?.classList.add('active')
+    this.showAllColumns = true
+    this.showAllBords = false
+  }
+  showBoards() {
+    document.querySelector('.btn-all-columns')?.classList.remove('active')
+    document.querySelector('.btn-all-boards')?.classList.add('active')
+    this.showAllColumns = false
+    this.showAllBords = true
+  }
   search() {
     let block = document.querySelector('.search-result') as HTMLElement
     block.innerHTML = ''

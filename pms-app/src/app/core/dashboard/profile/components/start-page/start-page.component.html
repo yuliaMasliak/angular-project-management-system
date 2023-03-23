@@ -12,8 +12,24 @@
 />
 <button type="button" (click)="search()">{{ 'search' | translate }}</button>
 <div class="search-result"></div>
-
+<div class="all-boards-columns-btns">
+  <div>
+    <a
+      ><button class="btns active btn-all-boards" (click)="showBoards()">
+        {{ 'boards.allBoards' | translate }}
+      </button></a
+    >
+  </div>
+  <div>
+    <a
+      ><button class="btns btn-all-columns" (click)="showColumns()">
+        {{ 'boards.allColumns' | translate }}
+      </button></a
+    >
+  </div>
+</div>
 <div
+  *ngIf="showAllBords"
   class="boards"
   (cdkDropListDropped)="drop($event)"
   cdkDropList
@@ -59,6 +75,28 @@
     </div>
     <div class="single-card" (click)="toBoard(board._id)">
       <div class="card-title" id="{{ board._id }}">{{ board.title }}</div>
+    </div>
+  </div>
+</div>
+<div
+  class="all-user-columns"
+  *ngIf="showAllColumns"
+  (cdkDropListDropped)="drop($event)"
+  cdkDropList
+  [cdkDropListData]="allColumns"
+>
+  <div
+    class="user-columns"
+    *ngFor="let column of allColumns"
+    id="board-{{ column._id }}"
+    cdkDrag
+  >
+    <div class="board">
+      <div class="single-card-column" (click)="toBoard(column.boardId)">
+        <div class="card-title" id="{{ column._id }}">
+          {{ column.title }}
+        </div>
+      </div>
     </div>
   </div>
 </div>

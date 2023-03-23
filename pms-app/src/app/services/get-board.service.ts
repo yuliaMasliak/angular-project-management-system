@@ -56,6 +56,7 @@ export class GetBoardService {
       })
     return result
   }
+
   getColumns() {
     this.getFullData()
   }
