@@ -8,6 +8,7 @@ export class HighlightDirective {
   @HostListener('mouseenter', ['$event'])
   public onMouseEnter(event: MouseEvent) {
     this.highlight('#520099')
+    this.Renderer2.setStyle(this.ElementRef.nativeElement, 'fontWeight', '600')
   }
   @HostListener('mouseleave', ['$event'])
   public onMouseLeave(event: MouseEvent) {
@@ -17,6 +18,5 @@ export class HighlightDirective {
   private highlight(color: string) {
     this.Renderer2.setStyle(this.ElementRef.nativeElement, 'color', color)
     this.Renderer2.setStyle(this.ElementRef.nativeElement, 'cursor', 'pointer')
-    this.Renderer2.setStyle(this.ElementRef.nativeElement, 'fontWeight', '600')
   }
 }

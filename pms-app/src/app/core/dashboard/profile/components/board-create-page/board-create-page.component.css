@@ -69,4 +69,7 @@ h6 {
   .columns-flex {
     flex-direction: column;
   }
+  .board-btns {
+    flex-direction: column;
+  }
 }

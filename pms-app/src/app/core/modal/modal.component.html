@@ -7,18 +7,20 @@
     <label>{{ 'task.desc' | translate }}</label>
     <input type="text" class="form-control {{ class }}" id="description" />
   </div>
-  <button
-    class="btn btn-primary submit-create-board"
-    type="button"
-    (click)="onClick(true)"
-  >
-    {{ 'modal.submit' | translate }}
-  </button>
-  <button
-    class="btn btn-primary cancel-create-board"
-    type="button"
-    (click)="onClick(false)"
-  >
-    {{ 'modal.cancel' | translate }}
-  </button>
+  <div class="btns">
+    <button
+      class="btn btn-primary submit-create-board"
+      type="button"
+      (click)="onClick(true)"
+    >
+      {{ 'modal.submit' | translate }}
+    </button>
+    <button
+      class="btn btn-primary cancel-create-board"
+      type="button"
+      (click)="onClick(false)"
+    >
+      {{ 'modal.cancel' | translate }}
+    </button>
+  </div>
 </div>
