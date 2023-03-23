@@ -16,6 +16,7 @@
 }
 .board-title {
   text-align: center;
+  text-shadow: 4px 4px 7px black;
 }
 h6 {
   margin: 0px auto;
