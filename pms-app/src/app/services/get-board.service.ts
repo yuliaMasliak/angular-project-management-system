@@ -56,6 +56,13 @@ export class GetBoardService {
       })
     return result
   }
+  // getAllColumns() {
+  //   this.getAllBoards()
+  //   let result = this.boards.forEach((board: any) => {
+  //     this.http.get(`${baseUrl}boards/${board._id}/columns`)
+  //   })
+  //   return result
+  // }
 
   getColumns() {
     this.getFullData()

@@ -107,6 +107,8 @@ button:hover {
   column-gap: 15px;
 }
 .all-user-columns {
+  display: flex;
+  justify-content: center;
   max-width: 80%;
   padding: 20px;
   margin: 0px auto;
@@ -115,7 +117,7 @@ button:hover {
   margin-bottom: 20px;
   overflow: auto;
   overflow-y: hidden;
-  display: flex;
+
   white-space: nowrap;
 }
 .single-card-column {
@@ -130,4 +132,14 @@ button:hover {
   background-color: beige;
   border: 1px solid #533f55;
   box-shadow: rgba(107, 25, 25, 0.55) 0px 5px 15px;
+}
+.small-text {
+  font-size: 15px;
+}
+.to-board {
+  font-size: 18px;
+  padding: 3px;
+  color: #542558;
+  cursor: pointer;
+  text-decoration: navy;
 }

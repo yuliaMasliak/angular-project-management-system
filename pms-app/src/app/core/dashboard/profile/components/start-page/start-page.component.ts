@@ -44,23 +44,18 @@ export class StartPageComponent {
   ngOnInit() {
     this.boardService.getAllBoards().subscribe((data: any) => {
       this.boards = data
-      data.forEach((board: any) => {
-        this.http
-          .get(`${baseUrl}boards/${board._id}/columns`)
-          .subscribe((data: any) => {
-            data.forEach((el: any) => {
-              console.log(el)
-              this.allColumns.push(el)
-            })
-          })
-        this.allColumns = this.boardService.data
-      })
     })
 
     this.http
       .get(`${baseUrl}users/${localStorage.getItem('access_id')}`)
       .subscribe((data: any) => {
         this.name = data.name
+      })
+    this.http
+      .get(`${baseUrl}columnsSet?userId=641023f05c10b743c91aad25`)
+      .subscribe((data: any) => {
+        this.allColumns = data
+        console.log(this.allColumns)
       })
   }
   showColumns() {
