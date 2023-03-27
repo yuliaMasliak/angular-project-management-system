@@ -48,25 +48,30 @@ button:hover {
   visibility: hidden;
 }
 .success-login {
+  z-index: 2;
   position: absolute;
-  top: 0px;
-  bottom: 0px;
-  background-color: rgba(162, 162, 189, 0.329);
   width: 100%;
+  top: 0;
+  bottom: 0;
+  background-image: linear-gradient(
+    rgba(245, 218, 250, 0.099),
+    rgba(245, 218, 250, 0.384),
+    rgba(245, 218, 250, 0.099)
+  );
 }
 .modal-result-login {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(154, 164, 185, 0.842);
-  color: white;
-  margin: 0px auto;
-  width: 30%;
-  height: 30%;
+  height: fit-content;
+  padding: 50px;
+  font-size: 36px;
+  position: fixed;
+  float: left;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(154, 164, 185, 0.726);
   border-radius: 5px;
-  margin-top: 140px;
   text-align: center;
-  font-size: 30px;
+  color: white;
 }
 .burger {
   visibility: hidden;

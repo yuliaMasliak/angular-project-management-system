@@ -76,6 +76,7 @@
     "deleteBoardAsk": "Видалити проект?"
   },
   "column": {
+    "column": "Розділ",
     "editTitle": "Нова назва розділу",
     "deleteColumnAsk": "Видалити розділ?"
   },

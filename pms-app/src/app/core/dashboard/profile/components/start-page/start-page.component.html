@@ -74,8 +74,8 @@
       </svg>
     </div>
     <div class="single-card" (click)="toBoard(board._id)">
+      <div class="small-text">{{'newBoard.board' | translate}}</div>
       <div class="card-title" id="{{ board._id }}">
-        <span class="small-text">Board</span><br />
         {{ board.title }}
       </div>
     </div>
@@ -97,7 +97,7 @@
     <div class="board">
       <div class="single-card-column" (click)="toBoard(column.boardId)">
         <div class="card-title" id="{{ column._id }}">
-          <span class="small-text">Column</span><br />
+          <span class="small-text">{{'column.column' | translate}}</span><br />
           {{ column.title }}
           <br />
           <a (click)="toBoard(column.boardId)" class="to-board" appHighlight

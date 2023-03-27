@@ -58,6 +58,7 @@ h3 {
   align-items: center;
   justify-content: center;
   margin-top: -2rem;
+  flex-direction: column;
 }
 .card-title {
   font-size: 26px;
