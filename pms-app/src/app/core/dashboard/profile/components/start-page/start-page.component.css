@@ -64,18 +64,19 @@ h3 {
   padding: 10px;
   display: inline-block;
   margin: 10px;
+  overflow-y: auto;
 }
 .board:hover {
   box-shadow: rgba(107, 25, 25, 0.55) 0px 5px 15px;
   cursor: pointer;
 }
 .single-card {
-  height: inherit;
+  height: 80%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: -2rem;
   flex-direction: column;
+  padding-top: 5px;
 }
 .card-title {
   white-space: pre-wrap;

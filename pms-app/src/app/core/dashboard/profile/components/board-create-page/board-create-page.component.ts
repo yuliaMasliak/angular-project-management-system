@@ -159,6 +159,24 @@ export class BoardCreatePageComponent implements OnInit {
       this.modal.closeEditColumn()
     }
   }
+  updateColumnTitle (data: any) {
+    const body = {
+      title: data.value,
+      order: 0
+    }
+    let boardId = localStorage.getItem('board_id')
+
+    this.http
+      .put(`${baseUrl}boards/${boardId}/columns/${data.id}`, body)
+      .subscribe((data: any) => {
+        console.log(data)
+        this.boardService.data.forEach((el: any) => {
+          if (el.columnId == data._id) {
+            el.columnTitle = data.title
+          }
+        })
+      })
+  }
   updateColumn() {
     const input = document.getElementById('title1') as HTMLInputElement
 
@@ -173,7 +191,7 @@ export class BoardCreatePageComponent implements OnInit {
       .subscribe((data: any) => {
         this.boardService.data.forEach((el: any) => {
           if (el.columnId == this.columnTiEditId) {
-            el.columnTitle = body.title
+            el.columnTitle = data.title
           }
         })
       })

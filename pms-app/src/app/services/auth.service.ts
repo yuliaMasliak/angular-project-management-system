@@ -40,9 +40,8 @@ export class AuthService {
         result.innerHTML =
           err.error.message + '. <br/>Please, choose another one'
         setTimeout(() => {
-          modalResult.classList.add('active'),
-            this.router.navigate(['main/signup'])
-          modalResult.classList.add('hidden')
+          modalResult.classList.add('hidden'),
+            this.router.navigate(['main/welcome'])
         }, 2000)
       }
     )

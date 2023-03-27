@@ -58,11 +58,12 @@ h6 {
   flex-wrap: nowrap;
   overflow: hidden;
   overflow-x: auto;
-  width: 95%;
+  max-width: 95%;
   flex-grow: 1;
   flex-basis: 0;
   text-align: center;
   align-items: center;
+  margin: 0px auto;
   margin-bottom: 20px;
   min-height: 300px;
 }

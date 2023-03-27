@@ -44,6 +44,32 @@ svg {
   text-align: center;
 }
 
+.input-edit-title{
+  margin: 0px auto;
+  display: flex;
+  max-height: 1.5rem;
+  justify-content: center;
+  max-width: 80%;
+}
+.btn{
+  font-size: 8px;
+  color: white;
+  border: 0.3px dotted white;
+  width: 4rem;
+  max-height: 1rem;
+}
+.svg{
+  fill:rgb(40, 57, 206) ;
+}
+.svg:hover{
+  fill:rgb(13, 23, 119) ;
+}
+.edit-title-input{
+background-color: rgba(230, 227, 233, 0.699);
+border: none;
+border-radius: 5px;
+max-width: 70%;
+}
 @media (max-width: 640px) {
   .columns {
     flex-direction: column;

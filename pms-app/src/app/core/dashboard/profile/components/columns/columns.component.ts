@@ -37,18 +37,42 @@ export class ColumnsComponent implements OnInit {
   @Input() columnTasks: ITaskItem[] = []
   columnToEditId = ''
   columnToDeleteId = ''
+  showInput = false
   @Output() editColumnEvent = new EventEmitter()
   @Output() deleteColumnEvent = new EventEmitter()
   @Output() createTaskEvent = new EventEmitter()
   @Output() editTaskEvent = new EventEmitter()
   @Output() deleteTaskEvent = new EventEmitter()
+  @Output() editColumnTitleEvent = new EventEmitter()
 
   ngOnInit(): void {
     this.boardService.data.forEach((el: any) => {
       this.columnIds.push(`columnId-${el.columnId}`)
     })
   }
-
+  editColumnOnTitle (id: string) {
+    this.showInput = true
+    this.columnToEditId = id
+    let title = document.getElementById(`title-${id}`) as HTMLElement
+    title.style.display = 'none'
+  }
+  onClick (value: boolean) {
+    if (value) {
+      let newTitle = document.getElementById(`edit-input-${this.columnToEditId}`) as HTMLInputElement
+      let data = {
+        value: newTitle.value,
+        id: this.columnToEditId
+      }
+      this.editColumnTitleEvent.emit(data)
+      this.showInput = false
+      let title = document.getElementById(`title-${this.columnToEditId}`) as HTMLElement
+      title.style.display = 'block'
+    } else {
+      this.showInput = false
+      let title = document.getElementById(`title-${this.columnToEditId}`) as HTMLElement
+      title.style.display = 'block'
+    }
+  }
   editColumn(id: string) {
     this.editColumnEvent.emit(id)
   }
