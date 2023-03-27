@@ -45,7 +45,6 @@ export class StartPageComponent {
     this.boardService.getAllBoards().subscribe((data: any) => {
       this.boards = data
     })
-
     this.http
       .get(`${baseUrl}users/${localStorage.getItem('access_id')}`)
       .subscribe((data: any) => {
