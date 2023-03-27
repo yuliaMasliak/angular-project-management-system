@@ -2,20 +2,19 @@
   display: flex;
   justify-content: space-between;
 }
+
 .search-block{
   text-align: right;
   padding-right: 40px;
 }
 h3 {
   margin-top: 30px;
-  margin-left: 100px;
+  margin-left: 80px;
 }
 
 .search-input,
 .search-result {
   margin-top: 30px;
-  margin-left: 100px;
-  width: 25%;
 }
 .search-result{
   position: absolute;
@@ -23,7 +22,7 @@ h3 {
 }
 .search-input{
   height: 2em;
-  width: 15em;
+  width: 12em;
   border: 0.5px solid grey;
   border-radius: 5px;
   padding: 14px;
@@ -79,7 +78,10 @@ h3 {
   flex-direction: column;
 }
 .card-title {
+  white-space: pre-wrap;
   font-size: 26px;
+  word-break: break-all;
+  max-width: 6em;
 }
 .settings {
   display: flex;
@@ -160,4 +162,24 @@ button:hover {
   color: #542558;
   cursor: pointer;
   text-decoration: none;
+}
+@media (max-width: 740px) {
+  .start-head {
+    flex-direction: column;
+    max-width: 320px;
+    margin: 0px auto;
+  }
+  .search-block{
+    text-align: center;
+    padding-right: 0px;
+    margin-bottom: 20px;
+  }
+}
+@media (max-width: 640px) {
+  .boards {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    max-width: fit-content;
+  }
 }

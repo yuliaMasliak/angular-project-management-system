@@ -64,7 +64,7 @@ h6 {
   min-height: 300px;
 }
 .app-column {
-  min-height: 300px;
+  min-height: 250px;
 }
 @media (max-width: 840px) {
   .columns-flex {
@@ -72,5 +72,16 @@ h6 {
   }
   .board-btns {
     flex-direction: column;
+  }
+  .bi{
+    width:5%;
+  }
+}
+@media (max-width: 340px) {
+ .new-board {
+    padding: 10px;
+  }
+  .bi{
+    width:6%;
   }
 }
