@@ -25,25 +25,24 @@ img {
 }
 .about, .second-fon{
 display: grid;
-grid-template-columns: 1fr 1fr;
+grid-template-columns: 50% 50%;
 grid-column-gap: 30px;
 max-width: 80%;
 color: #453953b2;
 margin: 0px auto;
-column-gap: 40px;
-margin-top: 80px;
+column-gap: 30px;
+margin-top: 100px;
 text-align: center;
 }
 .second-fon{
+  margin: 0px auto;
+  margin-top: 60px;
   align-items: center;
 }
 .second-fon-text{
-  font-size: 1.1em;
+  font-size: 14px;
 }
-.about-author{
-  color: #453953b2;
-  }
-  
+
   .about-author img{
     width: 200px;
     border-radius: 8px;
@@ -63,11 +62,37 @@ text-align: center;
   
   .about-author, .about-course{
     border: 8px solid rgba(128, 128, 128, 0.226);
+     color: #453953b2;
     border-radius: 8px;
-
+    font-size: 14px;
     padding: 15px;
   }
   .author-portrait{
     height: 150px;
   }
+  @media (max-width: 900px) {
+    .second-fon-text, .about-author, .about-course{
+      font-size: 10px;
+    }
+    .second-fon{
+    display: none;
+  }
+ 
+  }
+    @media (max-width: 700px) {
+      .author-portrait, .about-author img{
+        display: none;
+        }
+        .about{
+          grid-template-columns: 1fr;
+grid-template-rows: 1fr 1fr;
+grid-row-gap: 20px;
+        }
+    }
+    @media (max-width: 400px) {
+      .author-portrait, .about-author img{
+        display: none;
+        }
+      
+    }
   
