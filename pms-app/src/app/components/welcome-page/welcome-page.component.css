@@ -70,6 +70,12 @@ text-align: center;
   .author-portrait{
     height: 150px;
   }
+  .team-photo{
+    background-image: url('../../../assets/welcome-2.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 400px;
+  }
   @media (max-width: 900px) {
     .second-fon-text, .about-author, .about-course{
       font-size: 10px;
