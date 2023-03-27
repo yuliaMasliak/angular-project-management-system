@@ -24,6 +24,8 @@ export class AccountComponent implements OnInit {
   @Output() password: string = this.auth.user.password
   userToken = `Bearer ${this.auth.token}`
   class: string = ''
+  success: boolean = false
+  failed: boolean = false
 
   ngOnInit() {
     this.http.get(`${baseUrl}users`).subscribe((data: any) => {
@@ -55,7 +57,7 @@ export class AccountComponent implements OnInit {
     if (value && this.modal.name) {
       const input = document.querySelector('.form-control') as HTMLInputElement
       this.name = input.value
-      this.updateUserName()
+      this.updateUser()
       this.modal.closeName()
     } else if (value && this.modal.login) {
       const input = document.querySelector('.form-control') as HTMLInputElement
@@ -77,24 +79,9 @@ export class AccountComponent implements OnInit {
       this.modal.closeDelete()
     }
   }
-  updateUserName() {
-    const input = document.querySelector('.form-control') as HTMLInputElement
 
-    const body = {
-      name: this.name,
-      login: this.login,
-      password: this.password
-    }
-
-    this.http.put(`${baseUrl}users/${this.id}`, body).subscribe((data: any) => {
-      this.id = data._id
-      this.modal.close()
-    })
-  }
   updateUser() {
-    const input = document.querySelector('.form-control') as HTMLInputElement
-
-    const body = {
+      const body = {
       name: this.name,
       login: this.login,
       password: this.password
@@ -104,12 +91,25 @@ export class AccountComponent implements OnInit {
       (data: any) => {
         this.id = data._id
         this.modal.close()
+        this.success = true
+        setTimeout(() => {
+          this.success = false
+        }, 2000);
       },
       (err) => {
-        alert('Login already exists. Choose another one')
-        this.login = ''
-      }
+        this.defaultName()
+        this.failed = true
+        setTimeout(() => {
+          this.failed = false
+        }, 2000);
+        }
+
     )
+  }
+  defaultName () {
+    this.http.get(`${baseUrl}users/${localStorage.getItem('access_id')}`).subscribe((user: any) => {
+      this.login = user.login
+    })
   }
   deleteUser() {
     this.http.delete(`${baseUrl}users/${this.id}`).subscribe((data) => {

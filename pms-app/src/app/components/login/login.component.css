@@ -1,16 +1,11 @@
 .login {
   max-width: fit-content;
   margin: 0px auto;
-  margin-top: 30px;
+  margin-top: 20px;
   text-align: center;
   padding: 30px;
   border-radius: 5px;
   background-color: #fdc4c4bd;
-  position: fixed;
-  float: left;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
 }
 form {
   text-align: left;

@@ -3,22 +3,19 @@
     <h3>{{ 'account.title' | translate }}</h3>
     <label for="">{{ 'signup.login' | translate }}</label>
     <li class="li-account">
-      <button type="button" class="btn btn-outline-info" (click)="editLogin()">
-        {{ 'account.edit' | translate }}
-      </button>
+      <img class="svg" src="../../../../../../assets/user-edit-icon.png" alt="edit-icon"  (click)="editLogin()" >
       {{ login }}
     </li>
 
     <label for="">{{ 'signup.name' | translate }}</label>
     <li class="li-account">
-      <button type="button" class="btn btn-outline-info" (click)="editName()">
-        {{ 'account.edit' | translate }}
-      </button>
+      <img class="svg" src="../../../../../../assets/user-edit-icon.png" alt="edit-icon" (click)="editName()">
+
       {{ name }}
     </li>
 
     <label for=""> {{ 'signup.password' | translate }}</label>
-
+   
     <button type="button" class="btn btn-outline-info" (click)="editPassword()">
       {{ 'account.editPassword' | translate }}
       <svg
@@ -46,6 +43,12 @@
       {{ 'account.delete' | translate }}
     </button>
   </ul>
+</div>
+<div class="success" *ngIf="success">
+  {{'updatedProfile' | translate}}
+</div>
+<div class="success" *ngIf="failed">
+  {{'failedUpdate' | translate}}
 </div>
 <app-modal
   *ngIf="modal.login"

@@ -44,7 +44,6 @@ export class AuthInterceptor implements HttpInterceptor {
           if (err instanceof HttpErrorResponse) {
             if (err) {
               this.result = 'Unauthorized'
-              localStorage.removeItem('access_token')
             }
           }
         }

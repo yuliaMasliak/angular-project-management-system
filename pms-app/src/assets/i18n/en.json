@@ -86,5 +86,7 @@
     "desc": "Task description",
     "deleteTask": "Delete task?",
     "search": "Search for tasks"
-  }
+  },
+  "updatedProfile": "Profile was successfully updated",
+  "failedUpdate": "Login already exists. Choose another one"
 }
