@@ -140,6 +140,10 @@ button:hover {
 @media only screen and (max-width: 600px) {
   .modal-result-login {
     width: 60%;
-    height: 60%;
+    height: 30%;
+    font-size: 22px;
+    padding: 20px;
   }
+
+
 }
