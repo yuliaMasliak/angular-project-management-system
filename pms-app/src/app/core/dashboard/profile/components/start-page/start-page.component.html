@@ -1,8 +1,7 @@
-<h3 appHighlight (click)="editProfile()">
+<div class="start-head"><h3 appHighlight (click)="editProfile()">
   {{ 'welcome' | translate }}, {{ name | titlecase }}
 </h3>
-
-<input
+<div class="search-block"><input
   name="searchInput"
   [(ngModel)]="searchInput"
   type="text"
@@ -10,8 +9,10 @@
   size="50"
   class="search-input"
 />
-<button type="button" (click)="search()">{{ 'search' | translate }}</button>
-<div class="search-result"></div>
+
+<button type="button" (click)="search()">{{ 'search' | translate }}</button><div class="search-result"></div></div>
+</div>
+
 <div class="all-boards-columns-btns">
   <div>
     <a
@@ -101,7 +102,7 @@
           {{ column.title }}
           <br />
           <a (click)="toBoard(column.boardId)" class="to-board" appHighlight
-            >Go to Board</a
+            >{{'boards.toBoard' | translate}}</a
           >
         </div>
       </div>

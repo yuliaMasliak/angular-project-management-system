@@ -54,7 +54,6 @@ export class StartPageComponent {
       .get(`${baseUrl}columnsSet?userId=641023f05c10b743c91aad25`)
       .subscribe((data: any) => {
         this.allColumns = data
-        console.log(this.allColumns)
       })
   }
   showColumns() {

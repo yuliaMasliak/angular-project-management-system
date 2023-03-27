@@ -1,3 +1,11 @@
+.start-head{
+  display: flex;
+  justify-content: space-between;
+}
+.search-block{
+  text-align: right;
+  padding-right: 40px;
+}
 h3 {
   margin-top: 30px;
   margin-left: 100px;
@@ -9,7 +17,17 @@ h3 {
   margin-left: 100px;
   width: 25%;
 }
-
+.search-result{
+  position: absolute;
+  right: 40px;
+}
+.search-input{
+  height: 2em;
+  width: 15em;
+  border: 0.5px solid grey;
+  border-radius: 5px;
+  padding: 14px;
+}
 .input-block {
   height: 40%;
   width: 30%;
@@ -141,4 +159,5 @@ button:hover {
   padding: 3px;
   color: #542558;
   cursor: pointer;
+  text-decoration: none;
 }
