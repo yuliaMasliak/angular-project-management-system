@@ -8,9 +8,11 @@
 .task-title {
   width: 30%;
   border-right: 0.5px dashed rgba(255, 192, 203, 0.589);
+  word-break: break-all;
 }
 .task-desc {
   width: 70%;
+  word-break: break-all;
 }
 .settings {
   display: flex;

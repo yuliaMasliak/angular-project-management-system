@@ -49,7 +49,10 @@ h6 {
 }
 .display-4 {
   cursor: pointer;
-}
+    word-break: break-all;
+    max-width: 10em;
+  }
+
 .columns-flex {
   display: flex;
   flex-wrap: nowrap;
@@ -66,9 +69,11 @@ h6 {
 .app-column {
   min-height: 250px;
 }
+
 @media (max-width: 840px) {
   .columns-flex {
     flex-direction: column;
+    margin: 0px auto;
   }
   .board-btns {
     flex-direction: column;

@@ -38,6 +38,12 @@ svg {
   overflow: hidden;
   overflow-y: auto;
 }
+.edit-column-btn{
+  word-break: break-all;
+  max-width: inherit;
+  text-align: center;
+}
+
 @media (max-width: 640px) {
   .columns {
     flex-direction: column;

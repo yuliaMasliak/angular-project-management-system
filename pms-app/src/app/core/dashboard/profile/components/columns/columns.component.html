@@ -36,7 +36,8 @@
         />
       </svg>
     </div>
-    <div
+
+  </div>    <div
       class="column-title"
       id="{{ column.columnId }}"
       class="edit-column-btn"
@@ -44,7 +45,6 @@
     >
       {{ column.columnTitle }}
     </div>
-  </div>
   <div>
     <a class="task" (click)="createTaskEmit(column.columnId)">
       + {{ 'task.add' | translate }}</a
