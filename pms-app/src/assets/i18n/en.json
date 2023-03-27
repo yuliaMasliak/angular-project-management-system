@@ -88,5 +88,9 @@
     "search": "Search for tasks"
   },
   "updatedProfile": "Profile was successfully updated",
-  "failedUpdate": "Login already exists. Choose another one"
+  "failedUpdate": "Login already exists. Choose another one",
+  "aboutApp": "Managing a team to success requires more than just simply appointing tasks to people. A crucial role in cultivating business growth, being in charge of team management requires a fusion of interpersonal, technical, and of course, organizational skills.",
+  "aboutAppAdd": "Get Better Business Results by Investing Time in Building Team with Project Management Application PMS",
+  "course": "This Application was developed as a final project of the 6-months Front-end Course at RS School. Project management system is an App that helps an individual in a team or group of developers achieve their goals. The Application was coded using Angular framework.",
+  "author": "Hi! I am a front-end developer, with love and passion doing my work. I have an experience of making web-sites and applications with implementation of API and Angular framework. More info about me and my projects you can find at the link below. Any feedback is highly appreciated"
 }

@@ -23,3 +23,51 @@ img {
 .success-login {
   visibility: hidden;
 }
+.about, .second-fon{
+display: grid;
+grid-template-columns: 1fr 1fr;
+grid-column-gap: 30px;
+max-width: 80%;
+color: #453953b2;
+margin: 0px auto;
+column-gap: 40px;
+margin-top: 80px;
+text-align: center;
+}
+.second-fon{
+  align-items: center;
+}
+.second-fon-text{
+  font-size: 1.1em;
+}
+.about-author{
+  color: #453953b2;
+  }
+  
+  .about-author img{
+    width: 200px;
+    border-radius: 8px;
+    margin: 0px auto;
+    margin-bottom: 15px;
+    }
+    .about-author a{
+     text-decoration: none;
+     color: violet;
+      }
+    .about-course img{
+      width: 250px;
+      border-radius: 8px;
+      margin: 0px auto;
+      margin-top: 15px;
+      }
+  
+  .about-author, .about-course{
+    border: 8px solid rgba(128, 128, 128, 0.226);
+    border-radius: 8px;
+
+    padding: 15px;
+  }
+  .author-portrait{
+    height: 150px;
+  }
+  
