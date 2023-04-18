@@ -1,9 +1,9 @@
-.start-head{
+.start-head {
   display: flex;
   justify-content: space-between;
 }
 
-.search-block{
+.search-block {
   text-align: right;
   padding-right: 40px;
 }
@@ -16,11 +16,11 @@ h3 {
 .search-result {
   margin-top: 30px;
 }
-.search-result{
+.search-result {
   position: absolute;
   right: 40px;
 }
-.search-input{
+.search-input {
   height: 2em;
   width: 12em;
   border: 0.5px solid grey;
@@ -64,7 +64,7 @@ h3 {
   padding: 10px;
   display: inline-block;
   margin: 10px;
-  overflow-y: auto;
+  overflow-y: hidden;
 }
 .board:hover {
   box-shadow: rgba(107, 25, 25, 0.55) 0px 5px 15px;
@@ -83,6 +83,8 @@ h3 {
   font-size: 26px;
   word-break: break-all;
   max-width: 6em;
+  max-height: 6em;
+  overflow-y: auto;
 }
 .settings {
   display: flex;
@@ -170,7 +172,7 @@ button:hover {
     max-width: 320px;
     margin: 0px auto;
   }
-  .search-block{
+  .search-block {
     text-align: center;
     padding-right: 0px;
     margin-bottom: 20px;
@@ -183,7 +185,7 @@ button:hover {
     text-align: center;
     max-width: fit-content;
   }
-  .all-user-columns{
+  .all-user-columns {
     display: flex;
     flex-direction: column;
     text-align: center;
