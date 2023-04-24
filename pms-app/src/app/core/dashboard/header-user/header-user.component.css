@@ -76,7 +76,7 @@ a {
 .burger {
   visibility: hidden;
 }
-.burger svg {
+.burger-logo {
   visibility: hidden;
   position: absolute;
 }
@@ -100,7 +100,7 @@ a {
     justify-content: space-between;
     align-items: center;
   }
-  .burger svg {
+  .burger-logo {
     position: absolute;
     visibility: visible;
     margin-right: 2rem;
@@ -108,7 +108,7 @@ a {
     fill: white;
   }
   .svg-div {
-    width: 100px;
+    width: 70px;
     margin-bottom: 2rem;
   }
   .banner {

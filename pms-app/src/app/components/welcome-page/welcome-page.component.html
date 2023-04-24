@@ -1,24 +1,44 @@
 <main>
-  <img src="../../../assets/pms1" />
+  <img
+    src="../../../assets/pms1"
+    alt="App main banner"
+  />
 
   <div class="slogan">{{ 'slogan' | translate }}</div>
   <div class="second-fon">
-    <div class="second-fon-text">{{'aboutApp' | translate }}<br><br><span><strong>{{'aboutAppAdd' | translate }}</strong> </span></div>
+    <div class="second-fon-text"
+      >{{ 'aboutApp' | translate }}<br /><br /><span
+        ><strong>{{ 'aboutAppAdd' | translate }}</strong>
+      </span></div
+    >
     <div class="team-photo"></div>
   </div>
   <div class="about">
     <div class="about-course">
       <h3>Javascript/Front-end Mentoring Program</h3>
-      {{'course' | translate}}
-      <div class="author-portrait"> <img src="../../../assets/Courses.PNG" alt="author" ></div>
+      {{ 'course' | translate }}
+      <div class="author-portrait">
+        <img
+          src="../../../assets/Courses.PNG"
+          alt="Rsschool courses"
+      /></div>
     </div>
     <div class="about-author">
-      <div> <img src="../../../assets/portrait.png" alt="author" ></div>
-     
       <div>
-      <h3>Yulia Masliak</h3>
-      {{'author' | translate}}<br><a href="https://cv-masliak-yulia-front-end.netlify.app/"  target="_blank">Portfolio</a> 
-    </div></div>
+        <img
+          src="../../../assets/portrait.png"
+          alt="author"
+      /></div>
+
+      <div>
+        <h3>Yulia Masliak</h3>
+        {{ 'author' | translate }}<br /><a
+          href="https://cv-masliak-yulia-front-end.netlify.app/"
+          target="_blank"
+          >Portfolio</a
+        >
+      </div></div
+    >
     <div></div>
   </div>
 </main>

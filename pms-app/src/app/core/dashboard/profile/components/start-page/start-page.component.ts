@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input } from '@angular/core';
-import { IBoard, IBoardUser, IColumn } from 'src/app/models/interfaces';
+import { Component } from '@angular/core';
+import { Board } from 'src/app/models/interfaces';
 import { AuthService } from 'src/app/services/auth.service';
 import { baseUrl } from 'src/environment/environment';
 import { Output } from '@angular/core';
@@ -31,7 +31,7 @@ export class StartPageComponent {
   public showAllColumns: boolean = false;
   public showAllBords: boolean = true;
   public allColumns: any = [];
-  @Output() boards: IBoard[] = [];
+  @Output() boards: Board[] = [];
 
   constructor(
     public modal: ModalServiceService,
@@ -151,7 +151,7 @@ export class StartPageComponent {
         this.modal.close();
       });
   }
-  drop(event: CdkDragDrop<IBoard[]>) {
+  drop(event: CdkDragDrop<Board[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(
         event.container.data,

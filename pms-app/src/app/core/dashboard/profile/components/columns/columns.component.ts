@@ -3,13 +3,10 @@ import {
   moveItemInArray,
   transferArrayItem
 } from '@angular/cdk/drag-drop';
-import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { IColumn, ITask, ITaskItem } from 'src/app/models/interfaces';
-import { AuthService } from 'src/app/services/auth.service';
+import { Task, TaskItem } from 'src/app/models/interfaces';
 import { GetBoardService } from 'src/app/services/get-board.service';
 import { ModalServiceService } from 'src/app/services/modal-service.service';
-import { baseUrl } from 'src/environment/environment';
 
 @Component({
   selector: 'app-columns',
@@ -22,6 +19,7 @@ export class ColumnsComponent implements OnInit {
   public columnToEditId = '';
   public columnToDeleteId = '';
   public showInput = false;
+  public displayTitle: boolean = true;
   @Input() column: any = {
     boardId: '',
     order: 0,
@@ -30,7 +28,7 @@ export class ColumnsComponent implements OnInit {
     tasks: []
   };
   @Input() columns = [];
-  @Input() columnTasks: ITaskItem[] = [];
+  @Input() columnTasks: TaskItem[] = [];
   @Output() editColumnEvent = new EventEmitter();
   @Output() deleteColumnEvent = new EventEmitter();
   @Output() createTaskEvent = new EventEmitter();
@@ -51,8 +49,10 @@ export class ColumnsComponent implements OnInit {
     this.showInput = true;
     this.columnToEditId = id;
     let title = document.getElementById(`title-${id}`) as HTMLElement;
-    title.style.display = 'none';
+    //title.style.display = 'none';
+    this.displayTitle = false;
   }
+
   onClick(value: boolean) {
     if (value) {
       let newTitle = document.getElementById(
@@ -64,16 +64,10 @@ export class ColumnsComponent implements OnInit {
       };
       this.editColumnTitleEvent.emit(data);
       this.showInput = false;
-      let title = document.getElementById(
-        `title-${this.columnToEditId}`
-      ) as HTMLElement;
-      title.style.display = 'block';
+      this.displayTitle = true;
     } else {
       this.showInput = false;
-      let title = document.getElementById(
-        `title-${this.columnToEditId}`
-      ) as HTMLElement;
-      title.style.display = 'block';
+      this.displayTitle = true;
     }
   }
   editColumn(id: string) {
@@ -83,7 +77,7 @@ export class ColumnsComponent implements OnInit {
     this.deleteColumnEvent.emit(id);
   }
 
-  drop(event: CdkDragDrop<ITask[]>) {
+  drop(event: CdkDragDrop<Task[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(
         event.container.data,

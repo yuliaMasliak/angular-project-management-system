@@ -6,7 +6,6 @@ import {
   moveItemInArray,
   transferArrayItem
 } from '@angular/cdk/drag-drop';
-import { IBoardUser, IColumn } from 'src/app/models/interfaces';
 import { AuthService } from 'src/app/services/auth.service';
 import { GetBoardService } from 'src/app/services/get-board.service';
 import { ModalServiceService } from 'src/app/services/modal-service.service';

@@ -76,7 +76,7 @@ button:hover {
 .burger {
   visibility: hidden;
 }
-.burger svg {
+.burger-logo {
   visibility: hidden;
   position: absolute;
 }
@@ -100,15 +100,14 @@ button:hover {
     justify-content: space-between;
     align-items: center;
   }
-  .burger svg {
+  .burger-logo {
     position: absolute;
     visibility: visible;
-    margin-right: 2rem;
+    margin-right: 1rem;
     width: 2em;
-    fill: white;
   }
   .svg-div {
-    width: 100px;
+    width: 70px;
     margin-bottom: 2rem;
   }
   .banner {
@@ -144,6 +143,4 @@ button:hover {
     font-size: 22px;
     padding: 20px;
   }
-
-
 }

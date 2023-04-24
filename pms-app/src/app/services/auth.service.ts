@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { IUser } from '../models/interfaces';
+import { User } from '../models/interfaces';
 import { baseUrl } from 'src/environment/environment';
 
 @Injectable({
@@ -19,7 +19,7 @@ export class AuthService {
 
   constructor(private router: Router, private http: HttpClient) {}
 
-  createUser(user: IUser): void {
+  createUser(user: User): void {
     const headers = {
       'Content-Type': 'application/json'
     };

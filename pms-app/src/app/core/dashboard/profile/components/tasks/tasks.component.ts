@@ -4,7 +4,7 @@ import {
   transferArrayItem
 } from '@angular/cdk/drag-drop';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ITaskItem } from 'src/app/models/interfaces';
+import { TaskItem } from 'src/app/models/interfaces';
 import { ModalServiceService } from 'src/app/services/modal-service.service';
 
 @Component({
@@ -13,7 +13,7 @@ import { ModalServiceService } from 'src/app/services/modal-service.service';
   styleUrls: ['./tasks.component.css']
 })
 export class TasksComponent {
-  @Input() task: ITaskItem = {
+  @Input() task: TaskItem = {
     columnId: '',
     description: '',
     order: 0,
@@ -32,7 +32,7 @@ export class TasksComponent {
   modalDelete(id: string) {
     this.deleteTaskEvent.emit(id);
   }
-  drop(event: CdkDragDrop<ITaskItem[]>) {
+  drop(event: CdkDragDrop<TaskItem[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(
         event.container.data,

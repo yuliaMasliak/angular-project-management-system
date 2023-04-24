@@ -1,99 +1,99 @@
-import { Injectable } from '@angular/core'
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ModalServiceService {
-  value: boolean = false
-  login: boolean = false
-  name: boolean = false
-  password: boolean = false
-  delete: boolean = false
-  newBoard: boolean = false
-  boardTitle: boolean = false
-  column: boolean = false
-  columnEdit: boolean = false
-  columnDelete: boolean = false
-  createTask: boolean = false
-  editTask: boolean = false
-  deleteTask: boolean = false
+  public value: boolean = false;
+  public login: boolean = false;
+  public name: boolean = false;
+  public password: boolean = false;
+  public delete: boolean = false;
+  public newBoard: boolean = false;
+  public boardTitle: boolean = false;
+  public column: boolean = false;
+  public columnEdit: boolean = false;
+  public columnDelete: boolean = false;
+  public createTask: boolean = false;
+  public editTask: boolean = false;
+  public deleteTask: boolean = false;
   constructor() {}
   openDeleteTask() {
-    this.deleteTask = true
+    this.deleteTask = true;
   }
   closeDeleteTask() {
-    this.deleteTask = false
+    this.deleteTask = false;
   }
   openEditTask() {
-    this.editTask = true
+    this.editTask = true;
   }
   closeEditTask() {
-    this.editTask = false
+    this.editTask = false;
   }
   openCreateTask() {
-    this.createTask = true
+    this.createTask = true;
   }
   closeCreateTask() {
-    this.createTask = false
+    this.createTask = false;
   }
   openDeleteColumn() {
-    this.columnDelete = true
+    this.columnDelete = true;
   }
   closeDeleteColumn() {
-    this.columnDelete = false
+    this.columnDelete = false;
   }
   openEditColumn() {
-    this.columnEdit = true
+    this.columnEdit = true;
   }
   closeEditColumn() {
-    this.columnEdit = false
+    this.columnEdit = false;
   }
   openColumn() {
-    this.column = true
+    this.column = true;
   }
   open() {
-    this.value = true
+    this.value = true;
   }
   closeColumn() {
-    this.column = false
+    this.column = false;
   }
   close() {
-    this.value = false
+    this.value = false;
   }
   openNewBoard() {
-    this.newBoard = true
+    this.newBoard = true;
   }
   openName() {
-    this.name = true
+    this.name = true;
   }
   openLogin() {
-    this.login = true
+    this.login = true;
   }
   openPassword() {
-    this.password = true
+    this.password = true;
   }
   openDelete() {
-    this.delete = true
+    this.delete = true;
   }
   openEditBoardTitle() {
-    this.boardTitle = true
+    this.boardTitle = true;
   }
   closeName() {
-    this.name = false
+    this.name = false;
   }
   closeLogin() {
-    this.login = false
+    this.login = false;
   }
   closePassword() {
-    this.password = false
+    this.password = false;
   }
   closeDelete() {
-    this.delete = false
+    this.delete = false;
   }
   closeNewBoard() {
-    this.newBoard = false
+    this.newBoard = false;
   }
   closeEditBoardTitle() {
-    this.boardTitle = false
+    this.boardTitle = false;
   }
 }

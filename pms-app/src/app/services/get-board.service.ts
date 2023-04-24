@@ -1,19 +1,16 @@
-import { Injectable } from '@angular/core'
-import { baseUrl } from 'src/environment/environment'
-import { Router } from '@angular/router'
-import { HttpClient } from '@angular/common/http'
-import { AuthService } from './auth.service'
+import { Injectable } from '@angular/core';
+import { baseUrl } from 'src/environment/environment';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { AuthService } from './auth.service';
 import {
-  IBoard,
-  IBoardCreate,
-  IColumn,
-  ITask,
-  ITaskItem,
+  Board,
+  BoardCreate,
+  Column,
+  Task,
   TConfig
-} from '../models/interfaces'
-import { ModalServiceService } from './modal-service.service'
-import { Observable } from 'rxjs/internal/Observable'
-import { map } from 'rxjs'
+} from '../models/interfaces';
+import { ModalServiceService } from './modal-service.service';
 
 @Injectable({
   providedIn: 'root'
@@ -25,50 +22,43 @@ export class GetBoardService {
     private router: Router,
     public modal: ModalServiceService
   ) {}
-  boardTitle: string = ''
-  boardId: string = localStorage.getItem('board_id')!
-  ownerId: string = ''
-  boardToGoId: string = ''
-  boards: IBoard[] = []
-  columns: IColumn[] = []
-  data: any = []
-  tasksOfColumn: ITask[] = []
+  public boardTitle: string = '';
+  public boardId: string = localStorage.getItem('board_id')!;
+  public ownerId: string = '';
+  public boardToGoId: string = '';
+  public boards: Board[] = [];
+  public columns: Column[] = [];
+  public data: any = [];
+  public tasksOfColumn: Task[] = [];
 
-  createBoard(board: IBoardCreate, config: TConfig) {
+  createBoard(board: BoardCreate, config: TConfig) {
     this.http.post(`${baseUrl}boards`, board, config).subscribe((data: any) => {
-      this.boards.push(data)
-      localStorage.setItem('board_id', data._id)
-      this.boardTitle = data.title
-      this.ownerId = data.owner
-      this.modal.closeNewBoard()
-      this.router.navigate(['dashboard/board'])
-    })
+      this.boards.push(data);
+      localStorage.setItem('board_id', data._id);
+      this.boardTitle = data.title;
+      this.ownerId = data.owner;
+      this.modal.closeNewBoard();
+      this.router.navigate(['dashboard/board']);
+    });
   }
 
   getAllBoards() {
     const result = this.http.get(
       `${baseUrl}boardsSet/${localStorage.getItem('access_id')}`
-    )
+    );
     this.http
       .get(`${baseUrl}boardsSet/${localStorage.getItem('access_id')}`)
       .subscribe((data: any) => {
-        this.boards = data
-      })
-    return result
+        this.boards = data;
+      });
+    return result;
   }
-  // getAllColumns() {
-  //   this.getAllBoards()
-  //   let result = this.boards.forEach((board: any) => {
-  //     this.http.get(`${baseUrl}boards/${board._id}/columns`)
-  //   })
-  //   return result
-  // }
 
   getColumns() {
-    this.getFullData()
+    this.getFullData();
   }
   getFullData() {
-    this.data.length = 0
+    this.data.length = 0;
     this.http
       .get(`${baseUrl}boards/${localStorage.getItem('board_id')}/columns`)
       .subscribe((columns: any) => {
@@ -77,8 +67,8 @@ export class GetBoardService {
             columnId: column._id,
             columnTitle: column.title,
             tasks: []
-          }
-          this.data.push(columnToAdd)
+          };
+          this.data.push(columnToAdd);
 
           this.http
             .get(
@@ -95,16 +85,16 @@ export class GetBoardService {
                   order: task.order,
                   columnId: task.columnId,
                   columnTitle: column.title
-                }
+                };
                 this.data.forEach((el: any) => {
                   if (el.columnId == task.columnId) {
-                    el.tasks.push(taskToAdd)
+                    el.tasks.push(taskToAdd);
                   }
-                })
-              })
-            })
-        })
-      })
+                });
+              });
+            });
+        });
+      });
   }
 
   goToBoard(id: string) {
@@ -113,11 +103,11 @@ export class GetBoardService {
         Authorization: `Bearer ${this.auth.token}`,
         'Content-Type': 'application/json'
       }
-    }
+    };
 
-    localStorage.setItem('board_id', id)
+    localStorage.setItem('board_id', id);
 
-    this.router.navigate(['dashboard/board'])
+    this.router.navigate(['dashboard/board']);
   }
   updateDraggedTasks(
     previousColumnId: string,
@@ -130,19 +120,19 @@ export class GetBoardService {
       description: '',
       userId: localStorage.getItem('access_id'),
       users: ['']
-    }
+    };
 
     this.data.forEach((el: any) => {
       if (el.columnId == previousColumnId.replace('columnId-', '')) {
         el.tasks.forEach((task: any) => {
           if (task._id == draggedTask.id.replace('task-', '')) {
-            droppedTask.title = task.title
-            droppedTask.description = task.description
+            droppedTask.title = task.title;
+            droppedTask.description = task.description;
           }
-        })
+        });
       }
-    })
-    let result = ''
+    });
+    let result = '';
     this.http
       .post(
         `${baseUrl}boards/${localStorage.getItem(
@@ -151,8 +141,8 @@ export class GetBoardService {
         droppedTask
       )
       .subscribe((data: any) => {
-        result = data
-      })
+        result = data;
+      });
 
     this.http
       .delete(
@@ -164,7 +154,7 @@ export class GetBoardService {
         )}/tasks/${draggedTask.id.replace('task-', '')}`
       )
       .subscribe((data: any) => {
-        result = data
-      })
+        result = data;
+      });
   }
 }
