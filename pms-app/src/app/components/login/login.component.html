@@ -1,0 +1,56 @@
+<div class="login">
+  <h2>{{ 'login.title' | translate }}</h2>
+  <form [formGroup]="loginForm" (ngSubmit)="loginAuthUser()">
+    <div class="mb-3">
+      <label for="input-email1" class="form-label"
+        >{{ 'login.login' | translate }}<span>*</span></label
+      >
+      <input
+        type="text"
+        formControlName="login"
+        class="form-control"
+        id="input-email1"
+        aria-describedby="emailHelp"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="password1" class="form-label"
+        >{{ 'login.password' | translate }}<span>*</span></label
+      >
+      <input
+        type="password"
+        formControlName="password"
+        class="form-control"
+        id="password1"
+      />
+      <div
+        class="warning"
+        *ngIf="
+          this.loginForm.get('password')?.invalid &&
+          this.loginForm.get('password')?.touched
+        "
+      >
+        {{ 'login.warn' | translate }}
+      </div>
+    </div>
+    <div class="mb-3 form-check">
+      <input
+        type="checkbox"
+        formControlName="argeement"
+        class="form-check-input"
+        id="exampleCheck1"
+      />
+      <label class="form-check-label" for="exampleCheck1">{{
+        'login.agree' | translate
+      }}</label>
+    </div>
+    <button class="btn" [disabled]="loginForm.invalid">
+      {{ 'login.submit' | translate }}
+    </button>
+  </form>
+  <br />
+  <div class="form-text">
+    {{ 'login.ask' | translate }}
+    <a routerLink="/signup">{{ 'login.link' | translate }}</a>
+  </div>
+</div>

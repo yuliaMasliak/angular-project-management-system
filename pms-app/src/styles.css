@@ -1,0 +1,32 @@
+html{
+  height: 100%;
+}
+body {
+  position: relative;
+  background-image: url('./assets/fon2.png');
+  background-position: 50% 15%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+html, body{
+  max-height: fit-content;
+ }
+main {
+  padding-bottom: 100px;
+}
+footer {
+  z-index: 2;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+  background: #e1c3f5c4;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 30px;
+}
+.hidden {
+  visibility: hidden;
+}

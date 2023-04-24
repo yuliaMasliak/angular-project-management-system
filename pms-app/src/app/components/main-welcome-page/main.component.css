@@ -1,0 +1,12 @@
+main {
+  background-image: url('../../../assets/fon2.png');
+
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-top: 90px;
+  min-height: 450px;
+}
+.main-content {
+  padding-top: 41px;
+}

@@ -1,0 +1,93 @@
+.new-board {
+  margin: 0px auto;
+  background-color: #e1c3f5c4;
+  max-width: 90%;
+  margin-top: 30px;
+  margin-bottom: 50px;
+  padding: 20px;
+  border-radius: 7px;
+}
+.btn-outline-secondary {
+  margin-right: 10px;
+}
+.head {
+  display: flex;
+  justify-content: space-between;
+}
+.board-title {
+  text-align: center;
+  text-shadow: 4px 4px 7px black;
+}
+h6 {
+  margin: 0px auto;
+}
+.content {
+  min-height: 150px;
+}
+
+.board-btns {
+  display: flex;
+  justify-content: space-between;
+}
+.hidden {
+  visibility: hidden;
+}
+.btn-outline-info {
+  margin-left: 30px;
+}
+.btn-outline-danger {
+  margin-left: 10px;
+}
+.bi {
+  width: 3%;
+  cursor: pointer;
+  color: rgb(40, 57, 206);
+}
+.bi:hover {
+  cursor: pointer;
+  color: rgb(172, 39, 72);
+}
+.display-4 {
+  cursor: pointer;
+    word-break: break-all;
+    max-width: 10em;
+  }
+
+.columns-flex {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  overflow-x: auto;
+  max-width: 95%;
+  flex-grow: 1;
+  flex-basis: 0;
+  text-align: center;
+  align-items: center;
+  margin: 0px auto;
+  margin-bottom: 20px;
+  min-height: 300px;
+}
+.app-column {
+  min-height: 250px;
+}
+
+@media (max-width: 840px) {
+  .columns-flex {
+    flex-direction: column;
+    margin: 0px auto;
+  }
+  .board-btns {
+    flex-direction: column;
+  }
+  .bi{
+    width:5%;
+  }
+}
+@media (max-width: 340px) {
+ .new-board {
+    padding: 10px;
+  }
+  .bi{
+    width:6%;
+  }
+}

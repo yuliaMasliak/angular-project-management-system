@@ -1,0 +1,59 @@
+.modal-overlap {
+  z-index: 2;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  background-image: linear-gradient(
+    rgba(245, 218, 250, 0.099),
+    rgba(245, 218, 250, 0.384),
+    rgba(245, 218, 250, 0.099)
+  );
+}
+.input-block {
+  height: fit-content;
+  padding: 10px;
+  position: fixed;
+  float: left;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(154, 164, 185, 0.726);
+  border-radius: 5px;
+  text-align: center;
+}
+.form-control {
+  max-width: 55%;
+  max-height: 25%;
+  margin: 0px auto;
+  margin-top: 10%;
+  margin-bottom: 15px;
+}
+.submit-create-board {
+  margin-right: 20px;
+}
+h3 {
+  padding-top: 50px;
+}
+.form-group-desc {
+  visibility: hidden;
+  position: absolute;
+}
+.active {
+  visibility: visible;
+  position: relative;
+  margin-top: 5px;
+}
+label {
+  margin-top: 0px;
+}
+.btns {
+  margin: 0px auto;
+  display: flex;
+  width: 95%;
+  justify-content: space-around;
+}
+@media (max-width: 680px) {
+}
+@media (max-width: 420px) {
+}

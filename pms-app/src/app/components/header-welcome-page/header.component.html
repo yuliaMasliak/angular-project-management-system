@@ -1,0 +1,84 @@
+<div class="banner">
+  <a routerLink="/main/welcome"
+    ><img
+      src="../../../assets/logo"
+      width="140"
+      alt="App logo"
+  /></a>
+  <span class="lang-switcher">
+    <button
+      class="btn btn-light"
+      (click)="translate.use('en')"
+    >
+      {{ 'lang.en' | translate }}
+    </button>
+    <button
+      class="btn btn-light"
+      (click)="translate.use('ua')"
+    >
+      {{ 'lang.ua' | translate }}
+    </button>
+  </span>
+  <div class="header-buttons">
+    <a (click)="checkTokenLogin()"
+      ><button>{{ 'buttons.log.login' | translate }}</button></a
+    >
+    <button routerLink="/main/signup">
+      {{ 'buttons.log.signup' | translate }}
+    </button>
+    <div class="fake"></div>
+  </div>
+</div>
+<div class="success-login hidden">
+  <div class="modal-result-login"></div>
+</div>
+<div class="burger">
+  <div>
+    <a
+      ><img
+        src="../../../assets/logo"
+        width="140"
+        alt="App logo"
+    /></a>
+  </div>
+  <div class="svg-div">
+    <img
+      src="../../../assets/burger-svg.svg"
+      class="burger-logo"
+      (click)="toggleBurger()"
+    />
+  </div>
+</div>
+<div class="collapsed">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 320 512"
+    (click)="closeBurger()"
+    class="close"
+  >
+    <path
+      d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"
+    />
+  </svg>
+  <span class="lang-switcher">
+    <button
+      class="btn btn-light"
+      (click)="translate.use('en')"
+    >
+      {{ 'lang.en' | translate }}
+    </button>
+    <button
+      class="btn btn-light"
+      (click)="translate.use('ua')"
+    >
+      {{ 'lang.ua' | translate }}
+    </button>
+  </span>
+
+  <a (click)="checkTokenLogin()"
+    ><button>{{ 'buttons.log.login' | translate }}</button></a
+  >
+  <button routerLink="/main/signup">
+    {{ 'buttons.log.signup' | translate }}
+  </button>
+</div>

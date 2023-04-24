@@ -1,0 +1,30 @@
+.task-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  border: 0.5px dashed rgba(255, 192, 203, 0.589);
+  cursor: pointer;
+}
+.task-title {
+  width: 30%;
+  border-right: 0.5px dashed rgba(255, 192, 203, 0.589);
+  word-break: break-all;
+}
+.task-desc {
+  width: 70%;
+  word-break: break-all;
+}
+.settings {
+  display: flex;
+  align-items: center;
+  width: 10%;
+  float: right;
+  justify-content: space-between;
+}
+svg {
+  cursor: pointer;
+  color: rgb(20, 64, 122);
+}
+svg:hover {
+  color: rgba(180, 22, 61, 0.589);
+}

@@ -1,0 +1,122 @@
+<div class="banner dashboard">
+  <div class="header-buttons">
+    <a (click)="toMainPage()"
+      ><img
+        src="../../../assets/logo"
+        width="140"
+        alt="App logo"
+    /></a>
+    <span class="lang-switcher">
+      <button
+        class="btn btn-light"
+        (click)="translate.use('en')"
+      >
+        {{ 'lang.en' | translate }}
+      </button>
+      <button
+        class="btn btn-light"
+        (click)="translate.use('ua')"
+      >
+        {{ 'lang.ua' | translate }}
+      </button>
+    </span>
+    <a
+      ><button
+        class="btns"
+        (click)="toBoards()"
+      >
+        {{ 'allBoards' | translate }}
+      </button></a
+    >
+    <a
+      ><button
+        class="btns"
+        (click)="editProfile()"
+      >
+        {{ 'edit' | translate }}
+      </button></a
+    >
+    <a
+      ><button
+        class="btns"
+        (click)="createBoardModalOpen()"
+      >
+        {{ 'board' | translate }}
+      </button></a
+    >
+  </div>
+
+  <div class="header-buttons">
+    <a routerLink=""
+      ><button
+        class="logout"
+        (click)="deleteToken()"
+      >
+        {{ 'logout' | translate }}
+      </button></a
+    >
+
+    <div class="fake"></div>
+  </div>
+</div>
+
+<div class="burger">
+  <div>
+    <a (click)="toMainPage()"
+      ><img
+        src="../../../assets/logo"
+        width="140"
+        alt="App logo"
+    /></a>
+  </div>
+  <div class="svg-div">
+    <img
+      src="../../../../assets/burger-svg.svg"
+      class="burger-logo"
+      (click)="toggleBurger()"
+    />
+  </div>
+</div>
+<div class="collapsed">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 320 512"
+    (click)="closeBurger()"
+    class="close"
+  >
+    <path
+      d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"
+    />
+  </svg>
+  <span class="lang-switcher">
+    <button
+      class="btn btn-light"
+      (click)="translate.use('en')"
+    >
+      {{ 'lang.en' | translate }}
+    </button>
+    <button
+      class="btn btn-light"
+      (click)="translate.use('ua')"
+    >
+      {{ 'lang.ua' | translate }}
+    </button>
+  </span>
+  <a (click)="toBoards()">
+    {{ 'allBoards' | translate }}
+  </a>
+  <a (click)="editProfile()">
+    {{ 'edit' | translate }}
+  </a>
+  <a (click)="createBoardModalOpen()">
+    {{ 'board' | translate }}
+  </a>
+  <a (click)="deleteToken()">
+    {{ 'logout' | translate }}
+  </a>
+</div>
+<app-modal
+  *ngIf="modal.newBoard"
+  title="{{ 'modal.createBoard' | translate }}"
+  (submitResult)="provideResultOfModal($event)"
+></app-modal>

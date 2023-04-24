@@ -1,0 +1,115 @@
+<div class="new-board">
+  <div class="head">
+    <div class="board-title">
+      <h6 class="display-4" (click)="editBoardTitle()" appHighlight>
+        {{ 'newBoard.board' | translate }}: {{ boardTitle }}
+      </h6>
+    </div>
+    <svg
+      (click)="editBoardTitle()"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="currentColor"
+      class="bi bi-pencil-square"
+      viewBox="0 0 16 16"
+    >
+      <path
+        d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"
+      />
+      <path
+        fill-rule="evenodd"
+        d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"
+      />
+    </svg>
+  </div>
+  <hr class="my-4" />
+  <div
+    cdkDropList
+    (cdkDropListDropped)="drop($event)"
+    class="columns-flex"
+    cdkDropListGroup
+  >
+    <app-columns
+      class="app-column"
+      *ngFor="let column of columns"
+      [column]="column"
+      (editColumnEvent)="openModalEditColumn($event)"
+      (deleteColumnEvent)="openModalDeleteColumn($event)"
+      (editTaskEvent)="openModalEditTask($event)"
+      (deleteTaskEvent)="openModalDeleteTask($event)"
+      (createTaskEvent)="openModalCreateTask($event)"
+      (editColumnTitleEvent)="updateColumnTitle($event)"
+    ></app-columns>
+  </div>
+  <div class="board-btns">
+    <p class="lead">
+      <button
+        type="button"
+        class="btn btn-outline-dark"
+        (click)="addColumnModal()"
+      >
+        {{ 'newBoard.addColumn' | translate }}
+      </button>
+
+      <button
+        type="button"
+        class="btn btn-outline-danger"
+        (click)="modalDelete()"
+      >
+        {{ 'newBoard.deleteBoard' | translate }}
+      </button>
+    </p>
+    <p class="lead">
+      <button type="button" class="btn btn-outline-dark" (click)="back()">
+        {{ 'boards.back' | translate }}
+      </button>
+    </p>
+  </div>
+</div>
+
+<app-modal
+  *ngIf="modal.value"
+  title="{{ 'newBoard.deleteBoardAsk' | translate }}"
+  (submitResult)="provideResultOfModal($event)"
+  class="{{ class }}"
+></app-modal>
+<app-modal
+  *ngIf="modal.boardTitle"
+  title="{{ 'boards.editTitle' | translate }}"
+  (submitResult)="provideResultOfModalEdit($event)"
+></app-modal>
+<app-modal
+  *ngIf="modal.column"
+  title="{{ 'boards.column' | translate }}"
+  (submitResult)="provideResultOfModalColumn($event)"
+></app-modal>
+<app-modal
+  *ngIf="modal.columnEdit"
+  title="{{ 'column.editTitle' | translate }}"
+  (submitResult)="provideResultOfModalEditColumn($event)"
+></app-modal>
+<app-modal
+  *ngIf="modal.columnDelete"
+  title="{{ 'column.deleteColumnAsk' | translate }}"
+  (submitResult)="provideResultOfModalDeleteColumn($event)"
+  class="{{ class }}"
+></app-modal>
+
+<app-modal
+  *ngIf="modal.createTask"
+  title="{{ 'task.name' | translate }}"
+  (submitResult)="provideResultOfModalCreateTask($event)"
+  class="{{ classDesc }}"
+></app-modal>
+
+<app-modal
+  *ngIf="modal.editTask"
+  title="{{ 'task.name' | translate }}"
+  (submitResult)="provideResultOfModalEditTask($event)"
+  class="{{ classDesc }}"
+></app-modal>
+<app-modal
+  *ngIf="modal.deleteTask"
+  title="{{ 'task.deleteTask' | translate }}"
+  (submitResult)="provideResultOfModalDeleteTask($event)"
+  class="{{ classHidden }}"
+></app-modal>

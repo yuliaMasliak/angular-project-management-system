@@ -1,0 +1,89 @@
+.column {
+  background-color: #45395380;
+  color: white;
+  width: 300px;
+  border-radius: 5px;
+  min-height: 200px;
+  overflow-y: auto;
+  padding: 10px;
+  cursor: pointer;
+  margin-right: 20px;
+}
+.settings {
+  display: flex;
+  justify-content: space-between;
+}
+.bi {
+  cursor: pointer;
+}
+.column-title {
+  font-size: 2rem;
+}
+.task {
+  width: fit-content;
+  color: pink;
+  padding: 4px;
+  text-decoration: none;
+  cursor: pointer;
+}
+svg:hover {
+  cursor: pointer;
+  color: rgb(40, 57, 206);
+}
+svg {
+  color: rgb(172, 39, 72);
+}
+.task-list {
+  height: 7rem;
+  overflow: hidden;
+  overflow-y: auto;
+}
+.edit-column-btn{
+  word-break: break-all;
+  max-width: inherit;
+  text-align: center;
+}
+
+.input-edit-title{
+  margin: 0px auto;
+  display: flex;
+  max-height: 1.5rem;
+  justify-content: center;
+  max-width: 80%;
+}
+.btn{
+  font-size: 8px;
+  color: white;
+  border: 0.3px dotted white;
+  width: 4rem;
+  max-height: 1rem;
+}
+.svg{
+  fill:rgb(40, 57, 206) ;
+}
+.svg:hover{
+  fill:rgb(13, 23, 119) ;
+}
+.edit-title-input{
+background-color: rgba(230, 227, 233, 0.699);
+border: none;
+border-radius: 5px;
+max-width: 70%;
+}
+@media (max-width: 640px) {
+  .columns {
+    flex-direction: column;
+  }
+  .column {
+    width: 280px;
+    margin-right: 0px;
+  }
+}
+@media (max-width: 440px) {
+  .columns {
+    flex-direction: column;
+  }
+  .column {
+    width: 250px;
+  }
+}

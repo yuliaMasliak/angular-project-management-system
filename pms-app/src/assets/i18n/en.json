@@ -1,0 +1,96 @@
+{
+  "search": "Search",
+  "lang": {
+    "en": "EN",
+    "ua": "UA"
+  },
+  "slogan": "Enhance your business with effective and powerful project performance monitoring platform",
+  "buttons": {
+    "log": {
+      "login": "LOG IN",
+      "signup": "SIGN UP"
+    }
+  },
+  "footer": {
+    "coded": "This project was coded by",
+    "author": "Yulia Masliak",
+    "sourced": "and is open-sourced on",
+    "github": "Git Hub",
+    "date": "March 2023"
+  },
+  "login": {
+    "title": "LOG IN",
+    "login": "Login",
+    "password": "Password",
+    "agree": "I agree to share my data",
+    "submit": "SUBMIT",
+    "ask": "Don't have an account yet?",
+    "link": "Sigh Up",
+    "warn": "min 8 characters, at least 1 letter and 1 number"
+  },
+  "signup": {
+    "title": "SIGN UP",
+    "name": "Name",
+    "login": "Login",
+    "password": "Password",
+    "agree": "I agree to share my data",
+    "submit": "SUBMIT",
+    "ask": "Have an account?",
+    "link": "Log In",
+    "warn": "min 8 characters, at least 1 letter and 1 number"
+  },
+  "edit": "Edit profile",
+  "board": "Create board",
+  "allBoards": "All Boards",
+  "logout": "LOG OUT",
+  "welcome": "Welcome",
+  "account": {
+    "title": "Personal information",
+    "edit": "edit",
+    "editPassword": "Change password",
+    "delete": "Delete account"
+  },
+  "modal": {
+    "deleteAccount": "Delete account?",
+    "login": "New login",
+    "name": "New name",
+    "password": "New password",
+    "confirm": "CONFIRM",
+    "submit": "SUBMIT",
+    "cancel": "CANCEL",
+    "createBoard": "New board name",
+    "newBoardTitle": "Enter board title"
+  },
+  "boards": {
+    "toBoard": "Go to board",
+    "back": "Back",
+    "editTitle": "New board title",
+    "column": "Column name",
+    "allBoards": "All Boards",
+    "allColumns": "All Columns"
+  },
+  "newBoard": {
+    "board": "Board",
+    "addColumn": "Add column",
+    "deleteBoard": "Delete board",
+    "deleteBoardAsk": "Delete board?"
+  },
+  "column": {
+    "column": "Column",
+    "editTitle": "New column title",
+    "deleteColumnAsk": "Delete column?"
+  },
+  "task": {
+    "add": "Add Task",
+    "name": "Task name",
+    "desc": "Task description",
+    "deleteTask": "Delete task?",
+    "search": "Search for tasks"
+  },
+  "updatedProfile": "Profile was successfully updated",
+  "failedUpdate": "Login already exists. Choose another one",
+  "aboutApp": "Managing a team to success requires more than just simply appointing tasks to people. A crucial role in cultivating business growth, being in charge of team management requires a fusion of interpersonal, technical, and of course, organizational skills.",
+  "aboutAppAdd": "Get Better Business Results by Investing Time in Building Team with Project Management Application PMS",
+  "course": "This Application was developed as a final project of the 6-months Front-end Course at RS School. Project management system is an App that helps an individual in a team or group of developers achieve their goals. The Application was coded using Angular framework.",
+  "author": "Hi! I am a front-end developer, with love and passion doing my work. I have an experience of making web-sites and applications with implementation of API and Angular framework. More info about me and my projects you can find at the link below. Any feedback is highly appreciated"
+}

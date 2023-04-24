@@ -1,0 +1,146 @@
+.banner {
+  top: 0px;
+  width: 100%;
+  height: 90px;
+  background: #453953;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 40px;
+}
+button {
+  width: 120px;
+  border-radius: 8px;
+  border: 1px solid #fce6d2;
+  color: #233142;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'Haas Grot Text R Web', 'Helvetica Neue', Helvetica, Arial,
+    sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  margin-right: 10px;
+  padding: 10px 12px;
+  text-align: center;
+  vertical-align: baseline;
+  white-space: nowrap;
+  background-color: #fce6d2;
+}
+button:hover {
+  box-shadow: 0px 5px 10px 0px rgba(17, 0, 24, 0.822);
+}
+.fake {
+  display: inline-block;
+  width: 40px;
+}
+.btn-light {
+  margin-right: 2px;
+  margin-left: 2px;
+  background-color: #d5e4fa;
+  border: none;
+  width: 50px;
+}
+.active {
+  visibility: visible;
+}
+.hidden {
+  visibility: hidden;
+}
+.success-login {
+  z-index: 2;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  background-image: linear-gradient(
+    rgba(245, 218, 250, 0.099),
+    rgba(245, 218, 250, 0.384),
+    rgba(245, 218, 250, 0.099)
+  );
+}
+.modal-result-login {
+  height: fit-content;
+  padding: 50px;
+  font-size: 36px;
+  position: fixed;
+  float: left;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(154, 164, 185, 0.726);
+  border-radius: 5px;
+  text-align: center;
+  color: white;
+}
+.burger {
+  visibility: hidden;
+}
+.burger-logo {
+  visibility: hidden;
+  position: absolute;
+}
+.collapsed {
+  visibility: hidden;
+  position: absolute;
+}
+.close {
+  visibility: hidden;
+  position: absolute;
+}
+
+@media only screen and (max-width: 910px) {
+  .burger {
+    visibility: visible;
+    top: 0px;
+    width: 100%;
+    height: 90px;
+    background: #453953;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .burger-logo {
+    position: absolute;
+    visibility: visible;
+    margin-right: 1rem;
+    width: 2em;
+  }
+  .svg-div {
+    width: 70px;
+    margin-bottom: 2rem;
+  }
+  .banner {
+    visibility: hidden;
+    position: absolute;
+  }
+  .active {
+    visibility: visible;
+  }
+  .active {
+    visibility: visible;
+  }
+  .collapsed {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    padding-right: 10px;
+    background-color: #453953;
+    color: white;
+    line-height: 4rem;
+  }
+  .close {
+    position: absolute;
+    right: 15px;
+    width: 1em;
+    fill: rgb(224, 41, 41);
+  }
+}
+@media only screen and (max-width: 600px) {
+  .modal-result-login {
+    width: 60%;
+    height: 30%;
+    font-size: 22px;
+    padding: 20px;
+  }
+}
