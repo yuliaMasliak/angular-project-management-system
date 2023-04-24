@@ -48,6 +48,7 @@ label {
   margin-top: 0px;
 }
 .btns {
+  margin: 0px auto;
   display: flex;
   width: 95%;
   justify-content: space-around;

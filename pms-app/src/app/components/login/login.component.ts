@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core'
-import { FormControl, FormGroup, Validators } from '@angular/forms'
-import { Router } from '@angular/router'
-import { AuthService } from 'src/app/services/auth.service'
-import { Output } from '@angular/core'
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
+import { Output } from '@angular/core';
 
 @Component({
   selector: 'app-login',
@@ -10,16 +10,9 @@ import { Output } from '@angular/core'
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loginForm!: FormGroup
+  public loginForm!: FormGroup;
 
-  constructor(private router: Router, private authService: AuthService) {}
-
-  loginAuthUser() {
-    this.authService.userLogin(
-      this.loginForm.value.login,
-      this.loginForm.value.password
-    )
-  }
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -32,6 +25,13 @@ export class LoginComponent implements OnInit {
         Validators.required,
         Validators.pattern('true')
       ])
-    })
+    });
+  }
+
+  loginAuthUser() {
+    this.authService.userLogin(
+      this.loginForm.value.login,
+      this.loginForm.value.password
+    );
   }
 }

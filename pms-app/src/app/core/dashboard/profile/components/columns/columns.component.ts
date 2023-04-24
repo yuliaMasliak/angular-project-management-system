@@ -2,14 +2,14 @@ import {
   CdkDragDrop,
   moveItemInArray,
   transferArrayItem
-} from '@angular/cdk/drag-drop'
-import { HttpClient } from '@angular/common/http'
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
-import { IColumn, ITask, ITaskItem } from 'src/app/models/interfaces'
-import { AuthService } from 'src/app/services/auth.service'
-import { GetBoardService } from 'src/app/services/get-board.service'
-import { ModalServiceService } from 'src/app/services/modal-service.service'
-import { baseUrl } from 'src/environment/environment'
+} from '@angular/cdk/drag-drop';
+import { HttpClient } from '@angular/common/http';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { IColumn, ITask, ITaskItem } from 'src/app/models/interfaces';
+import { AuthService } from 'src/app/services/auth.service';
+import { GetBoardService } from 'src/app/services/get-board.service';
+import { ModalServiceService } from 'src/app/services/modal-service.service';
+import { baseUrl } from 'src/environment/environment';
 
 @Component({
   selector: 'app-columns',
@@ -17,67 +17,70 @@ import { baseUrl } from 'src/environment/environment'
   styleUrls: ['./columns.component.css']
 })
 export class ColumnsComponent implements OnInit {
-  constructor(
-    public modal: ModalServiceService,
-    private http: HttpClient,
-    private auth: AuthService,
-    private boardService: GetBoardService
-  ) {}
-
+  public class: string = '';
+  public columnIds: string[] = [];
+  public columnToEditId = '';
+  public columnToDeleteId = '';
+  public showInput = false;
   @Input() column: any = {
     boardId: '',
     order: 0,
     title: '',
     _id: '',
     tasks: []
-  }
-  class: string = ''
-  columnIds: string[] = []
-  @Input() columns = []
-  @Input() columnTasks: ITaskItem[] = []
-  columnToEditId = ''
-  columnToDeleteId = ''
-  showInput = false
-  @Output() editColumnEvent = new EventEmitter()
-  @Output() deleteColumnEvent = new EventEmitter()
-  @Output() createTaskEvent = new EventEmitter()
-  @Output() editTaskEvent = new EventEmitter()
-  @Output() deleteTaskEvent = new EventEmitter()
-  @Output() editColumnTitleEvent = new EventEmitter()
+  };
+  @Input() columns = [];
+  @Input() columnTasks: ITaskItem[] = [];
+  @Output() editColumnEvent = new EventEmitter();
+  @Output() deleteColumnEvent = new EventEmitter();
+  @Output() createTaskEvent = new EventEmitter();
+  @Output() editTaskEvent = new EventEmitter();
+  @Output() deleteTaskEvent = new EventEmitter();
+  @Output() editColumnTitleEvent = new EventEmitter();
+  constructor(
+    public modal: ModalServiceService,
+    private boardService: GetBoardService
+  ) {}
 
   ngOnInit(): void {
     this.boardService.data.forEach((el: any) => {
-      this.columnIds.push(`columnId-${el.columnId}`)
-    })
+      this.columnIds.push(`columnId-${el.columnId}`);
+    });
   }
-  editColumnOnTitle (id: string) {
-    this.showInput = true
-    this.columnToEditId = id
-    let title = document.getElementById(`title-${id}`) as HTMLElement
-    title.style.display = 'none'
+  editColumnOnTitle(id: string) {
+    this.showInput = true;
+    this.columnToEditId = id;
+    let title = document.getElementById(`title-${id}`) as HTMLElement;
+    title.style.display = 'none';
   }
-  onClick (value: boolean) {
+  onClick(value: boolean) {
     if (value) {
-      let newTitle = document.getElementById(`edit-input-${this.columnToEditId}`) as HTMLInputElement
+      let newTitle = document.getElementById(
+        `edit-input-${this.columnToEditId}`
+      ) as HTMLInputElement;
       let data = {
         value: newTitle.value,
         id: this.columnToEditId
-      }
-      this.editColumnTitleEvent.emit(data)
-      this.showInput = false
-      let title = document.getElementById(`title-${this.columnToEditId}`) as HTMLElement
-      title.style.display = 'block'
+      };
+      this.editColumnTitleEvent.emit(data);
+      this.showInput = false;
+      let title = document.getElementById(
+        `title-${this.columnToEditId}`
+      ) as HTMLElement;
+      title.style.display = 'block';
     } else {
-      this.showInput = false
-      let title = document.getElementById(`title-${this.columnToEditId}`) as HTMLElement
-      title.style.display = 'block'
+      this.showInput = false;
+      let title = document.getElementById(
+        `title-${this.columnToEditId}`
+      ) as HTMLElement;
+      title.style.display = 'block';
     }
   }
   editColumn(id: string) {
-    this.editColumnEvent.emit(id)
+    this.editColumnEvent.emit(id);
   }
   deleteColumn(id: string) {
-    this.deleteColumnEvent.emit(id)
+    this.deleteColumnEvent.emit(id);
   }
 
   drop(event: CdkDragDrop<ITask[]>) {
@@ -86,30 +89,30 @@ export class ColumnsComponent implements OnInit {
         event.container.data,
         event.previousIndex,
         event.currentIndex
-      )
+      );
     } else {
       this.boardService.updateDraggedTasks(
         event.previousContainer.id,
         event.container.id,
         event.item.element.nativeElement.firstChild
-      )
+      );
 
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
         event.previousIndex,
         event.currentIndex
-      )
+      );
     }
   }
 
   editTaskEventEmit(id: string) {
-    this.editTaskEvent.emit(id)
+    this.editTaskEvent.emit(id);
   }
   deleteTaskEventEmit(id: string) {
-    this.deleteTaskEvent.emit(id)
+    this.deleteTaskEvent.emit(id);
   }
   createTaskEmit(id: string) {
-    this.createTaskEvent.emit(id)
+    this.createTaskEvent.emit(id);
   }
 }

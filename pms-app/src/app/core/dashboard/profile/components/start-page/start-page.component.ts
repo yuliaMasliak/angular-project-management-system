@@ -19,27 +19,27 @@ import {
   styleUrls: ['./start-page.component.css']
 })
 export class StartPageComponent {
+  public searchInput: string = '';
+  public tasks = [];
+  public name: string = '';
+  public id: string = '';
+  public boardId: string = this.boardService.boardId;
+  public boardTitle: string = this.boardService.boardTitle;
+  public boardToEdit: string = '';
+  public class: string = '';
+  public title = 'instant-search';
+  public showAllColumns: boolean = false;
+  public showAllBords: boolean = true;
+  public allColumns: any = [];
+  @Output() boards: IBoard[] = [];
+
   constructor(
+    public modal: ModalServiceService,
     private auth: AuthService,
     private http: HttpClient,
     private router: Router,
-    private boardService: GetBoardService,
-    public modal: ModalServiceService
+    private boardService: GetBoardService
   ) {}
-  name: string = '';
-  id: string = '';
-  boardId: string = this.boardService.boardId;
-  @Output() boards: IBoard[] = [];
-  boardTitle: string = this.boardService.boardTitle;
-  boardToEdit: string = '';
-  class: string = '';
-  title = 'instant-search';
-
-  public searchInput: string = '';
-  public tasks = [];
-  showAllColumns: boolean = false;
-  showAllBords: boolean = true;
-  allColumns: any = [];
 
   ngOnInit() {
     this.boardService.getAllBoards().subscribe((data: any) => {

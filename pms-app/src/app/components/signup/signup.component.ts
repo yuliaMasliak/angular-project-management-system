@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core'
-import { FormControl, FormGroup, Validators } from '@angular/forms'
-import { Router } from '@angular/router'
-import { IUser } from 'src/app/models/interfaces'
-import { AuthService } from 'src/app/services/auth.service'
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { IUser } from 'src/app/models/interfaces';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -10,17 +10,18 @@ import { AuthService } from 'src/app/services/auth.service'
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-  signupForm!: FormGroup
-  newUserToPost: IUser | null = null
+  public signupForm!: FormGroup;
+  public newUserToPost: IUser | null = null;
 
   constructor(private router: Router, private authService: AuthService) {}
+
   submitSignUp() {
     this.newUserToPost = {
       name: this.signupForm.value.name,
       login: this.signupForm.value.login,
       password: this.signupForm.value.password
-    }
-    this.authService.createUser(this.newUserToPost)
+    };
+    this.authService.createUser(this.newUserToPost);
   }
 
   ngOnInit(): void {
@@ -35,6 +36,6 @@ export class SignupComponent implements OnInit {
         Validators.required,
         Validators.pattern('true')
       ])
-    })
+    });
   }
 }
